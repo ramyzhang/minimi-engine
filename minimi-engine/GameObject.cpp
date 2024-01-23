@@ -15,8 +15,6 @@ GameObject::GameObject(const char* textureFile, SDL_Renderer* renderer, int x, i
 }
 
 void GameObject::update() {
-//    xPos_ = ((xPos_ + 1) % 1056) - 256;
-//    yPos_ = sin((yPos_ + 1) * 0.15) * 10;
     xPos_++;
     yPos_++;
     
