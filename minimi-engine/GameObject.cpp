@@ -7,11 +7,14 @@
 
 #include "GameObject.hpp"
 
-GameObject::GameObject(const char* textureFile, SDL_Renderer* renderer, int x, int y) {
+GameObject::GameObject(const std::vector<char*> textureFiles, SDL_Renderer* renderer, int x, int y) {
     xPos_ = x;
     yPos_ = y;
     renderer_ = renderer;
-    texture_ = TextureManager::loadTexture(textureFile, renderer_);
+    for (char* fileName : textureFiles) {
+        animTextures_.push_back(TextureManager::loadTexture(fileName, renderer_));
+    }
+    texture_ = TextureManager::loadTexture(textureFiles[0], renderer_);
 }
 
 void GameObject::update() {
@@ -27,8 +30,15 @@ void GameObject::update() {
     destRect_.w = srcRect_.w * 4;
     destRect_.x = (xPos_ % 1056) - 256;
     destRect_.y = sin(yPos_ * 0.15) * 10;
+    
+    this->animate();
 }
 
 void GameObject::render() {
     SDL_RenderCopy(renderer_, texture_, &srcRect_, &destRect_);
+}
+
+void GameObject::animate() {
+    int currFrame = ((xPos_ / 8) % animTextures_.size());
+    texture_ = animTextures_[currFrame];
 }

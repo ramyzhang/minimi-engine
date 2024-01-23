@@ -14,11 +14,12 @@
 class GameObject {
     
 public:
-    GameObject(const char* textureSheet, SDL_Renderer* renderer, int x, int y);
+    GameObject(const std::vector<char*> textureSheet, SDL_Renderer* renderer, int x, int y);
     ~GameObject();
     
     void update();
     void render();
+    void animate();
     
 private:
     int xPos_;
@@ -28,6 +29,7 @@ private:
     SDL_Renderer *renderer_;
     SDL_Texture *texture_;
     
+    std::vector<SDL_Texture*> animTextures_;
 };
 
 #endif /* GameObject_hpp */

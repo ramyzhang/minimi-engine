@@ -10,10 +10,16 @@
 		DC0C3D112B5F655900D9BBB2 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC0C3D0F2B5F655900D9BBB2 /* Game.cpp */; };
 		DC0C3D132B5F732F00D9BBB2 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C3D122B5F732F00D9BBB2 /* SDL2_image.framework */; };
 		DC0C3D142B5F732F00D9BBB2 /* SDL2_image.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C3D122B5F732F00D9BBB2 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DC0C3D172B5F7A2400D9BBB2 /* cupid_idle0.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D162B5F7A2400D9BBB2 /* cupid_idle0.png */; };
 		DC0C3D1A2B5F883800D9BBB2 /* TextureManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC0C3D182B5F883800D9BBB2 /* TextureManager.cpp */; };
 		DC0C3D1D2B5F8A9500D9BBB2 /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC0C3D1B2B5F8A9500D9BBB2 /* GameObject.cpp */; };
-		DC0C3D1F2B5F8D4900D9BBB2 /* cupid_idle1.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D1E2B5F8D4900D9BBB2 /* cupid_idle1.png */; };
+		DC0C3D232B5FA1D400D9BBB2 /* cupid_idle1.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D222B5FA1D400D9BBB2 /* cupid_idle1.png */; };
+		DC0C3D2A2B5FA1DD00D9BBB2 /* cupid_idle6.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D242B5FA1DD00D9BBB2 /* cupid_idle6.png */; };
+		DC0C3D2B2B5FA1DD00D9BBB2 /* cupid_idle5.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D252B5FA1DD00D9BBB2 /* cupid_idle5.png */; };
+		DC0C3D2D2B5FA1DD00D9BBB2 /* cupid_idle3.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D272B5FA1DD00D9BBB2 /* cupid_idle3.png */; };
+		DC0C3D2E2B5FA1DD00D9BBB2 /* cupid_idle4.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D282B5FA1DD00D9BBB2 /* cupid_idle4.png */; };
+		DC0C3D2F2B5FA1DD00D9BBB2 /* cupid_idle7.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D292B5FA1DD00D9BBB2 /* cupid_idle7.png */; };
+		DC0C3D312B5FA21000D9BBB2 /* cupid_idle0.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D302B5FA21000D9BBB2 /* cupid_idle0.png */; };
+		DC0C3D332B5FA2A800D9BBB2 /* cupid_idle2.png in Resources */ = {isa = PBXBuildFile; fileRef = DC0C3D322B5FA2A800D9BBB2 /* cupid_idle2.png */; };
 		DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC61EE5D2B54F7C60054C3DB /* Assets.xcassets */; };
 		DC61EE6C2B54F7DE0054C3DB /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; };
 		DC61EE6D2B54F7DF0054C3DB /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -39,12 +45,18 @@
 		DC0C3D0F2B5F655900D9BBB2 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		DC0C3D102B5F655900D9BBB2 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		DC0C3D122B5F732F00D9BBB2 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
-		DC0C3D162B5F7A2400D9BBB2 /* cupid_idle0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_idle0.png; sourceTree = "<group>"; };
 		DC0C3D182B5F883800D9BBB2 /* TextureManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TextureManager.cpp; sourceTree = "<group>"; };
 		DC0C3D192B5F883800D9BBB2 /* TextureManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TextureManager.hpp; sourceTree = "<group>"; };
 		DC0C3D1B2B5F8A9500D9BBB2 /* GameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
 		DC0C3D1C2B5F8A9500D9BBB2 /* GameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
-		DC0C3D1E2B5F8D4900D9BBB2 /* cupid_idle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle1.png; path = ../../../../Downloads/cupid_idle1.png; sourceTree = "<group>"; };
+		DC0C3D222B5FA1D400D9BBB2 /* cupid_idle1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle1.png; path = ../../../../Downloads/cupid_idle1.png; sourceTree = "<group>"; };
+		DC0C3D242B5FA1DD00D9BBB2 /* cupid_idle6.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle6.png; path = ../../../../Downloads/cupid_idle6.png; sourceTree = "<group>"; };
+		DC0C3D252B5FA1DD00D9BBB2 /* cupid_idle5.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle5.png; path = ../../../../Downloads/cupid_idle5.png; sourceTree = "<group>"; };
+		DC0C3D272B5FA1DD00D9BBB2 /* cupid_idle3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle3.png; path = ../../../../Downloads/cupid_idle3.png; sourceTree = "<group>"; };
+		DC0C3D282B5FA1DD00D9BBB2 /* cupid_idle4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle4.png; path = ../../../../Downloads/cupid_idle4.png; sourceTree = "<group>"; };
+		DC0C3D292B5FA1DD00D9BBB2 /* cupid_idle7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle7.png; path = ../../../../Downloads/cupid_idle7.png; sourceTree = "<group>"; };
+		DC0C3D302B5FA21000D9BBB2 /* cupid_idle0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle0.png; path = ../../../../Downloads/cupid_idle0.png; sourceTree = "<group>"; };
+		DC0C3D322B5FA2A800D9BBB2 /* cupid_idle2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = cupid_idle2.png; path = ../../../../Downloads/cupid_idle2.png; sourceTree = "<group>"; };
 		DC61EE572B54F7C60054C3DB /* minimi-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "minimi-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC61EE5D2B54F7C60054C3DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC61EE642B54F7C60054C3DB /* minimi_engine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = minimi_engine.entitlements; sourceTree = "<group>"; };
@@ -68,8 +80,14 @@
 		DC0C3D152B5F7A2400D9BBB2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
-				DC0C3D1E2B5F8D4900D9BBB2 /* cupid_idle1.png */,
-				DC0C3D162B5F7A2400D9BBB2 /* cupid_idle0.png */,
+				DC0C3D322B5FA2A800D9BBB2 /* cupid_idle2.png */,
+				DC0C3D272B5FA1DD00D9BBB2 /* cupid_idle3.png */,
+				DC0C3D282B5FA1DD00D9BBB2 /* cupid_idle4.png */,
+				DC0C3D252B5FA1DD00D9BBB2 /* cupid_idle5.png */,
+				DC0C3D242B5FA1DD00D9BBB2 /* cupid_idle6.png */,
+				DC0C3D292B5FA1DD00D9BBB2 /* cupid_idle7.png */,
+				DC0C3D222B5FA1D400D9BBB2 /* cupid_idle1.png */,
+				DC0C3D302B5FA21000D9BBB2 /* cupid_idle0.png */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -176,8 +194,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */,
-				DC0C3D172B5F7A2400D9BBB2 /* cupid_idle0.png in Resources */,
-				DC0C3D1F2B5F8D4900D9BBB2 /* cupid_idle1.png in Resources */,
+				DC0C3D2A2B5FA1DD00D9BBB2 /* cupid_idle6.png in Resources */,
+				DC0C3D2F2B5FA1DD00D9BBB2 /* cupid_idle7.png in Resources */,
+				DC0C3D2B2B5FA1DD00D9BBB2 /* cupid_idle5.png in Resources */,
+				DC0C3D312B5FA21000D9BBB2 /* cupid_idle0.png in Resources */,
+				DC0C3D2E2B5FA1DD00D9BBB2 /* cupid_idle4.png in Resources */,
+				DC0C3D332B5FA2A800D9BBB2 /* cupid_idle2.png in Resources */,
+				DC0C3D232B5FA1D400D9BBB2 /* cupid_idle1.png in Resources */,
+				DC0C3D2D2B5FA1DD00D9BBB2 /* cupid_idle3.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

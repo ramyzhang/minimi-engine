@@ -12,6 +12,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <math.h>
+#include <vector>
 #include "TextureManager.hpp"
 #include "GameObject.hpp"
 
