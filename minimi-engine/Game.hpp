@@ -15,6 +15,7 @@
 #include <vector>
 #include "TextureManager.hpp"
 #include "GameObject.hpp"
+#include "TileMap.hpp"
 
 class Game {
     
@@ -29,10 +30,11 @@ public:
     void handleEvents();
     bool isRunning() { return isRunning_; }; // is the game running?
     
+    static SDL_Renderer *renderer_;
+    
 private:
     bool isRunning_;
     SDL_Window *window_;
-    SDL_Renderer *renderer_;
     int count_;
 };
 

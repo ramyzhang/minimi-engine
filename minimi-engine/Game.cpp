@@ -11,6 +11,8 @@ Game::Game() {};
 Game::~Game() {};
 
 GameObject *player;
+SDL_Renderer *Game::renderer_ = nullptr;
+TileMap *bgTileMap;
 
 /** Initialize SDL and the game window + renderer. **/
 void Game::init(const char* title, int xPosition, int yPosition, int width, int height, bool fullScreen) {
@@ -22,7 +24,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     printf("SDL initialized!\n");
     
     // Create window
-    window_ = SDL_CreateWindow("SDL Tutorial", xPosition, yPosition, width, height, fullScreen);
+    window_ = SDL_CreateWindow("Minimi Engine", xPosition, yPosition, width, height, fullScreen);
     if (window_ == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         isRunning_ = false;
@@ -54,7 +56,9 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
         "cupid_idle6.png",
         "cupid_idle7.png"
     };
-    player = new GameObject(frameFiles, renderer_, 0, 0);
+    player = new GameObject(frameFiles, 0, 0);
+    
+    bgTileMap = new TileMap();
     
     printf("Game is running!\n");
     isRunning_ = true;
@@ -69,9 +73,9 @@ void Game::update() {
 /** Clear and re-render new screen contents for the next frame. */
 void Game::render() {
     SDL_RenderClear(renderer_);
+    bgTileMap->renderMap();
     player->render();
     SDL_RenderPresent(renderer_);
-    
 };
 
 /** Memory management: clear the game, close the window. */

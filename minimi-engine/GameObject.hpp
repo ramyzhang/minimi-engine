@@ -14,7 +14,7 @@
 class GameObject {
     
 public:
-    GameObject(const std::vector<char*> textureSheet, SDL_Renderer* renderer, int x, int y);
+    GameObject(const std::vector<char*> textureSheet, int x, int y);
     ~GameObject();
     
     void update();
@@ -26,7 +26,6 @@ private:
     int yPos_;
     
     SDL_Rect srcRect_, destRect_;
-    SDL_Renderer *renderer_;
     SDL_Texture *texture_;
     
     std::vector<SDL_Texture*> animTextures_;
