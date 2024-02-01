@@ -16,6 +16,7 @@
 		DC61EE6D2B54F7DF0054C3DB /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC61EE712B54F8BD0054C3DB /* main.cpp */; };
 		DC666E342B6B357E0070AAAB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC666E322B6B357E0070AAAB /* Entity.cpp */; };
+		DC666E3B2B6B64AC0070AAAB /* Components.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC666E392B6B64AC0070AAAB /* Components.cpp */; };
 		DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC690F902B60ABD50094D096 /* TileMap.cpp */; };
 		DC690FA32B60D3C90094D096 /* cupid_idle7.png in Resources */ = {isa = PBXBuildFile; fileRef = DC690F9B2B60C8340094D096 /* cupid_idle7.png */; };
 		DC690FA42B60D3C90094D096 /* cupid_idle1.png in Resources */ = {isa = PBXBuildFile; fileRef = DC690F992B60C8340094D096 /* cupid_idle1.png */; };
@@ -59,6 +60,8 @@
 		DC61EE712B54F8BD0054C3DB /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		DC666E322B6B357E0070AAAB /* Entity.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		DC666E332B6B357E0070AAAB /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
+		DC666E392B6B64AC0070AAAB /* Components.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Components.cpp; sourceTree = "<group>"; };
+		DC666E3A2B6B64AC0070AAAB /* Components.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Components.hpp; sourceTree = "<group>"; };
 		DC690F902B60ABD50094D096 /* TileMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
 		DC690F912B60ABD50094D096 /* TileMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TileMap.hpp; sourceTree = "<group>"; };
 		DC690F942B60C8310094D096 /* cupid_idle3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_idle3.png; sourceTree = "<group>"; };
@@ -132,6 +135,8 @@
 				DCB713A52B677DA1003EBF80 /* EntityManager.hpp */,
 				DC666E322B6B357E0070AAAB /* Entity.cpp */,
 				DC666E332B6B357E0070AAAB /* Entity.hpp */,
+				DC666E392B6B64AC0070AAAB /* Components.cpp */,
+				DC666E3A2B6B64AC0070AAAB /* Components.hpp */,
 			);
 			path = "minimi-engine";
 			sourceTree = "<group>";
@@ -252,6 +257,7 @@
 			files = (
 				DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */,
 				DC0C3D112B5F655900D9BBB2 /* Game.cpp in Sources */,
+				DC666E3B2B6B64AC0070AAAB /* Components.cpp in Sources */,
 				DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */,
 				DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */,
 				DC666E342B6B357E0070AAAB /* Entity.cpp in Sources */,

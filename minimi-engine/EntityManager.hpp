@@ -22,7 +22,7 @@ public:
     EntityManager();
     ~EntityManager();
     
-    std::shared_ptr<Entity> addEntity(const std::string& tag);
+    std::shared_ptr<Entity> addEntity(const std::string& tag, std::vector<char*> textureSheet);
     // this kind of parameter above is a promise that the param won't be modified
     
     EntityVector& getEntities();
@@ -33,7 +33,7 @@ public:
 private:
     EntityVector entities_;
     EntityMap entityMap_;
-    size_t totalEntities_ = 0;
+    size_t totalEntities_;
     
     EntityVector entitiesToAdd_;
     

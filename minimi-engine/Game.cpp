@@ -10,9 +10,10 @@
 Game::Game() {};
 Game::~Game() {};
 
-Entity *player;
+std::shared_ptr<Entity> player;
 SDL_Renderer *Game::renderer_ = nullptr;
 TileMap *bgTileMap;
+EntityManager *entityManager = new EntityManager();
 
 /** Initialize SDL and the game window + renderer. **/
 void Game::init(const char* title, int xPosition, int yPosition, int width, int height, bool fullScreen) {
@@ -57,7 +58,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
         (char*)"cupid_idle7.png"
     };
     
-    player = new Entity(0, "Default", frameFiles, 0, 0);
+    player = entityManager->addEntity("Default", frameFiles);
     
     bgTileMap = new TileMap();
     

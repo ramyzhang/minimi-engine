@@ -18,10 +18,12 @@
 #include <algorithm>
 #include "TextureManager.hpp"
 #include "TileMap.hpp"
+#include "Components.hpp"
 #include "EntityManager.hpp"
 #include "Entity.hpp"
 
-class EntityManager;
+// TODO: maybe change later? idk
+#define MAX_ENTITIES 200
 
 class Game {
     
