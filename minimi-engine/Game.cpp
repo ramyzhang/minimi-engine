@@ -10,7 +10,7 @@
 Game::Game() {};
 Game::~Game() {};
 
-GameObject *player;
+Entity *player;
 SDL_Renderer *Game::renderer_ = nullptr;
 TileMap *bgTileMap;
 
@@ -47,16 +47,17 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     }
     
     std::vector<char*> frameFiles = {
-        "cupid_idle0.png",
-        "cupid_idle1.png",
-        "cupid_idle2.png",
-        "cupid_idle3.png",
-        "cupid_idle4.png",
-        "cupid_idle5.png",
-        "cupid_idle6.png",
-        "cupid_idle7.png"
+        (char*)"cupid_idle0.png",
+        (char*)"cupid_idle1.png",
+        (char*)"cupid_idle2.png",
+        (char*)"cupid_idle3.png",
+        (char*)"cupid_idle4.png",
+        (char*)"cupid_idle5.png",
+        (char*)"cupid_idle6.png",
+        (char*)"cupid_idle7.png"
     };
-    player = new GameObject(frameFiles, 0, 0);
+    
+    player = new Entity(0, "Default", frameFiles, 0, 0);
     
     bgTileMap = new TileMap();
     

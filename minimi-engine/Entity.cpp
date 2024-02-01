@@ -1,22 +1,26 @@
 //
-//  GameObject.cpp
+//  Entity.cpp
 //  minimi-engine
 //
-//  Created by Ramy Zhang on 2024-01-23.
+//  Created by Ramy Zhang on 2024-01-31.
 //
 
-#include "GameObject.hpp"
+#include "Entity.hpp"
 
-GameObject::GameObject(const std::vector<char*> textureFiles, int x, int y) {
+Entity::Entity(const size_t id, const std::string& tag, const std::vector<char*> textureSheet, int x, int y) {
+    id_ = id;
+    tag_ = tag;
     xPos_ = x;
     yPos_ = y;
-    for (char* fileName : textureFiles) {
+    
+    for (char* fileName : textureSheet) {
         animTextures_.push_back(TextureManager::loadTexture(fileName));
     }
-    texture_ = TextureManager::loadTexture(textureFiles[0]);
+    
+    texture_ = TextureManager::loadTexture(textureSheet[0]);
 }
 
-void GameObject::update() {
+void Entity::update() {
     xPos_++;
     yPos_++;
     
@@ -33,11 +37,23 @@ void GameObject::update() {
     this->animate();
 }
 
-void GameObject::render() {
+void Entity::render() {
     SDL_RenderCopy(Game::renderer_, texture_, &srcRect_, &destRect_);
 }
 
-void GameObject::animate() {
+void Entity::animate() {
     int currFrame = ((xPos_ / 8) % animTextures_.size());
     texture_ = animTextures_[currFrame];
+}
+
+std::string Entity::getTag() {
+    return tag_;
+}
+
+bool Entity::isActive() {
+    return active_;
+}
+
+void Entity::destroy() {
+    active_ = false;
 }

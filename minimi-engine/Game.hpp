@@ -12,10 +12,16 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <math.h>
+#include <string>
 #include <vector>
+#include <map>
+#include <algorithm>
 #include "TextureManager.hpp"
-#include "GameObject.hpp"
 #include "TileMap.hpp"
+#include "EntityManager.hpp"
+#include "Entity.hpp"
+
+class EntityManager;
 
 class Game {
     
@@ -33,9 +39,11 @@ public:
     static SDL_Renderer *renderer_;
     
 private:
+    int  count_;
     bool isRunning_;
+    
     SDL_Window *window_;
-    int count_;
+    
 };
 
 #endif /* Game_hpp */

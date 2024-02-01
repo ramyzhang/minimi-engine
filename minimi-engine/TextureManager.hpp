@@ -4,7 +4,7 @@
 //
 //  Created by Ramy Zhang on 2024-01-23.
 //
-#pragma once
+
 #ifndef TextureManager_hpp
 #define TextureManager_hpp
 
