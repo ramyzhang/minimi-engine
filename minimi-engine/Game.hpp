@@ -18,7 +18,7 @@
 #include <algorithm>
 #include "TextureManager.hpp"
 #include "TileMap.hpp"
-#include "Components.hpp"
+#include "Component.hpp"
 #include "EntityManager.hpp"
 #include "Entity.hpp"
 

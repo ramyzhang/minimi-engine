@@ -9,7 +9,10 @@
 #define EntityManager_hpp
 
 #include <stdio.h>
-#include "Game.hpp"
+#include <string>
+#include <vector>
+#include <map>
+#include "Entity.hpp"
 
 class Entity;
 
@@ -22,7 +25,7 @@ public:
     EntityManager();
     ~EntityManager();
     
-    std::shared_ptr<Entity> addEntity(const std::string& tag, std::vector<char*> textureSheet);
+    std::shared_ptr<Entity> addEntity(const std::string& tag);
     // this kind of parameter above is a promise that the param won't be modified
     
     EntityVector& getEntities();
@@ -36,7 +39,6 @@ private:
     size_t totalEntities_;
     
     EntityVector entitiesToAdd_;
-    
 };
 
 #endif /* EntityManager_hpp */

@@ -25,7 +25,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     printf("SDL initialized!\n");
     
     // Create window
-    window_ = SDL_CreateWindow("Minimi Engine", xPosition, yPosition, width, height, fullScreen);
+    window_ = SDL_CreateWindow("Minimi", xPosition, yPosition, width, height, fullScreen);
     if (window_ == NULL) {
         printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
         isRunning_ = false;
@@ -47,18 +47,18 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
         return;
     }
     
-    std::vector<char*> frameFiles = {
-        (char*)"cupid_idle0.png",
-        (char*)"cupid_idle1.png",
-        (char*)"cupid_idle2.png",
-        (char*)"cupid_idle3.png",
-        (char*)"cupid_idle4.png",
-        (char*)"cupid_idle5.png",
-        (char*)"cupid_idle6.png",
-        (char*)"cupid_idle7.png"
-    };
-    
-    player = entityManager->addEntity("Default", frameFiles);
+    // Add player entity!
+    player = entityManager->addEntity("Default");
+    SDL_Texture* cupid_texture = TextureManager::loadTexture("cupid_idle0.png");
+    SDL_Rect cupid_srcRect;
+    SDL_Rect cupid_destRect;
+    cupid_srcRect.x = cupid_srcRect.y = 0;
+    cupid_destRect.x = 336;
+    cupid_destRect.y = 256;
+    cupid_srcRect.h = cupid_srcRect.w = 64;
+    cupid_destRect.h = cupid_destRect.w = 128;
+
+    player->cSprite = std::make_shared<CSprite>(cupid_texture, cupid_srcRect, cupid_destRect);
     
     bgTileMap = new TileMap();
     
@@ -69,14 +69,20 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
 /** Go through all the game objects and update them all. */
 void Game::update() {
     count_++;
-    player->update();
+    entityManager->entityUpdate();
 };
 
 /** Clear and re-render new screen contents for the next frame. */
 void Game::render() {
     SDL_RenderClear(renderer_);
     bgTileMap->renderMap();
-    player->render();
+    
+    for (auto& e : entityManager->getEntities()) {
+        if (e->cSprite) {
+            TextureManager::draw(e->cSprite->texture, e->cSprite->srcRect, e->cSprite->destRect);
+        }
+    }
+    
     SDL_RenderPresent(renderer_);
 };
 

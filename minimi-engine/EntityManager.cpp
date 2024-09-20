@@ -11,9 +11,8 @@ EntityManager::EntityManager() {
     totalEntities_ = 0;
 }
 
-std::shared_ptr<Entity> EntityManager::addEntity(const std::string& tag, std::vector<char*> textureSheet) {
-    // TODO: this texturesheet param should no longer exist later
-    auto newEntity = std::shared_ptr<Entity>(new Entity(totalEntities_, tag, textureSheet, 0, 0));
+std::shared_ptr<Entity> EntityManager::addEntity(const std::string& tag) {
+    auto newEntity = std::shared_ptr<Entity>(new Entity(totalEntities_, tag));
     
     entitiesToAdd_.push_back(newEntity);
     totalEntities_++;
@@ -40,7 +39,6 @@ void EntityManager::entityUpdate() {
     // Erase entities from the entities vector if they're inactive
     auto newEnd = std::remove_if(entities_.begin(), entities_.end(), [] (std::shared_ptr<Entity> entity) { return !entity->isActive(); } );
     totalEntities_ = totalEntities_ - (std::distance(newEnd, entities_.end()));
-    entities_.erase(newEnd);
     
     // Clear the waiting room for new entities
     entitiesToAdd_.clear();
