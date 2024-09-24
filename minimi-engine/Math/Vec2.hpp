@@ -34,6 +34,8 @@ public:
     Vec2& rotate(const float& deg);
     
     float distance(const Vec2& v) const;
+    
+    Vec2& normalize(const Vec2& v);
 };
 
 #endif /* Vec2_hpp */

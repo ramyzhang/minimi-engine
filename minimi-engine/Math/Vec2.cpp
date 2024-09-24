@@ -47,3 +47,10 @@ Vec2& Vec2::rotate(const float& deg) {
 float Vec2::distance(const Vec2& v) const {
     return sqrtf((v.x - x) * (v.x - x) + (v.y - y) * (v.y - y));
 }
+
+Vec2& Vec2::normalize(const Vec2& v) {
+    float norm = sqrt(v.x * v.x + v.y * v.y);
+    x = x / norm;
+    y = y / norm;
+    return *this;
+}
