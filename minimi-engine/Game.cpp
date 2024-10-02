@@ -57,7 +57,10 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     cupid_destRect.y = 256;
     cupid_srcRect.h = cupid_srcRect.w = 64;
     cupid_destRect.h = cupid_destRect.w = 128;
-
+    
+    Vec2 cupid_pos = { 336, 256 };
+    Vec2 cupid_velo = { 0, 0 };
+    player->cTransform = std::make_shared<CTransform>(cupid_pos, cupid_velo);
     player->cSprite = std::make_shared<CSprite>(cupid_texture, cupid_srcRect, cupid_destRect);
     
     bgTileMap = new TileMap();
@@ -97,16 +100,30 @@ void Game::clean() {
 /** Handle events in the game. This should be run inside the game loop. */
 void Game::handleEvents() {
     SDL_Event e;
-    SDL_PollEvent(&e);
-    
-    switch (e.type) {
-        case SDL_QUIT:
+
+    // Continuing polling events and handling them until there are no more
+    while (SDL_PollEvent(&e) != 0) {
+        if (e.type == SDL_QUIT) {
             isRunning_ = false;
             break;
-            
-        default:
-            // printf("This event hasn't been handled yet: %d\n", e.type);
-            break;
+        } else if (e.type == SDL_KEYDOWN) {
+            switch (e.key.keysym.sym) {
+                case SDLK_UP:
+                    break;
+
+                case SDLK_DOWN:
+                    break;
+
+                case SDLK_LEFT:
+                    break;
+
+                case SDLK_RIGHT:
+                    break;
+
+                default:
+                    break;
+            }
+        }
     }
 };
 

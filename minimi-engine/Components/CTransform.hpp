@@ -10,18 +10,16 @@
 
 #include <stdio.h>
 #include "Component.hpp"
+#include "Vec2.hpp"
 
 class CTransform : public Component {
 public:
-    float pos_x = 0.0;
-    float pos_y = 0.0;
+    Vec2 pos = { 0.0, 0.0 };
     
-    float velocity_x = 0.0;
-    float velocity_y = 0.0;
+    Vec2 velocity = { 0.0, 0.0 };
     
     CTransform() {};
-    CTransform(const float& p_x, const float& p_y, const float& v_x, const float& v_y)
-    : pos_x(p_x), pos_y(p_y), velocity_x(v_x), velocity_y(v_y) {}
+    CTransform(const Vec2& p, const Vec2& v) : pos(p), velocity(v) {}
 };
 
 #endif /* CTransform_hpp */

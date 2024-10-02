@@ -26,9 +26,11 @@
 		DC690FA92B60D3C90094D096 /* cupid_idle5.png in Resources */ = {isa = PBXBuildFile; fileRef = DC690F972B60C8310094D096 /* cupid_idle5.png */; };
 		DC690FAA2B60D3C90094D096 /* cupid_idle6.png in Resources */ = {isa = PBXBuildFile; fileRef = DC690F952B60C8310094D096 /* cupid_idle6.png */; };
 		DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCB713A42B677DA1003EBF80 /* EntityManager.cpp */; };
-		DCB713AA2B678006003EBF80 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A72B678006003EBF80 /* water.png */; };
 		DCB713AB2B678006003EBF80 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A82B678006003EBF80 /* grass.png */; };
 		DCB713AC2B678006003EBF80 /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A92B678006003EBF80 /* stone.png */; };
+		DCE5A57B2CACF58A00D16C97 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE5A57A2CACF58A00D16C97 /* water.png */; };
+		DCE5A5822CACFF6700D16C97 /* Inputs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5802CACFF6700D16C97 /* Inputs.cpp */; };
+		DCE5A5852CAD002B00D16C97 /* Movement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5832CAD002B00D16C97 /* Movement.cpp */; };
 		DCE5E8982C9D331D00B36530 /* CTransform.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E8962C9D331D00B36530 /* CTransform.cpp */; };
 		DCE5E89B2C9D335C00B36530 /* CSprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E8992C9D335C00B36530 /* CSprite.cpp */; };
 		DCE5E89E2C9D338F00B36530 /* CBoxCollider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E89C2C9D338F00B36530 /* CBoxCollider.cpp */; };
@@ -76,9 +78,13 @@
 		DC690F9B2B60C8340094D096 /* cupid_idle7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_idle7.png; sourceTree = "<group>"; };
 		DCB713A42B677DA1003EBF80 /* EntityManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
 		DCB713A52B677DA1003EBF80 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
-		DCB713A72B678006003EBF80 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
 		DCB713A82B678006003EBF80 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		DCB713A92B678006003EBF80 /* stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone.png; sourceTree = "<group>"; };
+		DCE5A57A2CACF58A00D16C97 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
+		DCE5A5802CACFF6700D16C97 /* Inputs.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Inputs.cpp; sourceTree = "<group>"; };
+		DCE5A5812CACFF6700D16C97 /* Inputs.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Inputs.hpp; sourceTree = "<group>"; };
+		DCE5A5832CAD002B00D16C97 /* Movement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Movement.cpp; sourceTree = "<group>"; };
+		DCE5A5842CAD002B00D16C97 /* Movement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Movement.hpp; sourceTree = "<group>"; };
 		DCE5E8962C9D331D00B36530 /* CTransform.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CTransform.cpp; sourceTree = "<group>"; };
 		DCE5E8972C9D331D00B36530 /* CTransform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CTransform.hpp; sourceTree = "<group>"; };
 		DCE5E8992C9D335C00B36530 /* CSprite.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CSprite.cpp; sourceTree = "<group>"; };
@@ -133,6 +139,7 @@
 		DC61EE592B54F7C60054C3DB /* minimi-engine */ = {
 			isa = PBXGroup;
 			children = (
+				DCE5A57F2CACFF3600D16C97 /* Systems */,
 				DCE5E8A32C9D447F00B36530 /* Math */,
 				DCE5E8942C9D32D300B36530 /* Components */,
 				DC0C3D152B5F7A2400D9BBB2 /* Assets */,
@@ -182,11 +189,22 @@
 		DC690F9C2B60C8440094D096 /* Tiles */ = {
 			isa = PBXGroup;
 			children = (
+				DCE5A57A2CACF58A00D16C97 /* water.png */,
 				DCB713A82B678006003EBF80 /* grass.png */,
 				DCB713A92B678006003EBF80 /* stone.png */,
-				DCB713A72B678006003EBF80 /* water.png */,
 			);
 			path = Tiles;
+			sourceTree = "<group>";
+		};
+		DCE5A57F2CACFF3600D16C97 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				DCE5A5802CACFF6700D16C97 /* Inputs.cpp */,
+				DCE5A5812CACFF6700D16C97 /* Inputs.hpp */,
+				DCE5A5832CAD002B00D16C97 /* Movement.cpp */,
+				DCE5A5842CAD002B00D16C97 /* Movement.hpp */,
+			);
+			path = Systems;
 			sourceTree = "<group>";
 		};
 		DCE5E8942C9D32D300B36530 /* Components */ = {
@@ -280,7 +298,7 @@
 				DC690FAA2B60D3C90094D096 /* cupid_idle6.png in Resources */,
 				DCB713AB2B678006003EBF80 /* grass.png in Resources */,
 				DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */,
-				DCB713AA2B678006003EBF80 /* water.png in Resources */,
+				DCE5A57B2CACF58A00D16C97 /* water.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +311,7 @@
 			files = (
 				DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */,
 				DCE5E89E2C9D338F00B36530 /* CBoxCollider.cpp in Sources */,
+				DCE5A5822CACFF6700D16C97 /* Inputs.cpp in Sources */,
 				DC0C3D112B5F655900D9BBB2 /* Game.cpp in Sources */,
 				DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */,
 				DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */,
@@ -300,6 +319,7 @@
 				DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */,
 				DC666E342B6B357E0070AAAB /* Entity.cpp in Sources */,
 				DCE5E8982C9D331D00B36530 /* CTransform.cpp in Sources */,
+				DCE5A5852CAD002B00D16C97 /* Movement.cpp in Sources */,
 				DC0C3D1A2B5F883800D9BBB2 /* TextureManager.cpp in Sources */,
 				DCE5E8A12C9D34A300B36530 /* Component.cpp in Sources */,
 			);
