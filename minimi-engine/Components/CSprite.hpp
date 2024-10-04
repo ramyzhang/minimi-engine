@@ -11,16 +11,24 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
+#include <vector>
 #include "Component.hpp"
 
 class CSprite : public Component {
 public:
     SDL_Texture* texture;
-    SDL_Rect srcRect;
-    SDL_Rect destRect;
+    
+    int getWidth() { return width_; };
+    int getHeight() { return height_; };
     
     CSprite() {};
-    CSprite(SDL_Texture* tex, const SDL_Rect& src, const SDL_Rect& dest) : texture(tex), srcRect(src), destRect(dest) {};
+    CSprite(SDL_Texture* tex,
+            const int& w,
+            const int& h) : texture(tex), width_(w), height_(h) {};
+
+private:
+    int width_;
+    int height_;    
 };
 
 #endif /* CSprite_hpp */

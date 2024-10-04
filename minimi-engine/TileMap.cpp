@@ -58,15 +58,15 @@ void TileMap::renderMap() {
             
             switch (tileMap_[row][col]) {
                 case 0:
-                    TextureManager::draw(grass_, srcRect_, destRect_);
+                    TextureManager::drawTile(grass_, &srcRect_, &destRect_);
                     break;
                 
                 case 1:
-                    TextureManager::draw(stone_, srcRect_, destRect_);
+                    TextureManager::drawTile(stone_, &srcRect_, &destRect_);
                     break;
                     
                 case 2:
-                    TextureManager::draw(water_, srcRect_, destRect_);
+                    TextureManager::drawTile(water_, &srcRect_, &destRect_);
                     break;
                     
                 default:

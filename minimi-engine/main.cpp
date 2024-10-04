@@ -38,6 +38,7 @@ int main(int argc, char* args[])
     while (game->isRunning()) {
         frameStart = SDL_GetTicks();
         game->handleEvents();
+        game->sMovement();
         game->update();
         game->render();
         
