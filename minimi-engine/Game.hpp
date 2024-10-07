@@ -21,22 +21,16 @@
 #include "Component.hpp"
 #include "EntityManager.hpp"
 #include "Entity.hpp"
+#include "SMovement.hpp"
+#include "SInput.hpp"
+#include "SEnemySpawner.hpp"
 
 // TODO: maybe change later? idk
 #define MAX_ENTITIES 200
 
-enum InputDirection {
-    STOP,
-    NEUTRAL,
-    GO
-};
-
-struct Inputs {
-    InputDirection up = NEUTRAL;
-    InputDirection down = NEUTRAL;
-    InputDirection left = NEUTRAL;
-    InputDirection right = NEUTRAL;
-};
+// Screen dimension constants
+const int SCREEN_WIDTH = 800;
+const int SCREEN_HEIGHT = 640;
 
 class Game {
     
@@ -51,14 +45,16 @@ public:
     void handleEvents();
     
     bool isRunning() { return isRunning_; }; // is the game running?
-    Inputs getInputs() { return inputs_; };
+    static Inputs* getInputs() { return &inputs_; };
     
-    static SDL_Renderer *renderer_;
+    static SDL_Renderer *renderer;
     
-    // Systems
-    void sMovement();
-    void sUserInput();
-    void sEnemySpawner();
+    static EntityManager *entityManager;
+    
+    // Systems TODO: Separate these out
+//    void sMovement();
+//    void sUserInput();
+//    void sEnemySpawner();
     void sCollision();
     
 private:

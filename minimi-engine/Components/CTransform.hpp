@@ -31,6 +31,12 @@ public:
                const Vec2& v,
                const double& d,
                const SDL_RendererFlip& f) : speed(s), pos(p), velocity(v), degrees(d), flip(f) {};
+    
+    void setTarget(Vec2 target) { target_ = target; };
+    Vec2 getTarget() { return target_; };
+    
+private:
+    Vec2 target_;
 };
 
 #endif /* CTransform_hpp */

@@ -15,7 +15,7 @@ SDL_Texture* TextureManager::loadTexture(const char* fileName) {
         return NULL;
     }
     
-    SDL_Texture *newTexture = SDL_CreateTextureFromSurface(Game::renderer_, tempSurface);
+    SDL_Texture *newTexture = SDL_CreateTextureFromSurface(Game::renderer, tempSurface);
     if (newTexture == NULL) {
         printf("TempSurface could not be created! SDL_image Error: %s\n", SDL_GetError());
         return NULL;
@@ -27,8 +27,13 @@ SDL_Texture* TextureManager::loadTexture(const char* fileName) {
     return newTexture;
 };
 
-/** Render a texture. */
-void TextureManager::draw(std::shared_ptr<CSprite> sprite, Vec2 position, SDL_Rect* clip) {
+/** Render a sprite. */
+void TextureManager::draw(std::shared_ptr<CSprite> sprite,
+                          Vec2 position,
+                          SDL_Rect* clip,
+                          double angle,
+                          SDL_Point* center,
+                          SDL_RendererFlip flip) {
     int x = static_cast<int>(position.x);
     int y = static_cast<int>(position.y);
     
@@ -42,11 +47,11 @@ void TextureManager::draw(std::shared_ptr<CSprite> sprite, Vec2 position, SDL_Re
         renderQuad.h = clip->h;
     }
     
-    SDL_RenderCopy(Game::renderer_, sprite->texture, clip, &renderQuad);
+    SDL_RenderCopyEx(Game::renderer, sprite->texture, clip, &renderQuad, angle, center, flip);
 };
 
-void TextureManager::drawTile(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect) {
-    SDL_RenderCopy(Game::renderer_, texture, srcRect, destRect);
+void TextureManager::draw(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect) {
+    SDL_RenderCopy(Game::renderer, texture, srcRect, destRect);
 };
 
 void TextureManager::free(std::shared_ptr<CSprite> sprite) {

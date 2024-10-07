@@ -12,10 +12,6 @@ and may not be redistributed without written permission.*/
 #include <stdio.h>
 #include "Game.hpp"
 
-//Screen dimension constants
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 640;
-
 Game *game = nullptr;
 
 /**
@@ -38,7 +34,6 @@ int main(int argc, char* args[])
     while (game->isRunning()) {
         frameStart = SDL_GetTicks();
         game->handleEvents();
-        game->sMovement();
         game->update();
         game->render();
         

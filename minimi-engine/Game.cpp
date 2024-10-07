@@ -11,9 +11,9 @@ Game::Game() {};
 Game::~Game() {};
 
 std::shared_ptr<Entity> player;
-SDL_Renderer *Game::renderer_ = nullptr;
+EntityManager *Game::entityManager = new EntityManager();
+SDL_Renderer *Game::renderer = nullptr;
 TileMap *bgTileMap;
-EntityManager *entityManager = new EntityManager();
 Inputs Game::inputs_;
 
 /** Initialize SDL and the game window + renderer. **/
@@ -34,14 +34,14 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     }
     
     // Create renderer
-    renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer_ == NULL) {
+    renderer = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (renderer == NULL) {
         printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
         isRunning_ = false;
         return;
     }
     
-    SDL_SetRenderDrawColor(renderer_, 144, 223, 157, 255);
+    SDL_SetRenderDrawColor(renderer, 144, 223, 157, 255);
     
     if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
         printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
@@ -49,7 +49,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     }
     
     // Create player entity!
-    player = entityManager->addEntity("Default");
+    player = entityManager->addEntity("Player");
     SDL_Texture* cupid_texture = TextureManager::loadTexture("cupid_idle.png");
     
     std::vector<SDL_Rect> cupid_clips;
@@ -65,6 +65,8 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     player->cSprite = std::make_shared<CSprite>(cupid_texture, 128, 128);
     player->cAnimator = std::make_shared<CAnimator>(8, 8, cupid_clips);
     
+    sSpawnEnemy(player);
+    
     bgTileMap = new TileMap();
     
     printf("Game is running!\n");
@@ -73,29 +75,37 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
 
 /** Go through all the game objects and update them all. */
 void Game::update() {
+    // Move player first!
+    sMovePlayer(player);
+    for (auto& e : entityManager->getEntities()) {
+        // Increment animation frame
+        e->cAnimator->incrementFrame();
+        // Update NPCs
+        sEnemyUpdate(e, player);
+        // Update transforms based on movement
+        sMovement(e); // later on, second param should be updated by physics
+    }
     count_++;
     entityManager->entityUpdate();
 };
 
 /** Clear and re-render new screen contents for the next frame. */
 void Game::render() {
-    SDL_RenderClear(renderer_);
-    bgTileMap->renderMap();
+    SDL_RenderClear(renderer);
+//    bgTileMap->renderMap();
     
     for (auto& e : entityManager->getEntities()) {
         if (e->cSprite && e->cTransform) {
             if (e->cAnimator) {
                 SDL_Rect currentClip = e->cAnimator->getSpriteClips()->at(e->cAnimator->getCurrentFrame());
-                e->cAnimator->incrementFrame();
-                
-                TextureManager::draw(e->cSprite, e->cTransform->pos, &currentClip);
+                TextureManager::draw(e->cSprite, e->cTransform->pos, &currentClip, e->cTransform->degrees, NULL, e->cTransform->flip);
             } else {
                 TextureManager::draw(e->cSprite, e->cTransform->pos, NULL);
             }
         }
     }
     
-    SDL_RenderPresent(renderer_);
+    SDL_RenderPresent(renderer);
 };
 
 /** Memory management: clear the game, close the window. */
@@ -107,8 +117,8 @@ void Game::clean() {
             e->cSprite = NULL;
         }
     }
-    SDL_DestroyRenderer(renderer_);
-    renderer_ = NULL;
+    SDL_DestroyRenderer(renderer);
+    renderer = NULL;
     SDL_DestroyWindow(window_);
     window_ = NULL;
     IMG_Quit();
@@ -147,43 +157,5 @@ void Game::handleEvents() {
     }
 };
 
-void Game::sMovement() {
-    if (player->cTransform) {
-        float speed = player->cTransform->speed;
-        
-        switch (inputs_.up) {
-            case GO: player->cTransform->velocity.add(Vec2(0, -speed)); break;
-            case STOP: player->cTransform->velocity.add(Vec2(0, speed)); break;
-            default: break;
-        }
-        
-        inputs_.up = NEUTRAL;
-        
-        switch (inputs_.down) {
-            case GO: player->cTransform->velocity.add(Vec2(0, speed)); break;
-            case STOP: player->cTransform->velocity.add(Vec2(0, -speed)); break;
-            default: break;
-        }
-        
-        inputs_.down = NEUTRAL;
 
-        switch (inputs_.left) {
-            case GO: player->cTransform->velocity.add(Vec2(-speed, 0)); break;
-            case STOP: player->cTransform->velocity.add(Vec2(speed, 0)); break;
-            default: break;
-        }
-        
-        inputs_.left = NEUTRAL;
-
-        switch (inputs_.right) {
-            case GO: player->cTransform->velocity.add(Vec2(speed, 0)); break;
-            case STOP: player->cTransform->velocity.add(Vec2(-speed, 0)); break;
-            default: break;
-        }
-        
-        inputs_.right = NEUTRAL;
-        
-        player->cTransform->pos.add(player->cTransform->velocity);
-    }
-}
 

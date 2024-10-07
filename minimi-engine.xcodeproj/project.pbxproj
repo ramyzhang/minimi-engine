@@ -17,12 +17,19 @@
 		DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC61EE712B54F8BD0054C3DB /* main.cpp */; };
 		DC666E342B6B357E0070AAAB /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC666E322B6B357E0070AAAB /* Entity.cpp */; };
 		DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC690F902B60ABD50094D096 /* TileMap.cpp */; };
+		DC9131C12CB1DC3500EA18C5 /* SEnemySpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC9131BF2CB1DC3500EA18C5 /* SEnemySpawner.cpp */; };
+		DC9131C62CB337B800EA18C5 /* cupid_bow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C52CB337B800EA18C5 /* cupid_bow.png */; };
+		DC9131C82CB337BE00EA18C5 /* cupid_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C72CB337BE00EA18C5 /* cupid_arrow.png */; };
+		DC9131CA2CB380E100EA18C5 /* npc_walk_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C92CB380E100EA18C5 /* npc_walk_1.png */; };
+		DC9131CC2CB380FD00EA18C5 /* npc_walk_0.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131CB2CB380FD00EA18C5 /* npc_walk_0.png */; };
 		DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCB713A42B677DA1003EBF80 /* EntityManager.cpp */; };
 		DCB713AB2B678006003EBF80 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A82B678006003EBF80 /* grass.png */; };
 		DCB713AC2B678006003EBF80 /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A92B678006003EBF80 /* stone.png */; };
 		DCE5A57B2CACF58A00D16C97 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE5A57A2CACF58A00D16C97 /* water.png */; };
 		DCE5A58C2CB048CF00D16C97 /* cupid_idle.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE5A58B2CB048CF00D16C97 /* cupid_idle.png */; };
 		DCE5A5912CB08C9800D16C97 /* CAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */; };
+		DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5932CB0AB1A00D16C97 /* SMovement.cpp */; };
+		DCE5A5982CB0ADD700D16C97 /* SInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5962CB0ADD700D16C97 /* SInput.cpp */; };
 		DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E8A42C9D448C00B36530 /* Vec2.cpp */; };
 /* End PBXBuildFile section */
 
@@ -56,6 +63,12 @@
 		DC666E332B6B357E0070AAAB /* Entity.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Entity.hpp; sourceTree = "<group>"; };
 		DC690F902B60ABD50094D096 /* TileMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = TileMap.cpp; sourceTree = "<group>"; };
 		DC690F912B60ABD50094D096 /* TileMap.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = TileMap.hpp; sourceTree = "<group>"; };
+		DC9131BF2CB1DC3500EA18C5 /* SEnemySpawner.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SEnemySpawner.cpp; sourceTree = "<group>"; };
+		DC9131C02CB1DC3500EA18C5 /* SEnemySpawner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SEnemySpawner.hpp; sourceTree = "<group>"; };
+		DC9131C52CB337B800EA18C5 /* cupid_bow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_bow.png; sourceTree = "<group>"; };
+		DC9131C72CB337BE00EA18C5 /* cupid_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_arrow.png; sourceTree = "<group>"; };
+		DC9131C92CB380E100EA18C5 /* npc_walk_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = npc_walk_1.png; sourceTree = "<group>"; };
+		DC9131CB2CB380FD00EA18C5 /* npc_walk_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = npc_walk_0.png; sourceTree = "<group>"; };
 		DCB713A42B677DA1003EBF80 /* EntityManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
 		DCB713A52B677DA1003EBF80 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
 		DCB713A82B678006003EBF80 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
@@ -64,6 +77,10 @@
 		DCE5A58B2CB048CF00D16C97 /* cupid_idle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_idle.png; sourceTree = "<group>"; };
 		DCE5A58E2CB04CE200D16C97 /* CAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CAnimator.hpp; sourceTree = "<group>"; };
 		DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CAnimator.cpp; sourceTree = "<group>"; };
+		DCE5A5932CB0AB1A00D16C97 /* SMovement.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SMovement.cpp; sourceTree = "<group>"; };
+		DCE5A5942CB0AB1A00D16C97 /* SMovement.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SMovement.hpp; sourceTree = "<group>"; };
+		DCE5A5962CB0ADD700D16C97 /* SInput.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SInput.cpp; sourceTree = "<group>"; };
+		DCE5A5972CB0ADD700D16C97 /* SInput.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SInput.hpp; sourceTree = "<group>"; };
 		DCE5E8972C9D331D00B36530 /* CTransform.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CTransform.hpp; sourceTree = "<group>"; };
 		DCE5E89A2C9D335C00B36530 /* CSprite.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CSprite.hpp; sourceTree = "<group>"; };
 		DCE5E89D2C9D338F00B36530 /* CBoxCollider.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CBoxCollider.hpp; sourceTree = "<group>"; };
@@ -88,6 +105,7 @@
 		DC0C3D152B5F7A2400D9BBB2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				DC9131C22CB336FB00EA18C5 /* NPCs */,
 				DC690F9C2B60C8440094D096 /* Tiles */,
 				DC690F932B60C8280094D096 /* Character */,
 			);
@@ -114,6 +132,7 @@
 		DC61EE592B54F7C60054C3DB /* minimi-engine */ = {
 			isa = PBXGroup;
 			children = (
+				DCE5A5922CB0AB0F00D16C97 /* Systems */,
 				DCE5E8A32C9D447F00B36530 /* Math */,
 				DCE5E8942C9D32D300B36530 /* Components */,
 				DC0C3D152B5F7A2400D9BBB2 /* Assets */,
@@ -147,6 +166,8 @@
 		DC690F932B60C8280094D096 /* Character */ = {
 			isa = PBXGroup;
 			children = (
+				DC9131C72CB337BE00EA18C5 /* cupid_arrow.png */,
+				DC9131C52CB337B800EA18C5 /* cupid_bow.png */,
 				DCE5A58B2CB048CF00D16C97 /* cupid_idle.png */,
 			);
 			path = Character;
@@ -160,6 +181,28 @@
 				DCB713A92B678006003EBF80 /* stone.png */,
 			);
 			path = Tiles;
+			sourceTree = "<group>";
+		};
+		DC9131C22CB336FB00EA18C5 /* NPCs */ = {
+			isa = PBXGroup;
+			children = (
+				DC9131CB2CB380FD00EA18C5 /* npc_walk_0.png */,
+				DC9131C92CB380E100EA18C5 /* npc_walk_1.png */,
+			);
+			path = NPCs;
+			sourceTree = "<group>";
+		};
+		DCE5A5922CB0AB0F00D16C97 /* Systems */ = {
+			isa = PBXGroup;
+			children = (
+				DCE5A5932CB0AB1A00D16C97 /* SMovement.cpp */,
+				DCE5A5942CB0AB1A00D16C97 /* SMovement.hpp */,
+				DCE5A5962CB0ADD700D16C97 /* SInput.cpp */,
+				DCE5A5972CB0ADD700D16C97 /* SInput.hpp */,
+				DC9131BF2CB1DC3500EA18C5 /* SEnemySpawner.cpp */,
+				DC9131C02CB1DC3500EA18C5 /* SEnemySpawner.hpp */,
+			);
+			path = Systems;
 			sourceTree = "<group>";
 		};
 		DCE5E8942C9D32D300B36530 /* Components */ = {
@@ -242,9 +285,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				DCB713AC2B678006003EBF80 /* stone.png in Resources */,
+				DC9131C82CB337BE00EA18C5 /* cupid_arrow.png in Resources */,
 				DCB713AB2B678006003EBF80 /* grass.png in Resources */,
+				DC9131CC2CB380FD00EA18C5 /* npc_walk_0.png in Resources */,
 				DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */,
 				DCE5A57B2CACF58A00D16C97 /* water.png in Resources */,
+				DC9131C62CB337B800EA18C5 /* cupid_bow.png in Resources */,
+				DC9131CA2CB380E100EA18C5 /* npc_walk_1.png in Resources */,
 				DCE5A58C2CB048CF00D16C97 /* cupid_idle.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,9 +303,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC9131C12CB1DC3500EA18C5 /* SEnemySpawner.cpp in Sources */,
 				DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */,
 				DC0C3D112B5F655900D9BBB2 /* Game.cpp in Sources */,
+				DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */,
 				DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */,
+				DCE5A5982CB0ADD700D16C97 /* SInput.cpp in Sources */,
 				DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */,
 				DCE5A5912CB08C9800D16C97 /* CAnimator.cpp in Sources */,
 				DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */,

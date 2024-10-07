@@ -17,8 +17,16 @@ class TextureManager {
     
 public:
     static SDL_Texture* loadTexture(const char* fileName);
-    static void draw(std::shared_ptr<CSprite> sprite, Vec2 position, SDL_Rect* clip = NULL);
-    static void drawTile(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
+    
+    static void draw(std::shared_ptr<CSprite> sprite,
+                     Vec2 position,
+                     SDL_Rect* clip = NULL,
+                     double angle = 0.0,
+                     SDL_Point* center = NULL,
+                     SDL_RendererFlip flip = SDL_FLIP_NONE);
+    // overloaded draw function for non-gameobject tiles
+    static void draw(SDL_Texture* texture, SDL_Rect* srcRect, SDL_Rect* destRect);
+    
     static void free(std::shared_ptr<CSprite> sprite);
 };
 

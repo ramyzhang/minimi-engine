@@ -35,7 +35,7 @@ public:
     
     float distance(const Vec2& v) const;
     
-    Vec2& normalize(const Vec2& v);
+    Vec2& normalize();
 };
 
 #endif /* Vec2_hpp */
