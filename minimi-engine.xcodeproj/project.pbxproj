@@ -24,8 +24,6 @@
 		DC82B1BB2CB854E200895CFC /* SRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC82B1B92CB854E200895CFC /* SRenderer.cpp */; };
 		DC9131C62CB337B800EA18C5 /* cupid_bow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C52CB337B800EA18C5 /* cupid_bow.png */; };
 		DC9131C82CB337BE00EA18C5 /* cupid_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C72CB337BE00EA18C5 /* cupid_arrow.png */; };
-		DC9131CA2CB380E100EA18C5 /* npc_walk_1.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C92CB380E100EA18C5 /* npc_walk_1.png */; };
-		DC9131CC2CB380FD00EA18C5 /* npc_walk_0.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131CB2CB380FD00EA18C5 /* npc_walk_0.png */; };
 		DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCB713A42B677DA1003EBF80 /* EntityManager.cpp */; };
 		DCB713AB2B678006003EBF80 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A82B678006003EBF80 /* grass.png */; };
 		DCB713AC2B678006003EBF80 /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A92B678006003EBF80 /* stone.png */; };
@@ -75,8 +73,6 @@
 		DC82B1BA2CB854E200895CFC /* SRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SRenderer.hpp; sourceTree = "<group>"; };
 		DC9131C52CB337B800EA18C5 /* cupid_bow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_bow.png; sourceTree = "<group>"; };
 		DC9131C72CB337BE00EA18C5 /* cupid_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_arrow.png; sourceTree = "<group>"; };
-		DC9131C92CB380E100EA18C5 /* npc_walk_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = npc_walk_1.png; sourceTree = "<group>"; };
-		DC9131CB2CB380FD00EA18C5 /* npc_walk_0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = npc_walk_0.png; sourceTree = "<group>"; };
 		DCB713A42B677DA1003EBF80 /* EntityManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
 		DCB713A52B677DA1003EBF80 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
 		DCB713A82B678006003EBF80 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
@@ -193,8 +189,6 @@
 			children = (
 				DC82B1B12CB846FD00895CFC /* npc_pink.png */,
 				DC82B1AF2CB846F300895CFC /* npc_green.png */,
-				DC9131CB2CB380FD00EA18C5 /* npc_walk_0.png */,
-				DC9131C92CB380E100EA18C5 /* npc_walk_1.png */,
 			);
 			path = NPCs;
 			sourceTree = "<group>";
@@ -298,14 +292,12 @@
 				DCB713AC2B678006003EBF80 /* stone.png in Resources */,
 				DC9131C82CB337BE00EA18C5 /* cupid_arrow.png in Resources */,
 				DCB713AB2B678006003EBF80 /* grass.png in Resources */,
-				DC9131CC2CB380FD00EA18C5 /* npc_walk_0.png in Resources */,
 				DC82B1AE2CB836B100895CFC /* cupid_idle.png in Resources */,
 				DC82B1B22CB846FD00895CFC /* npc_pink.png in Resources */,
 				DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */,
 				DCE5A57B2CACF58A00D16C97 /* water.png in Resources */,
 				DC82B1B02CB846F300895CFC /* npc_green.png in Resources */,
 				DC9131C62CB337B800EA18C5 /* cupid_bow.png in Resources */,
-				DC9131CA2CB380E100EA18C5 /* npc_walk_1.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

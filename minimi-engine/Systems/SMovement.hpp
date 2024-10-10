@@ -12,9 +12,8 @@
 #include "SInput.hpp"
 #include "Entity.hpp"
 #include "Vec2.hpp"
-#include "Game.hpp"
 
 void moveEntity(std::shared_ptr<Entity> entityToMove);
-void movePlayer(std::shared_ptr<Entity> player);
+void movePlayer(std::shared_ptr<Entity> player, Inputs *inputs);
 
 #endif /* SMovement_hpp */

@@ -7,6 +7,7 @@
 
 #include "SMovement.hpp"
 
+/** Move an entity (for now, just NPCs) according to the target set in their Transform. **/
 void moveEntity(std::shared_ptr<Entity> entityToMove) {
     if (entityToMove->cTransform && entityToMove->getTag() != "Player") {
         float speed = entityToMove->cTransform->speed;
@@ -24,27 +25,28 @@ void moveEntity(std::shared_ptr<Entity> entityToMove) {
     }
 }
 
-void movePlayer(std::shared_ptr<Entity> player) {
+/** Move the player based on user inputs. **/
+void movePlayer(std::shared_ptr<Entity> player, Inputs *inputs) {
     if (player->cTransform) {
         float speed = player->cTransform->speed;
         
-        switch (Game::getInputs()->up) {
+        switch (inputs->up) {
             case GO: player->cTransform->velocity.add(Vec2(0, -speed)); break;
             case STOP: player->cTransform->velocity.add(Vec2(0, speed)); break;
             default: break;
         }
         
-        Game::getInputs()->up = NEUTRAL;
+        inputs->up = NEUTRAL;
         
-        switch (Game::getInputs()->down) {
+        switch (inputs->down) {
             case GO: player->cTransform->velocity.add(Vec2(0, speed)); break;
             case STOP: player->cTransform->velocity.add(Vec2(0, -speed)); break;
             default: break;
         }
         
-        Game::getInputs()->down = NEUTRAL;
+        inputs->down = NEUTRAL;
 
-        switch (Game::getInputs()->left) {
+        switch (inputs->left) {
             case GO:
                 player->cTransform->velocity.add(Vec2(-speed, 0));
                 if (player->cTransform->degrees > -10.0) {
@@ -61,9 +63,9 @@ void movePlayer(std::shared_ptr<Entity> player) {
             default: break;
         }
         
-        Game::getInputs()->left = NEUTRAL;
+        inputs->left = NEUTRAL;
 
-        switch (Game::getInputs()->right) {
+        switch (inputs->right) {
             case GO:
                 player->cTransform->velocity.add(Vec2(speed, 0));
                 if (player->cTransform->degrees < 10.0) {
@@ -80,7 +82,7 @@ void movePlayer(std::shared_ptr<Entity> player) {
             default: break;
         }
         
-        Game::getInputs()->right = NEUTRAL;
+        inputs->right = NEUTRAL;
         
         player->cTransform->pos.add(player->cTransform->velocity);
     }

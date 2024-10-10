@@ -7,6 +7,7 @@
 
 #include "SSpawner.hpp"
 
+/** Spawn a player! **/
 std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     player_ = entityManager_->addEntity("Player");
     SDL_Texture* cupid_texture = renderer_->loadTexture("cupid_idle.png");
@@ -29,6 +30,7 @@ std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     return player_;
 }
 
+/** Spawn a single NPC (enemy)! **/
 std::shared_ptr<Entity> SSpawner::spawnEnemy() {
     if (player_ == nullptr) {
         printf("Error: Player not initialized yet.");
@@ -72,7 +74,7 @@ std::shared_ptr<Entity> SSpawner::spawnEnemy() {
     return npc;
 }
 
-/** Update locations so that enemies are always moving towards the player! */
+/** Update transform targets so that enemies are always moving towards the player! */
 void SSpawner::updateEnemy(std::shared_ptr<Entity> npc) {
     if (player_ == nullptr) {
         printf("Error: Player not initialized yet.");

@@ -57,6 +57,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     spawner = new SSpawner(entityManager, sRenderer, 5);
     player = spawner->spawnPlayer();
     
+    // Ignore this for now
     bgTileMap = new TileMap(sRenderer);
     
     printf("Game is running!\n");
@@ -66,7 +67,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
 /** Go through all the game objects and update them all. */
 void Game::update() {
     // -------- PLAYER UPDATE --------
-    movePlayer(player); // Move player
+    movePlayer(player, getInputs()); // Move player
     player->cAnimator->incrementFrame(); // Animate player
 
     // -------- NPC UPDATE --------
@@ -88,7 +89,7 @@ void Game::update() {
 /** Clear and re-render new screen contents for the next frame. */
 void Game::render() {
     SDL_RenderClear(renderer);
-//    bgTileMap->renderMap();
+    // bgTileMap->renderMap();
     
     for (auto& e : entityManager->getEntities()) {
         if (e->cSprite && e->cTransform) {
@@ -108,6 +109,7 @@ void Game::clean() {
             e->cSprite = NULL;
         }
     }
+    
     SDL_DestroyRenderer(renderer);
     renderer = NULL;
     SDL_DestroyWindow(window_);
