@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
-#include "TextureManager.hpp"
+#include "SRenderer.hpp"
 
 class TileMap {
 
@@ -19,10 +19,13 @@ public:
     TileMap();
     ~TileMap();
     
+    TileMap(SRenderer* r) : renderer_(r) {};
+    
     void loadMap(int newMap[20][25]);
     void renderMap();
 
 private:
+    SRenderer* renderer_;
     SDL_Rect srcRect_, destRect_;
     SDL_Texture *stone_;
     SDL_Texture *grass_;

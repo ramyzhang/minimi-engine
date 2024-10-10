@@ -12,6 +12,11 @@ EntityManager::EntityManager() {
 }
 
 std::shared_ptr<Entity> EntityManager::addEntity(const std::string& tag) {
+    if (totalEntities_ >= MAX_ENTITIES) {
+        printf("Reached maximum number of entities.");
+        return nullptr;
+    }
+    
     auto newEntity = std::shared_ptr<Entity>(new Entity(totalEntities_, tag));
     
     entitiesToAdd_.push_back(newEntity);

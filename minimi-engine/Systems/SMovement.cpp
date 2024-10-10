@@ -7,7 +7,7 @@
 
 #include "SMovement.hpp"
 
-void sMovement(std::shared_ptr<Entity> entityToMove) {
+void moveEntity(std::shared_ptr<Entity> entityToMove) {
     if (entityToMove->cTransform && entityToMove->getTag() != "Player") {
         float speed = entityToMove->cTransform->speed;
         Vec2 dist_vec = entityToMove->cTransform->getTarget() - entityToMove->cTransform->pos;
@@ -24,7 +24,7 @@ void sMovement(std::shared_ptr<Entity> entityToMove) {
     }
 }
 
-void sMovePlayer(std::shared_ptr<Entity> player) {
+void movePlayer(std::shared_ptr<Entity> player) {
     if (player->cTransform) {
         float speed = player->cTransform->speed;
         
@@ -52,7 +52,12 @@ void sMovePlayer(std::shared_ptr<Entity> player) {
                 }
                 player->cTransform->flip = SDL_FLIP_HORIZONTAL;
                 break;
-            case STOP: player->cTransform->velocity.add(Vec2(speed, 0)); break;
+            case STOP:
+                player->cTransform->velocity.add(Vec2(speed, 0));
+                if (player->cTransform->degrees < 0.0) {
+                    player->cTransform->degrees = 0.0;
+                }
+                break;
             default: break;
         }
         
@@ -66,7 +71,12 @@ void sMovePlayer(std::shared_ptr<Entity> player) {
                 }
                 player->cTransform->flip = SDL_FLIP_NONE;
                 break;
-            case STOP: player->cTransform->velocity.add(Vec2(-speed, 0)); break;
+            case STOP:
+                player->cTransform->velocity.add(Vec2(-speed, 0));
+                if (player->cTransform->degrees > 0.0) {
+                    player->cTransform->degrees = 0.0;
+                }
+                break;
             default: break;
         }
         

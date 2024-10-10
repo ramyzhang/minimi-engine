@@ -15,16 +15,6 @@
 
 class CTransform : public Component {
 public:
-    float speed = 1.0;
-    
-    Vec2 pos = { 0.0, 0.0 };
-    
-    Vec2 velocity = { 0.0, 0.0 };
-    
-    double degrees = 0.0;
-    
-    SDL_RendererFlip flip = SDL_FLIP_NONE;
-    
     CTransform() {};
     CTransform(const float& s,
                const Vec2& p,
@@ -32,6 +22,13 @@ public:
                const double& d,
                const SDL_RendererFlip& f) : speed(s), pos(p), velocity(v), degrees(d), flip(f) {};
     
+    float speed = 1.0;
+    Vec2 pos = { 0.0, 0.0 };
+    Vec2 velocity = { 0.0, 0.0 };
+    double degrees = 0.0; // degrees rotated
+    SDL_RendererFlip flip = SDL_FLIP_NONE; // all my sprites are loaded in facing right
+    
+    // if this is an npc, set the target to move towards
     void setTarget(Vec2 target) { target_ = target; };
     Vec2 getTarget() { return target_; };
     

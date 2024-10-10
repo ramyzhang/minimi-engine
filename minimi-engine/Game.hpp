@@ -16,17 +16,14 @@
 #include <vector>
 #include <map>
 #include <algorithm>
-#include "TextureManager.hpp"
+#include "SRenderer.hpp"
 #include "TileMap.hpp"
 #include "Component.hpp"
 #include "EntityManager.hpp"
 #include "Entity.hpp"
 #include "SMovement.hpp"
 #include "SInput.hpp"
-#include "SEnemySpawner.hpp"
-
-// TODO: maybe change later? idk
-#define MAX_ENTITIES 200
+#include "SSpawner.hpp"
 
 // Screen dimension constants
 const int SCREEN_WIDTH = 800;
@@ -48,14 +45,7 @@ public:
     static Inputs* getInputs() { return &inputs_; };
     
     static SDL_Renderer *renderer;
-    
     static EntityManager *entityManager;
-    
-    // Systems TODO: Separate these out
-//    void sMovement();
-//    void sUserInput();
-//    void sEnemySpawner();
-    void sCollision();
     
 private:
     int  count_;

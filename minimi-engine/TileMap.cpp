@@ -31,9 +31,9 @@ int bgMap[20][25] = {
 };
 
 TileMap::TileMap() {
-    stone_ = TextureManager::loadTexture("stone.png");
-    water_ = TextureManager::loadTexture("water.png");
-    grass_ = TextureManager::loadTexture("grass.png");
+    stone_ = renderer_->loadTexture("stone.png");
+    water_ = renderer_->loadTexture("water.png");
+    grass_ = renderer_->loadTexture("grass.png");
     
     loadMap(bgMap);
     
@@ -58,15 +58,15 @@ void TileMap::renderMap() {
             
             switch (tileMap_[row][col]) {
                 case 0:
-                    TextureManager::draw(grass_, &srcRect_, &destRect_);
+                    renderer_->draw(grass_, &srcRect_, &destRect_);
                     break;
                 
                 case 1:
-                    TextureManager::draw(stone_, &srcRect_, &destRect_);
+                    renderer_->draw(stone_, &srcRect_, &destRect_);
                     break;
                     
                 case 2:
-                    TextureManager::draw(water_, &srcRect_, &destRect_);
+                    renderer_->draw(water_, &srcRect_, &destRect_);
                     break;
                     
                 default:

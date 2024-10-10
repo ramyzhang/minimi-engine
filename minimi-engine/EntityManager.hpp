@@ -14,6 +14,8 @@
 #include <map>
 #include "Entity.hpp"
 
+#define MAX_ENTITIES 200
+
 class Entity;
 
 typedef std::vector<std::shared_ptr<Entity>> EntityVector;
@@ -30,6 +32,8 @@ public:
     
     EntityVector& getEntities();
     EntityVector& getEntities(const std::string& tag);
+    
+    size_t getNumEntities() { return totalEntities_; };
     
     void entityUpdate(); // delayed update for iterator invalidation check, call first at new frame
     

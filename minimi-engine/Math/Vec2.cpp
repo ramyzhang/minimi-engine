@@ -50,6 +50,9 @@ float Vec2::distance(const Vec2& v) const {
 
 Vec2& Vec2::normalize() {
     float norm = sqrt(x * x + y * y);
+    if (norm == 0.0) {
+        norm = 1.0;
+    }
     x = x / norm;
     y = y / norm;
     return *this;
