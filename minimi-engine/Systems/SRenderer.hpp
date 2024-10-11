@@ -12,8 +12,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include "Vec2.hpp"
+#include "Entity.hpp"
 #include "CSprite.hpp"
-#include "EntityManager.hpp"
 
 void sRenderEntity(std::shared_ptr<Entity> e);
 class SRenderer {

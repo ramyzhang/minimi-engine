@@ -15,6 +15,11 @@
 
 class CBoxCollider : public Component {
 public:
+    CBoxCollider() {};
+    ~CBoxCollider() {};
+    
+    CBoxCollider(const SDL_Rect& c) : collider(c) {};
+    
     SDL_Rect collider;
 };
 

@@ -42,8 +42,15 @@ void EntityManager::entityUpdate() {
     }
     
     // Erase entities from the entities vector if they're inactive
-    auto newEnd = std::remove_if(entities_.begin(), entities_.end(), [] (std::shared_ptr<Entity> entity) { return !entity->isActive(); } );
-    totalEntities_ = totalEntities_ - (std::distance(newEnd, entities_.end()));
+    auto new_end = std::remove_if(entities_.begin(), entities_.end(), [] (std::shared_ptr<Entity> entity) { return !entity->isActive(); } );
+        
+    for (auto it = entityMap_.begin(); it != entityMap_.end(); ++it) {
+        auto new_map_end = std::remove_if(it->second.begin(), it->second.end(), [] (std::shared_ptr<Entity> entity) { return !entity->isActive(); } );
+        it->second.erase(new_map_end, it->second.end());
+    }
+    
+    totalEntities_ = totalEntities_ - (std::distance(new_end, entities_.end()));
+    entities_.erase(new_end, entities_.end());
     
     // Clear the waiting room for new entities
     entitiesToAdd_.clear();

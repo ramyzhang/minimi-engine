@@ -54,7 +54,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     
     // Create player entity and render initial scene!
     sRenderer = new SRenderer(renderer);
-    spawner = new SSpawner(entityManager, sRenderer, 5);
+    spawner = new SSpawner(entityManager, sRenderer, 100);
     player = spawner->spawnPlayer();
     
     // Ignore this for now
@@ -73,14 +73,22 @@ void Game::update() {
     // -------- NPC UPDATE --------
     // Spawn an enemy
     if (entityManager->getNumEntities() < MAX_ENTITIES) spawner->spawnEnemy();
+    // Iterate through NPCs
     for (auto& e : entityManager->getEntities("NPC")) {
         // -------- MOVEMENT & AI --------
         // Update transforms based on movement
-        spawner->updateEnemy(e);
-        moveEntity(e);
+        if (e->cTransform) spawner->updateEnemy(e);
+        if (e->cTransform) moveEntity(e);
+        
+        // -------- PHYSICS --------
+        if (e->cBoxCollider) {
+            if (checkCollision(player, e)) {
+                e->destroy();
+            }
+        }
         
         // -------- ANIMATION --------
-        e->cAnimator->incrementFrame();
+        if (e->cAnimator) e->cAnimator->incrementFrame();
     }
     count_++;
     entityManager->entityUpdate();
@@ -88,6 +96,7 @@ void Game::update() {
 
 /** Clear and re-render new screen contents for the next frame. */
 void Game::render() {
+    SDL_SetRenderDrawColor(renderer, 196, 255, 239, 255);
     SDL_RenderClear(renderer);
     // bgTileMap->renderMap();
     

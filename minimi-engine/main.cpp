@@ -33,6 +33,7 @@ int main(int argc, char* args[])
     
     while (game->isRunning()) {
         frameStart = SDL_GetTicks();
+        
         game->handleEvents();
         game->update();
         game->render();

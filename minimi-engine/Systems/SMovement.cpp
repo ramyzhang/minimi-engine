@@ -20,8 +20,17 @@ void moveEntity(std::shared_ptr<Entity> entityToMove) {
             entityToMove->cTransform->flip = SDL_FLIP_NONE;
         }
         
+        Vec2 old_pos = entityToMove->cTransform->pos; // Shallow copy for collider
+        
         entityToMove->cTransform->velocity = dist_vec * speed;
         entityToMove->cTransform->pos.add(entityToMove->cTransform->velocity);
+        
+        // This ensures that an offsetted collider will still follow the entity correctly
+        int x = static_cast<int>(entityToMove->cTransform->pos.x) - static_cast<int>(old_pos.x);
+        int y = static_cast<int>(entityToMove->cTransform->pos.y) - static_cast<int>(old_pos.y);
+
+        entityToMove->cBoxCollider->collider.x += x;
+        entityToMove->cBoxCollider->collider.y += y;
     }
 }
 
@@ -84,6 +93,15 @@ void movePlayer(std::shared_ptr<Entity> player, Inputs *inputs) {
         
         inputs->right = NEUTRAL;
         
+        Vec2 old_pos = player->cTransform->pos; // make a shallow copy of the old position
+        
         player->cTransform->pos.add(player->cTransform->velocity);
+        
+        // This ensures that an offsetted collider will still follow the player correctly
+        int x = static_cast<int>(player->cTransform->pos.x) - static_cast<int>(old_pos.x);
+        int y = static_cast<int>(player->cTransform->pos.y) - static_cast<int>(old_pos.y);
+    
+        player->cBoxCollider->collider.x += x;
+        player->cBoxCollider->collider.y += y;
     }
 }

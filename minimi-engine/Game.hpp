@@ -24,6 +24,7 @@
 #include "SMovement.hpp"
 #include "SInput.hpp"
 #include "SSpawner.hpp"
+#include "SCollision.hpp"
 
 // Screen dimension constants
 const int SCREEN_WIDTH = 800;

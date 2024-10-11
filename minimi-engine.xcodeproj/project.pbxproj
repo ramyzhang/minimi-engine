@@ -22,6 +22,7 @@
 		DC82B1B52CB8486400895CFC /* Utils.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC82B1B32CB8486400895CFC /* Utils.cpp */; };
 		DC82B1B82CB84B6D00895CFC /* SSpawner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC82B1B62CB84B6D00895CFC /* SSpawner.cpp */; };
 		DC82B1BB2CB854E200895CFC /* SRenderer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC82B1B92CB854E200895CFC /* SRenderer.cpp */; };
+		DC82B1BE2CB8C06E00895CFC /* SCollision.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC82B1BC2CB8C06E00895CFC /* SCollision.cpp */; };
 		DC9131C62CB337B800EA18C5 /* cupid_bow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C52CB337B800EA18C5 /* cupid_bow.png */; };
 		DC9131C82CB337BE00EA18C5 /* cupid_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC9131C72CB337BE00EA18C5 /* cupid_arrow.png */; };
 		DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCB713A42B677DA1003EBF80 /* EntityManager.cpp */; };
@@ -71,6 +72,8 @@
 		DC82B1B72CB84B6D00895CFC /* SSpawner.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SSpawner.hpp; sourceTree = "<group>"; };
 		DC82B1B92CB854E200895CFC /* SRenderer.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SRenderer.cpp; sourceTree = "<group>"; };
 		DC82B1BA2CB854E200895CFC /* SRenderer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SRenderer.hpp; sourceTree = "<group>"; };
+		DC82B1BC2CB8C06E00895CFC /* SCollision.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SCollision.cpp; sourceTree = "<group>"; };
+		DC82B1BD2CB8C06E00895CFC /* SCollision.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SCollision.hpp; sourceTree = "<group>"; };
 		DC9131C52CB337B800EA18C5 /* cupid_bow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_bow.png; sourceTree = "<group>"; };
 		DC9131C72CB337BE00EA18C5 /* cupid_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_arrow.png; sourceTree = "<group>"; };
 		DCB713A42B677DA1003EBF80 /* EntityManager.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = EntityManager.cpp; sourceTree = "<group>"; };
@@ -204,6 +207,8 @@
 				DC82B1B72CB84B6D00895CFC /* SSpawner.hpp */,
 				DC82B1B92CB854E200895CFC /* SRenderer.cpp */,
 				DC82B1BA2CB854E200895CFC /* SRenderer.hpp */,
+				DC82B1BC2CB8C06E00895CFC /* SCollision.cpp */,
+				DC82B1BD2CB8C06E00895CFC /* SCollision.hpp */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -314,6 +319,7 @@
 				DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */,
 				DCE5A5982CB0ADD700D16C97 /* SInput.cpp in Sources */,
 				DC82B1BB2CB854E200895CFC /* SRenderer.cpp in Sources */,
+				DC82B1BE2CB8C06E00895CFC /* SCollision.cpp in Sources */,
 				DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */,
 				DC82B1B82CB84B6D00895CFC /* SSpawner.cpp in Sources */,
 				DC82B1B52CB8486400895CFC /* Utils.cpp in Sources */,

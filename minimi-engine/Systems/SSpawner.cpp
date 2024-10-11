@@ -27,6 +27,12 @@ std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     
     player_->cTransform = std::make_shared<CTransform>(3.0, cupid_pos, cupid_velo, 0.0, SDL_FLIP_NONE);
     
+    int x = static_cast<int>(cupid_pos.x);
+    int y = static_cast<int>(cupid_pos.y);
+    SDL_Rect cupid_collider = { x + 32, y + 36, player_->cSprite->getWidth() / 2, player_->cSprite->getHeight() / 2 };
+    
+    player_->cBoxCollider = std::make_shared<CBoxCollider>(cupid_collider);
+    
     return player_;
 }
 
@@ -70,6 +76,12 @@ std::shared_ptr<Entity> SSpawner::spawnEnemy() {
         npc_clips.push_back(clip);
     }
     npc->cAnimator = std::make_shared<CAnimator>(4, 10, npc_clips);
+    
+    int x = static_cast<int>(npc_pos.x);
+    int y = static_cast<int>(npc_pos.y);
+    SDL_Rect npc_collider = { x + 16, y + 5, npc->cSprite->getWidth() / 2, npc->cSprite->getHeight() - 12 };
+    
+    npc->cBoxCollider = std::make_shared<CBoxCollider>(npc_collider);
     
     return npc;
 }

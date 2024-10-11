@@ -56,6 +56,11 @@ void SRenderer::draw(std::shared_ptr<Entity> e) {
     }
     
     SDL_RenderCopyEx(renderer_, e->cSprite->texture, currentClip, &renderQuad, angle, NULL, flip);
+    
+#if (DEBUG ==1)
+    SDL_SetRenderDrawColor(renderer_, 200, 200, 255, 255);
+    SDL_RenderDrawRect(renderer_, &e->cBoxCollider->collider);
+#endif
 };
 
 void SRenderer::draw(SDL_Texture* texture,
