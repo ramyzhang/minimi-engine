@@ -11,22 +11,22 @@ All game assets were created by me!
 - CTransform
 - CSprite
 - CAnimator
+- CBoxCollider
 
 **Systems:**
-- ECS architecture completed :) Thank you to Dave Churchill for making his [COMP4300 course videos](https://www.youtube.com/watch?v=S7lXSihz0ac&list=PL_xRyXins848nDj2v-TJYahzvs-XW9sVV) publicly available, they were invaluable for this part!
+- ECS architecture completed! Thank you to Dave Churchill for making his [COMP4300 course videos](https://www.youtube.com/watch?v=S7lXSihz0ac&list=PL_xRyXins848nDj2v-TJYahzvs-XW9sVV) publicly available, they were invaluable for this part!
 - SMovement (basic player movement & follow-the-player enemy movement)
 - SRenderer (wrapper for SDL_Renderer)
 - SSpawner (spawns a player and enemies)
+- SCollision (collision solver)
 
 ### To Do
 
 **Components:**
-- CBoxCollider
 - CCircleCollider (maybe?)
 
 **Systems:**
 - Audio
-- Collision Physics
 - Particles
 - UI
 - Camera
