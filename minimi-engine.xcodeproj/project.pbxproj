@@ -12,6 +12,10 @@
 		DC0C3D142B5F732F00D9BBB2 /* SDL2_image.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC0C3D122B5F732F00D9BBB2 /* SDL2_image.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC1C04852CBDBCC4007C6FE1 /* cupid_arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04842CBDBCC4007C6FE1 /* cupid_arrow.png */; };
 		DC1C04892CBDBE5C007C6FE1 /* cupid_bow.png in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04882CBDBE5C007C6FE1 /* cupid_bow.png */; };
+		DC1C048B2CBF0AD2007C6FE1 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC1C048A2CBF0AD2007C6FE1 /* SDL2_mixer.framework */; };
+		DC1C048C2CBF0AD2007C6FE1 /* SDL2_mixer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC1C048A2CBF0AD2007C6FE1 /* SDL2_mixer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DC1C048F2CBF104E007C6FE1 /* SAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC1C048D2CBF104E007C6FE1 /* SAudio.cpp */; };
+		DC1C04922CBF1259007C6FE1 /* cupid_theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04912CBF1259007C6FE1 /* cupid_theme.wav */; };
 		DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC61EE5D2B54F7C60054C3DB /* Assets.xcassets */; };
 		DC61EE6C2B54F7DE0054C3DB /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; };
 		DC61EE6D2B54F7DF0054C3DB /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -41,6 +45,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				DC1C048C2CBF0AD2007C6FE1 /* SDL2_mixer.framework in Embed Frameworks */,
 				DC61EE6D2B54F7DF0054C3DB /* SDL2.framework in Embed Frameworks */,
 				DC0C3D142B5F732F00D9BBB2 /* SDL2_image.framework in Embed Frameworks */,
 			);
@@ -55,6 +60,10 @@
 		DC0C3D122B5F732F00D9BBB2 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		DC1C04842CBDBCC4007C6FE1 /* cupid_arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_arrow.png; sourceTree = "<group>"; };
 		DC1C04882CBDBE5C007C6FE1 /* cupid_bow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_bow.png; sourceTree = "<group>"; };
+		DC1C048A2CBF0AD2007C6FE1 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
+		DC1C048D2CBF104E007C6FE1 /* SAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SAudio.cpp; sourceTree = "<group>"; };
+		DC1C048E2CBF104E007C6FE1 /* SAudio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SAudio.hpp; sourceTree = "<group>"; };
+		DC1C04912CBF1259007C6FE1 /* cupid_theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cupid_theme.wav; path = ../../../../../Downloads/cupid_theme.wav; sourceTree = "<group>"; };
 		DC61EE572B54F7C60054C3DB /* minimi-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "minimi-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC61EE5D2B54F7C60054C3DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC61EE642B54F7C60054C3DB /* minimi_engine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = minimi_engine.entitlements; sourceTree = "<group>"; };
@@ -98,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1C048B2CBF0AD2007C6FE1 /* SDL2_mixer.framework in Frameworks */,
 				DC61EE6C2B54F7DE0054C3DB /* SDL2.framework in Frameworks */,
 				DC0C3D132B5F732F00D9BBB2 /* SDL2_image.framework in Frameworks */,
 			);
@@ -109,11 +119,20 @@
 		DC0C3D152B5F7A2400D9BBB2 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				DC1C04902CBF1251007C6FE1 /* Audio */,
 				DC9131C22CB336FB00EA18C5 /* NPCs */,
 				DC690F9C2B60C8440094D096 /* Tiles */,
 				DC690F932B60C8280094D096 /* Character */,
 			);
 			path = Assets;
+			sourceTree = "<group>";
+		};
+		DC1C04902CBF1251007C6FE1 /* Audio */ = {
+			isa = PBXGroup;
+			children = (
+				DC1C04912CBF1259007C6FE1 /* cupid_theme.wav */,
+			);
+			path = Audio;
 			sourceTree = "<group>";
 		};
 		DC61EE4E2B54F7C60054C3DB = {
@@ -159,6 +178,7 @@
 		DC61EE6A2B54F7DE0054C3DB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC1C048A2CBF0AD2007C6FE1 /* SDL2_mixer.framework */,
 				DC0C3D122B5F732F00D9BBB2 /* SDL2_image.framework */,
 				DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */,
 			);
@@ -206,6 +226,8 @@
 				DC82B1BA2CB854E200895CFC /* SRenderer.hpp */,
 				DC82B1BC2CB8C06E00895CFC /* SCollision.cpp */,
 				DC82B1BD2CB8C06E00895CFC /* SCollision.hpp */,
+				DC1C048D2CBF104E007C6FE1 /* SAudio.cpp */,
+				DC1C048E2CBF104E007C6FE1 /* SAudio.hpp */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -291,6 +313,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1C04922CBF1259007C6FE1 /* cupid_theme.wav in Resources */,
 				DCB713AC2B678006003EBF80 /* stone.png in Resources */,
 				DCB713AB2B678006003EBF80 /* grass.png in Resources */,
 				DC82B1AE2CB836B100895CFC /* cupid_idle.png in Resources */,
@@ -316,6 +339,7 @@
 				DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */,
 				DC82B1BB2CB854E200895CFC /* SRenderer.cpp in Sources */,
 				DC82B1BE2CB8C06E00895CFC /* SCollision.cpp in Sources */,
+				DC1C048F2CBF104E007C6FE1 /* SAudio.cpp in Sources */,
 				DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */,
 				DC82B1B82CB84B6D00895CFC /* SSpawner.cpp in Sources */,
 				DC82B1B52CB8486400895CFC /* Utils.cpp in Sources */,

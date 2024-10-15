@@ -13,11 +13,13 @@ Game::~Game() {};
 std::shared_ptr<Entity> player;
 EntityManager *Game::entityManager = new EntityManager();
 SDL_Renderer *Game::renderer = nullptr;
-SRenderer *sRenderer;
-TileMap *bgTileMap;
 MovementInputs Game::movementInputs_;
 MouseInputs Game::mouseInputs_;
-SSpawner *spawner;
+
+SRenderer *sRenderer; // TODO: do something about this...
+TileMap *bgTileMap; // Temporary
+SSpawner *spawner; // TODO: do something about this...
+SAudio *sAudio; // TODO: do something about this...
 
 /** Initialize SDL and the game window + renderer. **/
 void Game::init(const char* title, int xPosition, int yPosition, int width, int height, bool fullScreen) {
@@ -53,8 +55,18 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
         return;
     }
     
+    // Initialize SDL_Mixer
+    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
+        return;
+    }
+    
     // Create player entity and render initial scene!
     sRenderer = new SRenderer(renderer);
+    sAudio = new SAudio();
+    sAudio->loadAudio();
+    sAudio->startMusic();
     spawner = new SSpawner(entityManager, sRenderer, 100);
     player = spawner->spawnPlayer();
     
@@ -141,6 +153,7 @@ void Game::clean() {
     renderer = NULL;
     SDL_DestroyWindow(window_);
     window_ = NULL;
+    Mix_Quit();
     IMG_Quit();
     SDL_Quit();
     printf("Cleaned game.\n");
