@@ -43,7 +43,8 @@ public:
     void handleEvents();
     
     bool isRunning() { return isRunning_; }; // is the game running?
-    static Inputs* getInputs() { return &inputs_; };
+    static MovementInputs* getMovementInputs() { return &movementInputs_; };
+    static MouseInputs* getMouseInputs() { return &mouseInputs_; };
     
     static SDL_Renderer *renderer;
     static EntityManager *entityManager;
@@ -51,7 +52,8 @@ public:
 private:
     int  count_;
     bool isRunning_;
-    static Inputs inputs_;
+    static MovementInputs movementInputs_;
+    static MouseInputs mouseInputs_;
     
     SDL_Window *window_;
 };

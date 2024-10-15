@@ -15,7 +15,8 @@ EntityManager *Game::entityManager = new EntityManager();
 SDL_Renderer *Game::renderer = nullptr;
 SRenderer *sRenderer;
 TileMap *bgTileMap;
-Inputs Game::inputs_;
+MovementInputs Game::movementInputs_;
+MouseInputs Game::mouseInputs_;
 SSpawner *spawner;
 
 /** Initialize SDL and the game window + renderer. **/
@@ -67,7 +68,7 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
 /** Go through all the game objects and update them all. */
 void Game::update() {
     // -------- PLAYER UPDATE --------
-    movePlayer(player, getInputs()); // Move player
+    movePlayer(player, getMovementInputs()); // Move player
     player->cAnimator->incrementFrame(); // Animate player
      
     // ------- BOW UPDATE -------
@@ -76,6 +77,10 @@ void Game::update() {
     }
     
     // ------- ARROW UPDATE -------
+    if (getMouseInputs()->mouse == MOUSE_UP) {
+        spawner->spawnArrow();
+        mouseInputs_.mouse = MOUSE_NEUTRAL; // Reset it
+    }
     for (auto& e : entityManager->getEntities("Arrow")) {
         moveArrow(e, spawner->getBow(), player);
     }
@@ -148,20 +153,32 @@ void Game::handleEvents() {
         } else if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
             // When a key is pressed down for the first time
             switch (e.key.keysym.sym) {
-                case SDLK_UP: inputs_.up = GO; break;
-                case SDLK_DOWN: inputs_.down = GO; break;
-                case SDLK_LEFT: inputs_.left = GO; break;
-                case SDLK_RIGHT: inputs_.right = GO; break;
+                case SDLK_UP: movementInputs_.up = GO; break;
+                case SDLK_DOWN: movementInputs_.down = GO; break;
+                case SDLK_LEFT: movementInputs_.left = GO; break;
+                case SDLK_RIGHT: movementInputs_.right = GO; break;
                 default: break;
             }
         } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
             // When a key is released for the first time
             switch(e.key.keysym.sym) {
-                case SDLK_UP: inputs_.up = STOP; break;
-                case SDLK_DOWN: inputs_.down = STOP; break;
-                case SDLK_LEFT: inputs_.left = STOP; break;
-                case SDLK_RIGHT: inputs_.right = STOP; break;
+                case SDLK_UP: movementInputs_.up = STOP; break;
+                case SDLK_DOWN: movementInputs_.down = STOP; break;
+                case SDLK_LEFT: movementInputs_.left = STOP; break;
+                case SDLK_RIGHT: movementInputs_.right = STOP; break;
                 default: break;
+            }
+        } else if (e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) {
+            // Get position of mouse
+            int x, y;
+            SDL_GetMouseState( &x, &y );
+            mouseInputs_.pos = { static_cast<float>(x), static_cast<float>(y) };
+             
+            mouseInputs_.mouse = MOUSE_NEUTRAL;
+            if (e.type == SDL_MOUSEBUTTONDOWN) {
+                mouseInputs_.mouse = MOUSE_DOWN;
+            } else if (e.type == SDL_MOUSEBUTTONUP) {
+                mouseInputs_.mouse = MOUSE_UP;
             }
         }
     }

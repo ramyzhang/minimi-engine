@@ -9,18 +9,30 @@
 #define SInput_hpp
 
 #include <stdio.h>
+#include "Vec2.hpp"
 
-enum InputDirection {
+enum InputEvent {
     STOP,
     NEUTRAL,
     GO
 };
 
-struct Inputs {
-    InputDirection up = NEUTRAL;
-    InputDirection down = NEUTRAL;
-    InputDirection left = NEUTRAL;
-    InputDirection right = NEUTRAL;
+enum MouseEvent {
+    MOUSE_DOWN,
+    MOUSE_UP,
+    MOUSE_NEUTRAL
+};
+
+struct MovementInputs {
+    InputEvent up = NEUTRAL;
+    InputEvent down = NEUTRAL;
+    InputEvent left = NEUTRAL;
+    InputEvent right = NEUTRAL;
+};
+
+struct MouseInputs {
+    MouseEvent mouse = MOUSE_NEUTRAL;
+    Vec2 pos = { 0.0, 0.0 };
 };
 
 #endif /* SInput_hpp */

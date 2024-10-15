@@ -40,7 +40,7 @@ void moveNPC(std::shared_ptr<Entity> entityToMove) {
 }
 
 /** Move the player based on user inputs. **/
-void movePlayer(std::shared_ptr<Entity> player, Inputs *inputs) {
+void movePlayer(std::shared_ptr<Entity> player, MovementInputs *inputs) {
     if (player->cTransform) {
         float speed = player->cTransform->speed;
         
@@ -122,21 +122,34 @@ void moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
 }
 
 void moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
-    Vec2 p_pos = player->cTransform->pos;
+    if (arrow->cTransform->velocity.x != 0.0 && arrow->cTransform->velocity.y != 0.0) {
+        Vec2 old_pos = arrow->cTransform->pos; // make a shallow copy of the old position
+
+        arrow->cTransform->pos.add(arrow->cTransform->velocity);
+        // ------ Move collider! ------
+        // This ensures that an offsetted collider will still follow the player correctly
+        int x = static_cast<int>(arrow->cTransform->pos.x) - static_cast<int>(old_pos.x);
+        int y = static_cast<int>(arrow->cTransform->pos.y) - static_cast<int>(old_pos.y);
     
-    int p_width = player->cSprite->getWidth();
-    
-    arrow->cTransform->pos = p_pos - Vec2(p_width / 2 + 10, 0);
-    arrow->cTransform->degrees = bow->cTransform->degrees;
-    
-    // ------ Move collider! ------
-    // Convert rotation degrees to radians
-    float angle = static_cast<float>(arrow->cTransform->degrees) * M_PI / 180;
-    
-    Vec2 p_center = { p_pos.x + p_width / 2, p_pos.y + p_width / 2 }; // Get the center of the AABB
-    Vec2 new_pos = p_center + Vec2(cosf(angle - M_PI) * 74, sinf(angle - M_PI) * 74);
-    new_pos.subtract(Vec2(8, 8)); // re-center according to collision center
-    
-    arrow->cBoxCollider->collider.x = static_cast<int>(new_pos.x);
-    arrow->cBoxCollider->collider.y = static_cast<int>(new_pos.y);
+        arrow->cBoxCollider->collider.x += x;
+        arrow->cBoxCollider->collider.y += y;
+    } else {
+        // Continue rotating
+        Vec2 p_pos = player->cTransform->pos;
+        int p_width = player->cSprite->getWidth();
+        
+        arrow->cTransform->pos = p_pos - Vec2(p_width / 2 + 10, 0);
+        arrow->cTransform->degrees = bow->cTransform->degrees;
+        
+        // ------ Move collider! ------
+        // Convert rotation degrees to radians
+        float angle = static_cast<float>(arrow->cTransform->degrees) * M_PI / 180;
+        
+        Vec2 p_center = { p_pos.x + p_width / 2, p_pos.y + p_width / 2 }; // Get the center of the AABB
+        Vec2 new_pos = p_center + Vec2(cosf(angle - M_PI) * 74, sinf(angle - M_PI) * 74);
+        new_pos.subtract(Vec2(8, 8)); // re-center according to collision center
+        
+        arrow->cBoxCollider->collider.x = static_cast<int>(new_pos.x);
+        arrow->cBoxCollider->collider.y = static_cast<int>(new_pos.y);
+    }
 }

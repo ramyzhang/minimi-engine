@@ -31,7 +31,7 @@ public:
     
     std::shared_ptr<Entity> spawnPlayer();
     std::shared_ptr<Entity> spawnEnemy();
-    std::shared_ptr<Entity> spawnArrow();
+    std::shared_ptr<Entity> spawnArrow(bool isInit = false);
     
     void updateEnemy(std::shared_ptr<Entity> npc);
     
