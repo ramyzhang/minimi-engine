@@ -26,6 +26,7 @@ public:
     Vec2 pos = { 0.0, 0.0 };
     Vec2 velocity = { 0.0, 0.0 };
     double degrees = 0.0; // degrees rotated
+    SDL_Point center = { 0, 0 }; // center of rotation
     SDL_RendererFlip flip = SDL_FLIP_NONE; // all my sprites are loaded in facing right
     
     // if this is an npc, set the target to move towards

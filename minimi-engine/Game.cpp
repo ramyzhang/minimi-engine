@@ -69,22 +69,30 @@ void Game::update() {
     // -------- PLAYER UPDATE --------
     movePlayer(player, getInputs()); // Move player
     player->cAnimator->incrementFrame(); // Animate player
-
+     
+    // ------- BOW UPDATE -------
+    for (auto& e : entityManager->getEntities("Bow")) {
+        moveBow(e, player);
+    }
+    
+    // ------- ARROW UPDATE -------
+    for (auto& e : entityManager->getEntities("Arrow")) {
+        moveArrow(e, spawner->getBow(), player);
+    }
+    
     // -------- NPC UPDATE --------
     // Spawn an enemy
-    if (entityManager->getNumEntities() < MAX_ENTITIES) spawner->spawnEnemy();
+    spawner->spawnEnemy();
     // Iterate through NPCs
     for (auto& e : entityManager->getEntities("NPC")) {
         // -------- MOVEMENT & AI --------
         // Update transforms based on movement
         if (e->cTransform) spawner->updateEnemy(e);
-        if (e->cTransform) moveEntity(e);
+        if (e->cTransform) moveNPC(e);
         
         // -------- PHYSICS --------
         if (e->cBoxCollider) {
-            if (checkCollision(player, e)) {
-                e->destroy();
-            }
+            if (checkCollision(player, e)) e->destroy(); // TODO: change this later for collision with an arrow
         }
         
         // -------- ANIMATION --------

@@ -8,12 +8,15 @@
 #include "SMovement.hpp"
 
 /** Move an entity (for now, just NPCs) according to the target set in their Transform. **/
-void moveEntity(std::shared_ptr<Entity> entityToMove) {
+void moveNPC(std::shared_ptr<Entity> entityToMove) {
     if (entityToMove->cTransform && entityToMove->getTag() != "Player") {
         float speed = entityToMove->cTransform->speed;
+        
+        // Get the vector pointing towards the player
         Vec2 dist_vec = entityToMove->cTransform->getTarget() - entityToMove->cTransform->pos;
         dist_vec.normalize();
         
+        // Flip the NPC if needed
         if (dist_vec.x < 0) {
             entityToMove->cTransform->flip = SDL_FLIP_HORIZONTAL;
         } else {
@@ -22,9 +25,11 @@ void moveEntity(std::shared_ptr<Entity> entityToMove) {
         
         Vec2 old_pos = entityToMove->cTransform->pos; // Shallow copy for collider
         
+        // Move the NPC towards the player
         entityToMove->cTransform->velocity = dist_vec * speed;
         entityToMove->cTransform->pos.add(entityToMove->cTransform->velocity);
-        
+         
+        // Move the NPC's collider
         // This ensures that an offsetted collider will still follow the entity correctly
         int x = static_cast<int>(entityToMove->cTransform->pos.x) - static_cast<int>(old_pos.x);
         int y = static_cast<int>(entityToMove->cTransform->pos.y) - static_cast<int>(old_pos.y);
@@ -104,4 +109,34 @@ void movePlayer(std::shared_ptr<Entity> player, Inputs *inputs) {
         player->cBoxCollider->collider.x += x;
         player->cBoxCollider->collider.y += y;
     }
+}
+
+/** Rotate the bow around the player in a circle. */
+void moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
+    Vec2 p_pos = player->cTransform->pos;
+    
+    int p_width = player->cSprite->getWidth();
+    
+    bow->cTransform->pos = p_pos - Vec2(p_width / 2 - 10, 0);
+    bow->cTransform->degrees = static_cast<double>((static_cast<int>(bow->cTransform->degrees) - 1) % 360);
+}
+
+void moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
+    Vec2 p_pos = player->cTransform->pos;
+    
+    int p_width = player->cSprite->getWidth();
+    
+    arrow->cTransform->pos = p_pos - Vec2(p_width / 2 + 10, 0);
+    arrow->cTransform->degrees = bow->cTransform->degrees;
+    
+    // ------ Move collider! ------
+    // Convert rotation degrees to radians
+    float angle = static_cast<float>(arrow->cTransform->degrees) * M_PI / 180;
+    
+    Vec2 p_center = { p_pos.x + p_width / 2, p_pos.y + p_width / 2 }; // Get the center of the AABB
+    Vec2 new_pos = p_center + Vec2(cosf(angle - M_PI) * 74, sinf(angle - M_PI) * 74);
+    new_pos.subtract(Vec2(8, 8)); // re-center according to collision center
+    
+    arrow->cBoxCollider->collider.x = static_cast<int>(new_pos.x);
+    arrow->cBoxCollider->collider.y = static_cast<int>(new_pos.y);
 }

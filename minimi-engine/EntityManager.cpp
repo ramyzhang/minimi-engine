@@ -50,6 +50,8 @@ void EntityManager::entityUpdate() {
     }
     
     totalEntities_ = totalEntities_ - (std::distance(new_end, entities_.end()));
+    
+    // Free memory
     entities_.erase(new_end, entities_.end());
     
     // Clear the waiting room for new entities

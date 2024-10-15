@@ -33,7 +33,69 @@ std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     
     player_->cBoxCollider = std::make_shared<CBoxCollider>(cupid_collider);
     
+    // Spawn cupid's bow
+    spawnBow();
+    
     return player_;
+}
+
+void SSpawner::spawnBow() {
+    bow_ = entityManager_->addEntity("Bow");
+    SDL_Texture* bow_texture = renderer_->loadTexture("cupid_bow.png");
+    bow_->cSprite = std::make_shared<CSprite>(bow_texture, 128, 128);
+    
+    std::vector<SDL_Rect> bow_clips;
+    for (int i = 0; i < 8; i++) {
+        int h = bow_->cSprite->getHeight();
+        int w = bow_->cSprite->getWidth();
+        SDL_Rect clip = { i * w, 0, w, h };
+        bow_clips.push_back(clip);
+    }
+    bow_->cAnimator = std::make_shared<CAnimator>(8, 8, bow_clips);
+    
+    Vec2 bow_pos (player_->cTransform->pos.x + 50, player_->cTransform->pos.y);
+    Vec2 bow_velo (0.0, 0.0);
+    
+    int p_width = player_->cSprite->getWidth();
+    int p_height = player_->cSprite->getHeight();
+    
+    bow_->cTransform = std::make_shared<CTransform>(player_->cTransform->speed, bow_pos, bow_velo, 0.0, SDL_FLIP_NONE);
+    SDL_Point center = { p_width - 10, p_height / 2 };
+    bow_->cTransform->center = center;
+    
+    // Note: the bow doesn't need a collider, so we can just ignore that
+    
+    // TODO: delete this
+    spawnArrow();
+}
+
+std::shared_ptr<Entity> SSpawner::spawnArrow() {
+    std::shared_ptr<Entity> arrow = entityManager_->addEntity("Arrow");
+    
+    // Make the sprite component
+    SDL_Texture* arrow_texture = renderer_->loadTexture("cupid_arrow.png");
+    arrow->cSprite = std::make_shared<CSprite>(arrow_texture, 128, 128);
+     
+    // Make the transform component
+    Vec2 arrow_pos (bow_->cTransform->pos.x + 20, player_->cTransform->pos.y);
+    Vec2 arrow_velo (0.0, 0.0);
+    
+    arrow->cTransform = std::make_shared<CTransform>(player_->cTransform->speed, arrow_pos, arrow_velo, bow_->cTransform->degrees, SDL_FLIP_NONE);
+    
+    int p_width = player_->cSprite->getWidth();
+    int p_height = player_->cSprite->getHeight();
+    
+    SDL_Point center = { p_width + 10, p_height / 2 };
+    arrow->cTransform->center = center;
+    
+    // Make the collider component
+    int x = static_cast<int>(arrow_pos.x);
+    int y = static_cast<int>(arrow_pos.y);
+    SDL_Rect arrow_collider = { x + 60, y + 60, player_->cSprite->getWidth() / 8, player_->cSprite->getHeight() / 8 };
+    
+    arrow->cBoxCollider = std::make_shared<CBoxCollider>(arrow_collider);
+    
+    return arrow;
 }
 
 /** Spawn a single NPC (enemy)! **/
@@ -57,7 +119,7 @@ std::shared_ptr<Entity> SSpawner::spawnEnemy() {
     int range = 360 + 1;
     float npc_angle = (std::rand() % range) * M_PI / 180;
     
-    Vec2 dist = Vec2(cosf(npc_angle), sinf(npc_angle)) * 600;
+    Vec2 dist = Vec2(cosf(npc_angle * 180 / M_PI), sinf(npc_angle * 180 / M_PI)) * 600;
     Vec2 p_pos = player_->cTransform->pos;
     Vec2 npc_pos = p_pos + dist;
     

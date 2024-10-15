@@ -7,6 +7,7 @@
 
 #include "SCollision.hpp"
 
+/** AABB Collision solver. */
 bool checkCollision(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
     SDL_Rect rect_a = a->cBoxCollider->collider;
     SDL_Rect rect_b = b->cBoxCollider->collider;
@@ -31,3 +32,8 @@ bool checkCollision(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
     
     return true;
 }
+
+// TODO: move collision box following code here instead
+//void updateCollider() {
+//    
+//}

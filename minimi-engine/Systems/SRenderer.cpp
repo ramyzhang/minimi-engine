@@ -48,18 +48,19 @@ void SRenderer::draw(std::shared_ptr<Entity> e) {
     
     SDL_SetTextureScaleMode(e->cSprite->texture, SDL_ScaleModeBest);
     
-    SDL_Rect* currentClip;
-    if (e->cAnimator) {
-        currentClip = &e->cAnimator->getSpriteClips()->at(e->cAnimator->getCurrentFrame());
-    } else {
-        currentClip = NULL;
-    }
+    SDL_Rect* currentClip = NULL;
+    if (e->cAnimator) currentClip = &e->cAnimator->getSpriteClips()->at(e->cAnimator->getCurrentFrame());
     
-    SDL_RenderCopyEx(renderer_, e->cSprite->texture, currentClip, &renderQuad, angle, NULL, flip);
+    SDL_Point* centerOfRotation = NULL;
+    if (!(e->cTransform->center.x == 0 && e->cTransform->center.y == 0)) centerOfRotation = &e->cTransform->center;
+    
+    SDL_RenderCopyEx(renderer_, e->cSprite->texture, currentClip, &renderQuad, angle, centerOfRotation, flip);
     
 #if (DEBUG ==1)
-    SDL_SetRenderDrawColor(renderer_, 200, 200, 255, 255);
-    SDL_RenderDrawRect(renderer_, &e->cBoxCollider->collider);
+    if (e->cBoxCollider) {
+        SDL_SetRenderDrawColor(renderer_, 200, 200, 255, 255);
+        SDL_RenderDrawRect(renderer_, &e->cBoxCollider->collider);
+    }
 #endif
 };
 
