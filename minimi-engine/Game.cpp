@@ -97,7 +97,12 @@ void Game::update() {
         
         // -------- PHYSICS --------
         if (e->cBoxCollider) {
-            if (checkCollision(player, e)) e->destroy(); // TODO: change this later for collision with an arrow
+            for (auto& arrow : entityManager->getEntities("Arrow")) {
+                if (arrow->cBoxCollider && checkCollision(arrow, e)) {
+                    e->destroy();
+                    arrow->destroy();
+                }
+            }
         }
         
         // -------- ANIMATION --------

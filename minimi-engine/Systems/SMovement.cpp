@@ -143,13 +143,13 @@ void moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::
         
         // ------ Move collider! ------
         // Convert rotation degrees to radians
-        float angle = static_cast<float>(arrow->cTransform->degrees) * M_PI / 180;
-        
-        Vec2 p_center = { p_pos.x + p_width / 2, p_pos.y + p_width / 2 }; // Get the center of the AABB
-        Vec2 new_pos = p_center + Vec2(cosf(angle - M_PI) * 74, sinf(angle - M_PI) * 74);
-        new_pos.subtract(Vec2(8, 8)); // re-center according to collision center
-        
-        arrow->cBoxCollider->collider.x = static_cast<int>(new_pos.x);
-        arrow->cBoxCollider->collider.y = static_cast<int>(new_pos.y);
+//        float angle = static_cast<float>(arrow->cTransform->degrees) * M_PI / 180;
+//        
+//        Vec2 p_center = { p_pos.x + p_width / 2, p_pos.y + p_width / 2 }; // Get the center of the AABB
+//        Vec2 new_pos = p_center + Vec2(cosf(angle - M_PI) * 74, sinf(angle - M_PI) * 74);
+//        new_pos.subtract(Vec2(8, 8)); // re-center according to collision center
+//        
+//        arrow->cBoxCollider->collider.x = static_cast<int>(new_pos.x);
+//        arrow->cBoxCollider->collider.y = static_cast<int>(new_pos.y);
     }
 }

@@ -84,12 +84,6 @@ std::shared_ptr<Entity> SSpawner::spawnArrow(bool isInit) {
     Vec2 arrow_pos = bow_->cTransform->pos;
     Vec2 arrow_velo (0.0, 0.0);
     
-    int x = static_cast<int>(arrow_pos.x);
-    int y = static_cast<int>(arrow_pos.y);
-    SDL_Rect arrow_collider = { x + 60, y + 60, player_->cSprite->getWidth() / 8, player_->cSprite->getHeight() / 8 };
-    
-    arrow->cBoxCollider = std::make_shared<CBoxCollider>(arrow_collider);
-    
     if (!isInit) {
         Vec2 p_pos = player_->cTransform->pos;
         // Convert rotation degrees to radians
@@ -98,13 +92,16 @@ std::shared_ptr<Entity> SSpawner::spawnArrow(bool isInit) {
         arrow_pos = p_pos - Vec2(p_width / 2 + 10, 0);
         arrow_velo = Vec2(- cos(angle) * player_->cTransform->speed, - sin(angle) * player_->cTransform->speed);
         
-        // ------ Move collider! ------
+        // ------ Init collider! ------
         Vec2 p_center = { p_pos.x + p_width / 2, p_pos.y + p_width / 2 }; // Get the center of the AABB
         Vec2 new_pos = p_center + Vec2(cosf(angle - M_PI) * 74, sinf(angle - M_PI) * 74);
         new_pos.subtract(Vec2(8, 8)); // re-center according to collision center
         
-        arrow->cBoxCollider->collider.x = static_cast<int>(new_pos.x);
-        arrow->cBoxCollider->collider.y = static_cast<int>(new_pos.y);
+        int x = static_cast<int>(new_pos.x);
+        int y = static_cast<int>(new_pos.y);
+        SDL_Rect arrow_collider = { x, y, player_->cSprite->getWidth() / 8, player_->cSprite->getHeight() / 8 };
+        
+        arrow->cBoxCollider = std::make_shared<CBoxCollider>(arrow_collider);
     }
         
     arrow->cTransform = std::make_shared<CTransform>(player_->cTransform->speed, arrow_pos, arrow_velo, bow_->cTransform->degrees, SDL_FLIP_NONE);
