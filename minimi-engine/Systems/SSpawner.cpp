@@ -83,14 +83,16 @@ std::shared_ptr<Entity> SSpawner::spawnArrow(bool isInit) {
     
     Vec2 arrow_pos = bow_->cTransform->pos;
     Vec2 arrow_velo (0.0, 0.0);
+    float speed = 10;
     
     if (!isInit) {
         Vec2 p_pos = player_->cTransform->pos;
         // Convert rotation degrees to radians
-        float angle = static_cast<float>(bow_->cTransform->degrees) * M_PI / 180;
+        double offset = 5; // Arrow angle offset for game feel
+        float angle = static_cast<float>(bow_->cTransform->degrees - offset) * M_PI / 180;
         
         arrow_pos = p_pos - Vec2(p_width / 2 + 10, 0);
-        arrow_velo = Vec2(- cos(angle) * player_->cTransform->speed, - sin(angle) * player_->cTransform->speed);
+        arrow_velo = Vec2(- cos(angle) * speed, - sin(angle) * speed);
         
         // ------ Init collider! ------
         Vec2 p_center = { p_pos.x + p_width / 2, p_pos.y + p_width / 2 }; // Get the center of the AABB
@@ -102,9 +104,10 @@ std::shared_ptr<Entity> SSpawner::spawnArrow(bool isInit) {
         SDL_Rect arrow_collider = { x, y, player_->cSprite->getWidth() / 8, player_->cSprite->getHeight() / 8 };
         
         arrow->cBoxCollider = std::make_shared<CBoxCollider>(arrow_collider);
+        arrow->cTransform = std::make_shared<CTransform>(speed, arrow_pos, arrow_velo, bow_->cTransform->degrees - offset, SDL_FLIP_NONE);
+    } else {
+        arrow->cTransform = std::make_shared<CTransform>(speed, arrow_pos, arrow_velo, bow_->cTransform->degrees, SDL_FLIP_NONE);
     }
-        
-    arrow->cTransform = std::make_shared<CTransform>(player_->cTransform->speed, arrow_pos, arrow_velo, bow_->cTransform->degrees, SDL_FLIP_NONE);
     
     SDL_Point center = { p_width + 10, p_height / 2 };
     arrow->cTransform->center = center;

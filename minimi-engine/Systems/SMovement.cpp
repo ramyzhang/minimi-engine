@@ -118,7 +118,7 @@ void moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
     int p_width = player->cSprite->getWidth();
     
     bow->cTransform->pos = p_pos - Vec2(p_width / 2 - 10, 0);
-    bow->cTransform->degrees = static_cast<double>((static_cast<int>(bow->cTransform->degrees) - 1) % 360);
+    bow->cTransform->degrees = static_cast<double>((static_cast<int>(bow->cTransform->degrees) - 2) % 360);
 }
 
 void moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
