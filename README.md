@@ -19,17 +19,19 @@ All game assets were created by me!
 - SRenderer (wrapper for SDL_Renderer)
 - SSpawner (spawns a player and enemies)
 - SCollision (collision solver)
+- SAudio (basic audio system)
 
 ### To Do
 
 **Components:**
 - CCircleCollider (maybe?)
+- CAnimator state machine
 
 **Systems:**
-- Audio
 - Particles
 - UI
 - Camera
-- Basic Scene Management
+- Basic Scene Management (+ pausing)
 - Game Logic (i.e. health, NPC states)
+- Reading in game settings from a .txt file
 - Better TileMap
