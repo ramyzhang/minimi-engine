@@ -31,4 +31,5 @@ All game assets were created by me!
 - UI
 - Camera
 - Basic Scene Management
+- Game Logic (i.e. health, NPC states)
 - Better TileMap
