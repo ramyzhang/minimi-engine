@@ -16,6 +16,11 @@
 		DC1C048C2CBF0AD2007C6FE1 /* SDL2_mixer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC1C048A2CBF0AD2007C6FE1 /* SDL2_mixer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		DC1C048F2CBF104E007C6FE1 /* SAudio.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC1C048D2CBF104E007C6FE1 /* SAudio.cpp */; };
 		DC1C04922CBF1259007C6FE1 /* cupid_theme.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04912CBF1259007C6FE1 /* cupid_theme.wav */; };
+		DC1C04982CBF4421007C6FE1 /* shoot.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04932CBF4421007C6FE1 /* shoot.wav */; };
+		DC1C049A2CBF4421007C6FE1 /* damage.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04952CBF4421007C6FE1 /* damage.wav */; };
+		DC1C049B2CBF4421007C6FE1 /* ui.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04962CBF4421007C6FE1 /* ui.wav */; };
+		DC1C049C2CBF4421007C6FE1 /* death.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C04972CBF4421007C6FE1 /* death.wav */; };
+		DC1C049E2CBF46C7007C6FE1 /* love.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C049D2CBF46C7007C6FE1 /* love.wav */; };
 		DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC61EE5D2B54F7C60054C3DB /* Assets.xcassets */; };
 		DC61EE6C2B54F7DE0054C3DB /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; };
 		DC61EE6D2B54F7DF0054C3DB /* SDL2.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -64,6 +69,11 @@
 		DC1C048D2CBF104E007C6FE1 /* SAudio.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SAudio.cpp; sourceTree = "<group>"; };
 		DC1C048E2CBF104E007C6FE1 /* SAudio.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SAudio.hpp; sourceTree = "<group>"; };
 		DC1C04912CBF1259007C6FE1 /* cupid_theme.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = cupid_theme.wav; path = ../../../../../Downloads/cupid_theme.wav; sourceTree = "<group>"; };
+		DC1C04932CBF4421007C6FE1 /* shoot.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = shoot.wav; path = ../../../../../Downloads/shoot.wav; sourceTree = "<group>"; };
+		DC1C04952CBF4421007C6FE1 /* damage.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = damage.wav; path = ../../../../../Downloads/damage.wav; sourceTree = "<group>"; };
+		DC1C04962CBF4421007C6FE1 /* ui.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = ui.wav; path = ../../../../../Downloads/ui.wav; sourceTree = "<group>"; };
+		DC1C04972CBF4421007C6FE1 /* death.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = death.wav; path = ../../../../../Downloads/death.wav; sourceTree = "<group>"; };
+		DC1C049D2CBF46C7007C6FE1 /* love.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = love.wav; path = ../../../../../Downloads/love.wav; sourceTree = "<group>"; };
 		DC61EE572B54F7C60054C3DB /* minimi-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "minimi-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC61EE5D2B54F7C60054C3DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DC61EE642B54F7C60054C3DB /* minimi_engine.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = minimi_engine.entitlements; sourceTree = "<group>"; };
@@ -130,6 +140,11 @@
 		DC1C04902CBF1251007C6FE1 /* Audio */ = {
 			isa = PBXGroup;
 			children = (
+				DC1C049D2CBF46C7007C6FE1 /* love.wav */,
+				DC1C04952CBF4421007C6FE1 /* damage.wav */,
+				DC1C04972CBF4421007C6FE1 /* death.wav */,
+				DC1C04932CBF4421007C6FE1 /* shoot.wav */,
+				DC1C04962CBF4421007C6FE1 /* ui.wav */,
 				DC1C04912CBF1259007C6FE1 /* cupid_theme.wav */,
 			);
 			path = Audio;
@@ -313,15 +328,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC1C049E2CBF46C7007C6FE1 /* love.wav in Resources */,
 				DC1C04922CBF1259007C6FE1 /* cupid_theme.wav in Resources */,
 				DCB713AC2B678006003EBF80 /* stone.png in Resources */,
 				DCB713AB2B678006003EBF80 /* grass.png in Resources */,
+				DC1C049A2CBF4421007C6FE1 /* damage.wav in Resources */,
 				DC82B1AE2CB836B100895CFC /* cupid_idle.png in Resources */,
 				DC1C04852CBDBCC4007C6FE1 /* cupid_arrow.png in Resources */,
 				DC82B1B22CB846FD00895CFC /* npc_pink.png in Resources */,
 				DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */,
 				DCE5A57B2CACF58A00D16C97 /* water.png in Resources */,
+				DC1C049C2CBF4421007C6FE1 /* death.wav in Resources */,
 				DC1C04892CBDBE5C007C6FE1 /* cupid_bow.png in Resources */,
+				DC1C04982CBF4421007C6FE1 /* shoot.wav in Resources */,
+				DC1C049B2CBF4421007C6FE1 /* ui.wav in Resources */,
 				DC82B1B02CB846F300895CFC /* npc_green.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

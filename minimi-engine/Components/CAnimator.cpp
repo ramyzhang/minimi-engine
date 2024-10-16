@@ -7,11 +7,14 @@
 
 #include "CAnimator.hpp"
 
-void CAnimator::incrementFrame() {
+void CAnimator::incrementFrame(bool loop) {
+    if (!loop && currFrame_ >= frames_) return;
+    
     // Increment current frame based on framerate
     // (if it's too early, don't change the frame yet)
     currFrame_ = (counter_ + 1) / frameRate_;
-    currFrame_ = currFrame_ % frames_;
+    
+    if (loop) currFrame_ = currFrame_ % frames_;
     
     // Increment the counter
     counter_ = (counter_ + 1) % (frames_ * frameRate_);

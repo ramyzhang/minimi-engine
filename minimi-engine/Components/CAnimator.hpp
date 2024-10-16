@@ -27,7 +27,7 @@ public:
     void setFrameRate(int rate) { frameRate_ = rate; };
     
     int getCurrentFrame() { return currFrame_; };
-    void incrementFrame();
+    void incrementFrame(bool loop = true);
     
     void setSpriteClips(std::vector<SDL_Rect> sc) { spriteClips_ = sc; };
     std::vector<SDL_Rect>* getSpriteClips() { return &spriteClips_; };

@@ -46,7 +46,11 @@ public:
     
     bool isRunning() { return isRunning_; }; // is the game running?
     static MovementInputs* getMovementInputs() { return &movementInputs_; };
-    static MouseInputs* getMouseInputs() { return &mouseInputs_; };
+    static MouseInputs getMouseInputs() {
+        MouseInputs temp = mouseInputs_;
+        mouseInputs_.mouse = MOUSE_NEUTRAL;
+        return temp;
+    };
     
     static SDL_Renderer *renderer;
     static EntityManager *entityManager;

@@ -84,17 +84,20 @@ void Game::update() {
     player->cAnimator->incrementFrame(); // Animate player
      
     // ------- BOW UPDATE -------
-    for (auto& e : entityManager->getEntities("Bow")) {
-        moveBow(e, player);
-    }
+    moveBow(spawner->getBow(), player);
     
     // ------- ARROW UPDATE -------
-    if (getMouseInputs()->mouse == MOUSE_UP) {
-        spawner->spawnArrow();
-        mouseInputs_.mouse = MOUSE_NEUTRAL; // Reset it
+    if (getMouseInputs().mouse == MOUSE_UP) {
+        std::shared_ptr<Entity> new_arrow = spawner->spawnArrow();
+        sAudio->playAudio(SHOOT);
     }
+    
     for (auto& e : entityManager->getEntities("Arrow")) {
         moveArrow(e, spawner->getBow(), player);
+        float distance = e->cTransform->pos.distance(player->cTransform->pos);
+        if (distance > 500) {
+            e->destroy();
+        }
     }
     
     // -------- NPC UPDATE --------
@@ -109,8 +112,13 @@ void Game::update() {
         
         // -------- PHYSICS --------
         if (e->cBoxCollider) {
+            if (checkCollision(e, player)) {
+                sAudio->playAudio(DAMAGE);
+                e->destroy();
+            }
             for (auto& arrow : entityManager->getEntities("Arrow")) {
                 if (arrow->cBoxCollider && checkCollision(arrow, e)) {
+                    sAudio->playAudio(LOVE);
                     e->destroy();
                     arrow->destroy();
                 }
@@ -148,6 +156,8 @@ void Game::clean() {
             e->cSprite = NULL;
         }
     }
+    
+    sAudio->freeAudio();
     
     SDL_DestroyRenderer(renderer);
     renderer = NULL;
