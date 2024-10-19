@@ -28,38 +28,39 @@
 #include "SCollision.hpp"
 #include "SAudio.hpp"
 
-// Screen dimension constants
-const int SCREEN_WIDTH = 800;
-const int SCREEN_HEIGHT = 640;
-
 class Game {
     
 public:
     Game();
     ~Game(); // deconstructor
     
-    void init(const char* title, int xPosition, int yPosition, int width, int height, bool fullScreen);
+    void init();
     void update(); // go through all the game objects and update them all
     void render();
     void clean(); // do memory management and clear the game
     void handleEvents();
     
     bool isRunning() { return isRunning_; }; // is the game running?
-    static MovementInputs* getMovementInputs() { return &movementInputs_; };
+    static MovementInputs* getMovementInputs() { return movementInputs_; };
     static MouseInputs getMouseInputs() {
-        MouseInputs temp = mouseInputs_;
-        mouseInputs_.mouse = MOUSE_NEUTRAL;
+        MouseInputs temp = *(mouseInputs_);
+        mouseInputs_->mouse = MOUSE_NEUTRAL;
         return temp;
     };
     
-    static SDL_Renderer *renderer;
     static EntityManager *entityManager;
+    
+    // systems!
+    static SRenderer *sRenderer;
+    static SSpawner *sSpawner;
+    static SAudio *sAudio;
+    static SMovement *sMovement;
     
 private:
     int  count_;
     bool isRunning_;
-    static MovementInputs movementInputs_;
-    static MouseInputs mouseInputs_;
+    static MovementInputs *movementInputs_;
+    static MouseInputs *mouseInputs_;
     
     SDL_Window *window_;
 };

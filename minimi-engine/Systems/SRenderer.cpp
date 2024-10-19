@@ -7,6 +7,41 @@
 
 #include "SRenderer.hpp"
 
+bool SRenderer::init() {
+    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+    
+    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
+        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
+        return false;
+    }
+    printf("SDL initialized!\n");
+    
+    
+    // Create window
+    
+    window_ = SDL_CreateWindow("Minimi", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, false);
+    if (window_ == NULL) {
+        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
+        return false;
+    }
+    
+    // Create renderer
+    renderer_ = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
+    if (renderer_ == NULL) {
+        printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
+        return false;
+    }
+        
+    SDL_SetRenderDrawColor(renderer_, 196, 255, 239, 255);
+    
+    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
+        printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
+        return false;
+    }
+    
+    return true;
+}
+
 /** Load a .png file onto a texture. */
 SDL_Texture* SRenderer::loadTexture(const char* fileName) {
     SDL_Surface *tempSurface = IMG_Load(fileName);
@@ -72,4 +107,11 @@ void SRenderer::draw(SDL_Texture* texture,
 
 void SRenderer::free(std::shared_ptr<CSprite> sprite) {
     SDL_DestroyTexture(sprite->texture);
+}
+
+void SRenderer::clean() {
+    SDL_DestroyRenderer(renderer_);
+    renderer_ = NULL;
+    SDL_DestroyWindow(window_);
+    window_ = NULL;
 }

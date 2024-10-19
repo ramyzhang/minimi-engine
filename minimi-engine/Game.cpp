@@ -10,70 +10,34 @@
 Game::Game() {};
 Game::~Game() {};
 
-std::shared_ptr<Entity> player;
 EntityManager *Game::entityManager = new EntityManager();
-SDL_Renderer *Game::renderer = nullptr;
-MovementInputs Game::movementInputs_;
-MouseInputs Game::mouseInputs_;
+MovementInputs *Game::movementInputs_ = new MovementInputs();
+MouseInputs *Game::mouseInputs_ = new MouseInputs();
 
-SRenderer *sRenderer; // TODO: do something about this...
+SRenderer *Game::sRenderer = new SRenderer();
 TileMap *bgTileMap; // Temporary
-SSpawner *sSpawner; // TODO: do something about this...
-SAudio *sAudio; // TODO: do something about this...
-SMovement *sMovement; // TODO: do something about this...
+SSpawner *Game::sSpawner = new SSpawner(entityManager, sRenderer, 100);
+SAudio *Game::sAudio = new SAudio();
+SMovement *Game::sMovement = new SMovement();
 
 /** Initialize SDL and the game window + renderer. **/
-void Game::init(const char* title, int xPosition, int yPosition, int width, int height, bool fullScreen) {
-    SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
+void Game::init() {
+    // ------- INIT RENDERER -------
+    isRunning_ = sRenderer->init();
+    if (!isRunning_) return;
     
-    if (SDL_Init(SDL_INIT_EVERYTHING) < 0) {
-        printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
-        isRunning_ = false;
-        return;
-    }
-    printf("SDL initialized!\n");
+    // ------- INIT AUDIO -------
+    isRunning_ = sAudio->init();
+    if (!isRunning_) return;
     
-    // Create window
-    window_ = SDL_CreateWindow("Minimi", xPosition, yPosition, width, height, fullScreen);
-    if (window_ == NULL) {
-        printf("Window could not be created! SDL_Error: %s\n", SDL_GetError());
-        isRunning_ = false;
-        return;
-    }
-    
-    // Create renderer
-    renderer = SDL_CreateRenderer(window_, -1, SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC);
-    if (renderer == NULL) {
-        printf("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
-        isRunning_ = false;
-        return;
-    }
-        
-    SDL_SetRenderDrawColor(renderer, 196, 255, 239, 255);
-    
-    if (!(IMG_Init(IMG_INIT_PNG) & IMG_INIT_PNG)) {
-        printf("SDL_image could not initialize! SDL_image Error: %s\n", IMG_GetError());
-        return;
-    }
-    
-    // Initialize SDL_Mixer
-    if(Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
-    {
-        printf("SDL_mixer could not initialize! SDL_mixer Error: %s\n", Mix_GetError());
-        return;
-    }
-    
-    // Create player entity and render initial scene!
-    sRenderer = new SRenderer(renderer); // renderer
-    
-    sAudio = new SAudio(); // audio player
     sAudio->loadAudio();
     sAudio->startMusic();
     
-    sSpawner = new SSpawner(entityManager, sRenderer, 100); // spawner
-    player = sSpawner->spawnPlayer();
+    // ------- INIT SPAWNER -------
+    sSpawner->spawnPlayer();
     
-    sMovement = new SMovement(player, sSpawner->getBow()); // movement system
+    // ------- INIT MOVEMENT -------
+    sMovement->init(entityManager, sSpawner->getPlayer(), sSpawner->getBow()); // movement system
     
     // Ignore this for now
     bgTileMap = new TileMap(sRenderer);
@@ -85,11 +49,11 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
 /** Go through all the game objects and update them all. */
 void Game::update() {
     // -------- PLAYER UPDATE --------
-    sMovement->movePlayer(player, getMovementInputs()); // Move player
-    player->cAnimator->incrementFrame(); // Animate player
+    sMovement->movePlayer(getMovementInputs()); // Move player
+    sSpawner->getPlayer()->cAnimator->incrementFrame(); // Animate player
      
     // ------- BOW UPDATE -------
-    sMovement->moveBow(sSpawner->getBow(), player);
+    sMovement->moveBow();
     
     // ------- ARROW UPDATE -------
     if (getMouseInputs().mouse == MOUSE_UP) {
@@ -98,8 +62,8 @@ void Game::update() {
     }
     
     for (auto& e : entityManager->getEntities("Arrow")) {
-        sMovement->moveArrow(e, sSpawner->getBow(), player);
-        float distance = e->cTransform->pos.distance(player->cTransform->pos);
+        sMovement->moveArrow(e);
+        float distance = e->cTransform->pos.distance(sSpawner->getPlayer()->cTransform->pos);
         if (distance > 500) {
             e->destroy();
         }
@@ -117,7 +81,7 @@ void Game::update() {
         
         // -------- PHYSICS --------
         if (e->cBoxCollider) {
-            if (checkCollision(e, player)) {
+            if (checkCollision(e, sSpawner->getPlayer())) {
                 sAudio->playAudio(DAMAGE);
                 e->destroy();
             }
@@ -139,8 +103,8 @@ void Game::update() {
 
 /** Clear and re-render new screen contents for the next frame. */
 void Game::render() {
-    SDL_SetRenderDrawColor(renderer, 196, 255, 239, 255);
-    SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(sRenderer->getRenderer(), 196, 255, 239, 255);
+    SDL_RenderClear(sRenderer->getRenderer());
     // bgTileMap->renderMap();
     
     for (auto& e : entityManager->getEntities()) {
@@ -149,7 +113,7 @@ void Game::render() {
         }
     }
     
-    SDL_RenderPresent(renderer);
+    SDL_RenderPresent(sRenderer->getRenderer());
 };
 
 /** Memory management: clear the game, close the window. */
@@ -163,11 +127,8 @@ void Game::clean() {
     }
     
     sAudio->freeAudio();
+    sRenderer->clean();
     
-    SDL_DestroyRenderer(renderer);
-    renderer = NULL;
-    SDL_DestroyWindow(window_);
-    window_ = NULL;
     Mix_Quit();
     IMG_Quit();
     SDL_Quit();
@@ -186,32 +147,32 @@ void Game::handleEvents() {
         } else if (e.type == SDL_KEYDOWN && e.key.repeat == 0) {
             // When a key is pressed down for the first time
             switch (e.key.keysym.sym) {
-                case SDLK_UP: movementInputs_.up = GO; break;
-                case SDLK_DOWN: movementInputs_.down = GO; break;
-                case SDLK_LEFT: movementInputs_.left = GO; break;
-                case SDLK_RIGHT: movementInputs_.right = GO; break;
+                case SDLK_UP: movementInputs_->up = GO; break;
+                case SDLK_DOWN: movementInputs_->down = GO; break;
+                case SDLK_LEFT: movementInputs_->left = GO; break;
+                case SDLK_RIGHT: movementInputs_->right = GO; break;
                 default: break;
             }
         } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
             // When a key is released for the first time
             switch(e.key.keysym.sym) {
-                case SDLK_UP: movementInputs_.up = STOP; break;
-                case SDLK_DOWN: movementInputs_.down = STOP; break;
-                case SDLK_LEFT: movementInputs_.left = STOP; break;
-                case SDLK_RIGHT: movementInputs_.right = STOP; break;
+                case SDLK_UP: movementInputs_->up = STOP; break;
+                case SDLK_DOWN: movementInputs_->down = STOP; break;
+                case SDLK_LEFT: movementInputs_->left = STOP; break;
+                case SDLK_RIGHT: movementInputs_->right = STOP; break;
                 default: break;
             }
         } else if (e.type == SDL_MOUSEMOTION || e.type == SDL_MOUSEBUTTONDOWN || e.type == SDL_MOUSEBUTTONUP) {
             // Get position of mouse
             int x, y;
             SDL_GetMouseState( &x, &y );
-            mouseInputs_.pos = { static_cast<float>(x), static_cast<float>(y) };
+            mouseInputs_->pos = { static_cast<float>(x), static_cast<float>(y) };
              
-            mouseInputs_.mouse = MOUSE_NEUTRAL;
+            mouseInputs_->mouse = MOUSE_NEUTRAL;
             if (e.type == SDL_MOUSEBUTTONDOWN) {
-                mouseInputs_.mouse = MOUSE_DOWN;
+                mouseInputs_->mouse = MOUSE_DOWN;
             } else if (e.type == SDL_MOUSEBUTTONUP) {
-                mouseInputs_.mouse = MOUSE_UP;
+                mouseInputs_->mouse = MOUSE_UP;
             }
         }
     }

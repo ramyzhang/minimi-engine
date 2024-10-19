@@ -29,7 +29,7 @@ int main(int argc, char* args[])
     int frameTime;
 
     game = new Game();
-    game->init("Minimi", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT, false);
+    game->init();
     
     while (game->isRunning()) {
         frameStart = SDL_GetTicks();

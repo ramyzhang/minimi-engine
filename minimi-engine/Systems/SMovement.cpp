@@ -7,7 +7,10 @@
 
 #include "SMovement.hpp"
 
-void movementUpdate(EntityManager* em) {
+void SMovement::movementUpdate() {
+    if (!em_) {
+        printf("Warning: Movement system not initialized yet.");
+    }
 }
 
 /** Move an entity (for now, just NPCs) according to the target set in their Transform. **/
@@ -43,21 +46,21 @@ void SMovement::moveNPC(std::shared_ptr<Entity> entityToMove) {
 }
 
 /** Move the player based on user inputs. **/
-void SMovement::movePlayer(std::shared_ptr<Entity> player, MovementInputs *inputs) {
-    if (player->cTransform) {
-        float speed = player->cTransform->speed;
+void SMovement::movePlayer(MovementInputs *inputs) {
+    if (player_->cTransform) {
+        float speed = player_->cTransform->speed;
         
         switch (inputs->up) {
-            case GO: player->cTransform->velocity.add(Vec2(0, -speed)); break;
-            case STOP: player->cTransform->velocity.add(Vec2(0, speed)); break;
+            case GO: player_->cTransform->velocity.add(Vec2(0, -speed)); break;
+            case STOP: player_->cTransform->velocity.add(Vec2(0, speed)); break;
             default: break;
         }
         
         inputs->up = NEUTRAL;
         
         switch (inputs->down) {
-            case GO: player->cTransform->velocity.add(Vec2(0, speed)); break;
-            case STOP: player->cTransform->velocity.add(Vec2(0, -speed)); break;
+            case GO: player_->cTransform->velocity.add(Vec2(0, speed)); break;
+            case STOP: player_->cTransform->velocity.add(Vec2(0, -speed)); break;
             default: break;
         }
         
@@ -65,16 +68,16 @@ void SMovement::movePlayer(std::shared_ptr<Entity> player, MovementInputs *input
 
         switch (inputs->left) {
             case GO:
-                player->cTransform->velocity.add(Vec2(-speed, 0));
-                if (player->cTransform->degrees > -10.0) {
-                    player->cTransform->degrees = -10.0;
+                player_->cTransform->velocity.add(Vec2(-speed, 0));
+                if (player_->cTransform->degrees > -10.0) {
+                    player_->cTransform->degrees = -10.0;
                 }
-                player->cTransform->flip = SDL_FLIP_HORIZONTAL;
+                player_->cTransform->flip = SDL_FLIP_HORIZONTAL;
                 break;
             case STOP:
-                player->cTransform->velocity.add(Vec2(speed, 0));
-                if (player->cTransform->degrees < 0.0) {
-                    player->cTransform->degrees = 0.0;
+                player_->cTransform->velocity.add(Vec2(speed, 0));
+                if (player_->cTransform->degrees < 0.0) {
+                    player_->cTransform->degrees = 0.0;
                 }
                 break;
             default: break;
@@ -84,16 +87,16 @@ void SMovement::movePlayer(std::shared_ptr<Entity> player, MovementInputs *input
 
         switch (inputs->right) {
             case GO:
-                player->cTransform->velocity.add(Vec2(speed, 0));
-                if (player->cTransform->degrees < 10.0) {
-                    player->cTransform->degrees = 10.0;
+                player_->cTransform->velocity.add(Vec2(speed, 0));
+                if (player_->cTransform->degrees < 10.0) {
+                    player_->cTransform->degrees = 10.0;
                 }
-                player->cTransform->flip = SDL_FLIP_NONE;
+                player_->cTransform->flip = SDL_FLIP_NONE;
                 break;
             case STOP:
-                player->cTransform->velocity.add(Vec2(-speed, 0));
-                if (player->cTransform->degrees > 0.0) {
-                    player->cTransform->degrees = 0.0;
+                player_->cTransform->velocity.add(Vec2(-speed, 0));
+                if (player_->cTransform->degrees > 0.0) {
+                    player_->cTransform->degrees = 0.0;
                 }
                 break;
             default: break;
@@ -101,30 +104,30 @@ void SMovement::movePlayer(std::shared_ptr<Entity> player, MovementInputs *input
         
         inputs->right = NEUTRAL;
         
-        Vec2 old_pos = player->cTransform->pos; // make a shallow copy of the old position
+        Vec2 old_pos = player_->cTransform->pos; // make a shallow copy of the old position
         
-        player->cTransform->pos.add(player->cTransform->velocity);
+        player_->cTransform->pos.add(player_->cTransform->velocity);
         
         // This ensures that an offsetted collider will still follow the player correctly
-        int x = static_cast<int>(player->cTransform->pos.x) - static_cast<int>(old_pos.x);
-        int y = static_cast<int>(player->cTransform->pos.y) - static_cast<int>(old_pos.y);
+        int x = static_cast<int>(player_->cTransform->pos.x) - static_cast<int>(old_pos.x);
+        int y = static_cast<int>(player_->cTransform->pos.y) - static_cast<int>(old_pos.y);
     
-        player->cBoxCollider->collider.x += x;
-        player->cBoxCollider->collider.y += y;
+        player_->cBoxCollider->collider.x += x;
+        player_->cBoxCollider->collider.y += y;
     }
 }
 
 /** Rotate the bow around the player in a circle. */
-void SMovement::moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
-    Vec2 p_pos = player->cTransform->pos;
+void SMovement::moveBow() {
+    Vec2 p_pos = player_->cTransform->pos;
     
-    int p_width = player->cSprite->getWidth();
+    int p_width = player_->cSprite->getWidth();
     
-    bow->cTransform->pos = p_pos - Vec2(p_width / 2 - 10, 0);
-    bow->cTransform->degrees = static_cast<double>((static_cast<int>(bow->cTransform->degrees) - 2) % 360);
+    bow_->cTransform->pos = p_pos - Vec2(p_width / 2 - 10, 0);
+    bow_->cTransform->degrees = static_cast<double>((static_cast<int>(bow_->cTransform->degrees) - 2) % 360);
 }
 
-void SMovement::moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
+void SMovement::moveArrow(std::shared_ptr<Entity> arrow) {
     if (arrow->cTransform->velocity.x != 0.0 && arrow->cTransform->velocity.y != 0.0) {
         Vec2 old_pos = arrow->cTransform->pos; // make a shallow copy of the old position
 
@@ -138,10 +141,10 @@ void SMovement::moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity>
         arrow->cBoxCollider->collider.y += y;
     } else {
         // Continue rotating around player
-        Vec2 p_pos = player->cTransform->pos;
-        int p_width = player->cSprite->getWidth();
+        Vec2 p_pos = player_->cTransform->pos;
+        int p_width = player_->cSprite->getWidth();
         
         arrow->cTransform->pos = p_pos - Vec2(p_width / 2 + 10, 0);
-        arrow->cTransform->degrees = bow->cTransform->degrees;
+        arrow->cTransform->degrees = bow_->cTransform->degrees;
     }
 }

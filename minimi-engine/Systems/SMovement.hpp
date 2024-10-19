@@ -19,14 +19,21 @@ public:
     SMovement() {};
     ~SMovement() {};
     
-    SMovement(std::shared_ptr<Entity> p, std::shared_ptr<Entity> b) : player_(p), bow_(b) {};
+    void init(EntityManager* em, std::shared_ptr<Entity> p, std::shared_ptr<Entity> b) {
+        em_ = em;
+        player_ = p;
+        bow_ = b;
+    };
+    
+    void movementUpdate();
     
     void moveNPC(std::shared_ptr<Entity> entityToMove);
-    void movePlayer(std::shared_ptr<Entity> player, MovementInputs *inputs);
-    void moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player);
-    void moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player);
+    void movePlayer(MovementInputs *inputs);
+    void moveBow();
+    void moveArrow(std::shared_ptr<Entity> arrow);
 
 private:
+    EntityManager* em_;
     std::shared_ptr<Entity> player_;
     std::shared_ptr<Entity> bow_;
 };

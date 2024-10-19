@@ -25,6 +25,8 @@ public:
     SAudio() {};
     ~SAudio() {};
     
+    bool init();
+    
     void loadAudio();
     
     void startMusic();

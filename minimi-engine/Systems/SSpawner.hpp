@@ -25,7 +25,7 @@ public:
     SSpawner(EntityManager* em,
              SRenderer* r,
              const int& sr) : entityManager_(em), renderer_(r), spawnRate_(sr) {};
-    
+        
     std::shared_ptr<Entity> getPlayer() { return player_; };
     std::shared_ptr<Entity> getBow() { return bow_; };
     
