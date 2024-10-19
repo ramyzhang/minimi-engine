@@ -18,8 +18,9 @@ MouseInputs Game::mouseInputs_;
 
 SRenderer *sRenderer; // TODO: do something about this...
 TileMap *bgTileMap; // Temporary
-SSpawner *spawner; // TODO: do something about this...
+SSpawner *sSpawner; // TODO: do something about this...
 SAudio *sAudio; // TODO: do something about this...
+SMovement *sMovement; // TODO: do something about this...
 
 /** Initialize SDL and the game window + renderer. **/
 void Game::init(const char* title, int xPosition, int yPosition, int width, int height, bool fullScreen) {
@@ -63,12 +64,16 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
     }
     
     // Create player entity and render initial scene!
-    sRenderer = new SRenderer(renderer);
-    sAudio = new SAudio();
+    sRenderer = new SRenderer(renderer); // renderer
+    
+    sAudio = new SAudio(); // audio player
     sAudio->loadAudio();
     sAudio->startMusic();
-    spawner = new SSpawner(entityManager, sRenderer, 100);
-    player = spawner->spawnPlayer();
+    
+    sSpawner = new SSpawner(entityManager, sRenderer, 100); // spawner
+    player = sSpawner->spawnPlayer();
+    
+    sMovement = new SMovement(player, sSpawner->getBow()); // movement system
     
     // Ignore this for now
     bgTileMap = new TileMap(sRenderer);
@@ -80,20 +85,20 @@ void Game::init(const char* title, int xPosition, int yPosition, int width, int 
 /** Go through all the game objects and update them all. */
 void Game::update() {
     // -------- PLAYER UPDATE --------
-    movePlayer(player, getMovementInputs()); // Move player
+    sMovement->movePlayer(player, getMovementInputs()); // Move player
     player->cAnimator->incrementFrame(); // Animate player
      
     // ------- BOW UPDATE -------
-    moveBow(spawner->getBow(), player);
+    sMovement->moveBow(sSpawner->getBow(), player);
     
     // ------- ARROW UPDATE -------
     if (getMouseInputs().mouse == MOUSE_UP) {
-        std::shared_ptr<Entity> new_arrow = spawner->spawnArrow();
+        std::shared_ptr<Entity> new_arrow = sSpawner->spawnArrow();
         sAudio->playAudio(SHOOT);
     }
     
     for (auto& e : entityManager->getEntities("Arrow")) {
-        moveArrow(e, spawner->getBow(), player);
+        sMovement->moveArrow(e, sSpawner->getBow(), player);
         float distance = e->cTransform->pos.distance(player->cTransform->pos);
         if (distance > 500) {
             e->destroy();
@@ -102,13 +107,13 @@ void Game::update() {
     
     // -------- NPC UPDATE --------
     // Spawn an enemy
-    spawner->spawnEnemy();
+    sSpawner->spawnEnemy();
     // Iterate through NPCs
     for (auto& e : entityManager->getEntities("NPC")) {
         // -------- MOVEMENT & AI --------
         // Update transforms based on movement
-        if (e->cTransform) spawner->updateEnemy(e);
-        if (e->cTransform) moveNPC(e);
+        if (e->cTransform) sSpawner->updateEnemy(e);
+        if (e->cTransform) sMovement->moveNPC(e);
         
         // -------- PHYSICS --------
         if (e->cBoxCollider) {

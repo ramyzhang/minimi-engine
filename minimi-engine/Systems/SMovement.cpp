@@ -7,8 +7,11 @@
 
 #include "SMovement.hpp"
 
+void movementUpdate(EntityManager* em) {
+}
+
 /** Move an entity (for now, just NPCs) according to the target set in their Transform. **/
-void moveNPC(std::shared_ptr<Entity> entityToMove) {
+void SMovement::moveNPC(std::shared_ptr<Entity> entityToMove) {
     if (entityToMove->cTransform && entityToMove->getTag() != "Player") {
         float speed = entityToMove->cTransform->speed;
         
@@ -40,7 +43,7 @@ void moveNPC(std::shared_ptr<Entity> entityToMove) {
 }
 
 /** Move the player based on user inputs. **/
-void movePlayer(std::shared_ptr<Entity> player, MovementInputs *inputs) {
+void SMovement::movePlayer(std::shared_ptr<Entity> player, MovementInputs *inputs) {
     if (player->cTransform) {
         float speed = player->cTransform->speed;
         
@@ -112,7 +115,7 @@ void movePlayer(std::shared_ptr<Entity> player, MovementInputs *inputs) {
 }
 
 /** Rotate the bow around the player in a circle. */
-void moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
+void SMovement::moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
     Vec2 p_pos = player->cTransform->pos;
     
     int p_width = player->cSprite->getWidth();
@@ -121,7 +124,7 @@ void moveBow(std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
     bow->cTransform->degrees = static_cast<double>((static_cast<int>(bow->cTransform->degrees) - 2) % 360);
 }
 
-void moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
+void SMovement::moveArrow(std::shared_ptr<Entity> arrow, std::shared_ptr<Entity> bow, std::shared_ptr<Entity> player) {
     if (arrow->cTransform->velocity.x != 0.0 && arrow->cTransform->velocity.y != 0.0) {
         Vec2 old_pos = arrow->cTransform->pos; // make a shallow copy of the old position
 
