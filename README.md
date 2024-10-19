@@ -24,11 +24,9 @@ All game assets were created by me!
 
 ### To Do
 
-**Components:**
-- CAnimator state machine
-
 **Systems:**
 - Particles
+- Animation state machine
 - UI
 - Camera
 - Basic Scene Management (+ pausing)
