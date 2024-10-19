@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include "SObserver.hpp"
 
+/** Send notifications to observers. */
 class SSubject {
 public:
     void addObserver(SObserver* observer);

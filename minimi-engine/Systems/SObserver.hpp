@@ -19,6 +19,7 @@ enum Event {
     PLAYER_DIED,
 };
 
+/** Subscribe to a subject to watch for notifications. */
 class SObserver {
 public:
   virtual ~SObserver() {}

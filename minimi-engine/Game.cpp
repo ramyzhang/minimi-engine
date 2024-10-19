@@ -60,7 +60,6 @@ void Game::update() {
     sCollision->update();
     
     // -------- NPC UPDATE --------
-    // Iterate through NPCs
     for (auto& e : entityManager->getEntities("NPC")) {
         // -------- ANIMATION --------
         if (e->cAnimator) e->cAnimator->incrementFrame();
@@ -100,7 +99,7 @@ void Game::handleEvents() {
 
     // Continuing polling events and handling them until there are no more
     while (SDL_PollEvent(&e) != 0) {
-        // ------ EXIT ------ 
+        // ------ EXIT ------
         if (e.type == SDL_QUIT) {
             isRunning_ = false;
             break;
