@@ -20,11 +20,11 @@ All game assets were created by me!
 - SSpawner (spawns a player and enemies)
 - SCollision (collision solver)
 - SAudio (basic audio system)
+- SObserver and SSubject for the observer/subject notifier system pattern
 
 ### To Do
 
 **Components:**
-- CCircleCollider (maybe?)
 - CAnimator state machine
 
 **Systems:**
@@ -41,3 +41,4 @@ All game assets were created by me!
 - [Game Programming Patterns](https://gameprogrammingpatterns.com/) for crucial design patterns so my code isn't trash
 - Lazy Foo's [SDL2 Tutorials](https://lazyfoo.net/tutorials/SDL/index.php) for super helpful SDL2 tips
 - Let's Make Games [Tutorials](https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx) were invaluable in getting me started
+- SDL2 Official [Documentation](https://wiki.libsdl.org/) for when I wanted to explore more features
