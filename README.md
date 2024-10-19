@@ -14,7 +14,7 @@ All game assets were created by me!
 - CBoxCollider
 
 **Systems:**
-- ECS architecture completed! Thank you to Dave Churchill for making his [COMP4300 course videos](https://www.youtube.com/watch?v=S7lXSihz0ac&list=PL_xRyXins848nDj2v-TJYahzvs-XW9sVV) publicly available, they were invaluable for this part!
+- Basic ECS architecture completed!
 - SMovement (basic player movement & follow-the-player enemy movement)
 - SRenderer (wrapper for SDL_Renderer)
 - SSpawner (spawns a player and enemies)
@@ -35,3 +35,9 @@ All game assets were created by me!
 - Game Logic (i.e. health, NPC states)
 - Reading in game settings from a .txt file
 - Better TileMap
+
+### Resources
+- Dave Churchill's [COMP4300 course videos](https://www.youtube.com/watch?v=S7lXSihz0ac&list=PL_xRyXins848nDj2v-TJYahzvs-XW9sVV) for literally all the core concepts I used
+- [Game Programming Patterns](https://gameprogrammingpatterns.com/) for crucial design patterns so my code isn't trash
+- Lazy Foo's [SDL2 Tutorials](https://lazyfoo.net/tutorials/SDL/index.php) for super helpful SDL2 tips
+- Let's Make Games [Tutorials](https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx) were invaluable in getting me started
