@@ -37,6 +37,8 @@
 		DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCB713A42B677DA1003EBF80 /* EntityManager.cpp */; };
 		DCB713AB2B678006003EBF80 /* grass.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A82B678006003EBF80 /* grass.png */; };
 		DCB713AC2B678006003EBF80 /* stone.png in Resources */ = {isa = PBXBuildFile; fileRef = DCB713A92B678006003EBF80 /* stone.png */; };
+		DCDFB3CD2CC44BC7003FD793 /* SObserver.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCDFB3CB2CC44BC7003FD793 /* SObserver.cpp */; };
+		DCDFB3D02CC4507A003FD793 /* SSubject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCDFB3CE2CC4507A003FD793 /* SSubject.cpp */; };
 		DCE5A57B2CACF58A00D16C97 /* water.png in Resources */ = {isa = PBXBuildFile; fileRef = DCE5A57A2CACF58A00D16C97 /* water.png */; };
 		DCE5A5912CB08C9800D16C97 /* CAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */; };
 		DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5932CB0AB1A00D16C97 /* SMovement.cpp */; };
@@ -98,6 +100,10 @@
 		DCB713A52B677DA1003EBF80 /* EntityManager.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = EntityManager.hpp; sourceTree = "<group>"; };
 		DCB713A82B678006003EBF80 /* grass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = grass.png; sourceTree = "<group>"; };
 		DCB713A92B678006003EBF80 /* stone.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stone.png; sourceTree = "<group>"; };
+		DCDFB3CB2CC44BC7003FD793 /* SObserver.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SObserver.cpp; sourceTree = "<group>"; };
+		DCDFB3CC2CC44BC7003FD793 /* SObserver.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SObserver.hpp; sourceTree = "<group>"; };
+		DCDFB3CE2CC4507A003FD793 /* SSubject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SSubject.cpp; sourceTree = "<group>"; };
+		DCDFB3CF2CC4507A003FD793 /* SSubject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SSubject.hpp; sourceTree = "<group>"; };
 		DCE5A57A2CACF58A00D16C97 /* water.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = water.png; sourceTree = "<group>"; };
 		DCE5A58E2CB04CE200D16C97 /* CAnimator.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CAnimator.hpp; sourceTree = "<group>"; };
 		DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CAnimator.cpp; sourceTree = "<group>"; };
@@ -243,6 +249,10 @@
 				DC82B1BD2CB8C06E00895CFC /* SCollision.hpp */,
 				DC1C048D2CBF104E007C6FE1 /* SAudio.cpp */,
 				DC1C048E2CBF104E007C6FE1 /* SAudio.hpp */,
+				DCDFB3CB2CC44BC7003FD793 /* SObserver.cpp */,
+				DCDFB3CC2CC44BC7003FD793 /* SObserver.hpp */,
+				DCDFB3CE2CC4507A003FD793 /* SSubject.cpp */,
+				DCDFB3CF2CC4507A003FD793 /* SSubject.hpp */,
 			);
 			path = Systems;
 			sourceTree = "<group>";
@@ -358,10 +368,12 @@
 				DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */,
 				DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */,
 				DC82B1BB2CB854E200895CFC /* SRenderer.cpp in Sources */,
+				DCDFB3D02CC4507A003FD793 /* SSubject.cpp in Sources */,
 				DC82B1BE2CB8C06E00895CFC /* SCollision.cpp in Sources */,
 				DC1C048F2CBF104E007C6FE1 /* SAudio.cpp in Sources */,
 				DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */,
 				DC82B1B82CB84B6D00895CFC /* SSpawner.cpp in Sources */,
+				DCDFB3CD2CC44BC7003FD793 /* SObserver.cpp in Sources */,
 				DC82B1B52CB8486400895CFC /* Utils.cpp in Sources */,
 				DCE5A5912CB08C9800D16C97 /* CAnimator.cpp in Sources */,
 				DCB713A62B677DA1003EBF80 /* EntityManager.cpp in Sources */,

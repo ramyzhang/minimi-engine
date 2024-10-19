@@ -12,12 +12,14 @@
 #include <math.h>
 #include "EntityManager.hpp"
 #include "SRenderer.hpp"
+#include "SInput.hpp"
+#include "SSubject.hpp"
 #include "Utils.hpp"
 #include "Vec2.hpp"
 
 const float NPC_SPEED = 1;
 
-class SSpawner {
+class SSpawner : public SSubject {
 public:
     SSpawner() {};
     ~SSpawner() {};
@@ -25,7 +27,9 @@ public:
     SSpawner(EntityManager* em,
              SRenderer* r,
              const int& sr) : entityManager_(em), renderer_(r), spawnRate_(sr) {};
-        
+    
+    void update(MouseInputs inputs_);
+    
     std::shared_ptr<Entity> getPlayer() { return player_; };
     std::shared_ptr<Entity> getBow() { return bow_; };
     

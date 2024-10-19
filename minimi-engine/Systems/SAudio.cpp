@@ -71,6 +71,7 @@ void SAudio::startMusic() {
 void SAudio::stopMusic() {
     if (Mix_PausedMusic() != 1)
     {
+        Mix_FadeOutMusic(500);
         Mix_PauseMusic();
     }
 }

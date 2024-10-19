@@ -7,6 +7,19 @@
 
 #include "SSpawner.hpp"
 
+void SSpawner::update(MouseInputs inputs_) {
+    if (inputs_.mouse == MOUSE_UP) {
+        std::shared_ptr<Entity> new_arrow = spawnArrow();
+        notify(ARROW_SHOT);
+    }
+    
+    spawnEnemy();
+    
+    for (auto& e : entityManager_->getEntities("NPC")) {
+        if (e->cTransform) updateEnemy(e);
+    }
+}
+
 /** Spawn a player! **/
 std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     player_ = entityManager_->addEntity("Player");

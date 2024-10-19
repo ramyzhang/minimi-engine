@@ -7,9 +7,27 @@
 
 #include "SMovement.hpp"
 
-void SMovement::movementUpdate() {
+void SMovement::update(MovementInputs *inputs) {
     if (!em_) {
         printf("Warning: Movement system not initialized yet.");
+    }
+    
+    movePlayer(inputs); // move player
+    
+    moveBow(); // rotate bow
+    
+    // move arrows
+    for (auto& a : em_->getEntities("Arrow")) {
+        moveArrow(a);
+        float distance = a->cTransform->pos.distance(player_->cTransform->pos);
+        if (distance > 500) {
+            a->destroy();
+        }
+    }
+    
+    // move npcs
+    for (auto& npc : em_->getEntities("NPC")) {
+        if (npc->cTransform) moveNPC(npc);
     }
 }
 

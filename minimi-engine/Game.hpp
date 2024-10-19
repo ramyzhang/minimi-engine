@@ -55,6 +55,7 @@ public:
     static SSpawner *sSpawner;
     static SAudio *sAudio;
     static SMovement *sMovement;
+    static SCollision *sCollision;
     
 private:
     int  count_;

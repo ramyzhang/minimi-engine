@@ -12,7 +12,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include "Vec2.hpp"
-#include "Entity.hpp"
+#include "EntityManager.hpp"
 #include "CSprite.hpp"
 
 // Screen dimension constants
@@ -23,17 +23,19 @@ class SRenderer {
 public:
     SRenderer() {};
     ~SRenderer() {};
+    
+    SRenderer(EntityManager* em) : em_(em) {};
         
     SDL_Texture* loadTexture(const char* fileName);
     
     bool init();
     
-    void draw(std::shared_ptr<Entity> e);
+    void update();
     
-    // overloaded draw function for non-gameobject tiles
+    void draw(std::shared_ptr<Entity> e);
     void draw(SDL_Texture* texture,
               SDL_Rect* srcRect,
-              SDL_Rect* destRect);
+              SDL_Rect* destRect); // overloaded draw function for non-gameobject tiles
     
     void free(std::shared_ptr<CSprite> sprite);
     void clean();
@@ -41,6 +43,7 @@ public:
     SDL_Renderer* getRenderer() { return renderer_; };
 
 private:
+    EntityManager* em_;
     SDL_Renderer* renderer_;
     SDL_Window* window_;
 };

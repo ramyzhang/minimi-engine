@@ -7,8 +7,27 @@
 
 #include "SCollision.hpp"
 
+void SCollision::update() {
+    for (auto& e : em_->getEntities("NPC")) {
+        if (e->cBoxCollider) {
+            if (checkCollision(e, player_)) {
+                e->destroy();
+                notify(PLAYER_HIT);
+            }
+            
+            for (auto& arrow : em_->getEntities("Arrow")) {
+                if (arrow->cBoxCollider && checkCollision(arrow, e)) {
+                    e->destroy();
+                    arrow->destroy();
+                    notify(ENEMY_DIED);
+                }
+            }
+        }
+    }
+}
+
 /** AABB Collision solver. */
-bool checkCollision(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
+bool SCollision::checkCollision(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
     SDL_Rect rect_a = a->cBoxCollider->collider;
     SDL_Rect rect_b = b->cBoxCollider->collider;
     
@@ -32,8 +51,3 @@ bool checkCollision(std::shared_ptr<Entity> a, std::shared_ptr<Entity> b) {
     
     return true;
 }
-
-// TODO: move collision box following code here instead
-//void updateCollider() {
-//    
-//}

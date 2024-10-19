@@ -25,14 +25,14 @@ public:
         bow_ = b;
     };
     
-    void movementUpdate();
-    
+    void update(MovementInputs *inputs);
+
+private:
     void moveNPC(std::shared_ptr<Entity> entityToMove);
     void movePlayer(MovementInputs *inputs);
     void moveBow();
     void moveArrow(std::shared_ptr<Entity> arrow);
-
-private:
+    
     EntityManager* em_;
     std::shared_ptr<Entity> player_;
     std::shared_ptr<Entity> bow_;

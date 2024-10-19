@@ -11,6 +11,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2_mixer/SDL_mixer.h>
+#include "SObserver.hpp"
 
 enum SoundEffect {
     DAMAGE,
@@ -20,10 +21,19 @@ enum SoundEffect {
     DEATH
 };
 
-class SAudio {
+class SAudio : public SObserver {
 public:
     SAudio() {};
     ~SAudio() {};
+    
+    virtual void onNotify(Event event) {
+        switch (event) {
+            case ENEMY_DIED: playAudio(LOVE); break;
+            case ARROW_SHOT: playAudio(SHOOT); break;
+            case PLAYER_HIT: playAudio(DAMAGE); break;
+            case PLAYER_DIED: playAudio(DEATH); stopMusic(); break;
+        }
+    }
     
     bool init();
     

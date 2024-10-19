@@ -7,6 +7,20 @@
 
 #include "SRenderer.hpp"
 
+void SRenderer::update() {
+    SDL_SetRenderDrawColor(renderer_, 196, 255, 239, 255);
+    SDL_RenderClear(renderer_);
+    // bgTileMap->renderMap();
+    
+    for (auto& e : em_->getEntities()) {
+        if (e->cSprite && e->cTransform) {
+            draw(e);
+        }
+    }
+    
+    SDL_RenderPresent(renderer_);
+}
+
 bool SRenderer::init() {
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "best");
     
