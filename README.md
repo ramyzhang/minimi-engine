@@ -28,6 +28,7 @@ All game assets were created by me!
 - Particles
 - Animation state machine
 - UI
+- Scripts
 - Camera
 - Basic Scene Management (+ pausing)
 - Game Logic (i.e. health, NPC states)
