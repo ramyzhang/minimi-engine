@@ -37,7 +37,7 @@ All game assets were created by me!
 
 ### Resources
 - Dave Churchill's [COMP4300 course videos](https://www.youtube.com/watch?v=S7lXSihz0ac&list=PL_xRyXins848nDj2v-TJYahzvs-XW9sVV) for literally all the core concepts I used
-- [Game Programming Patterns](https://gameprogrammingpatterns.com/) for crucial design patterns so my code isn't trash
+- [Game Programming Patterns](https://gameprogrammingpatterns.com/) for crucial design patterns
 - Lazy Foo's [SDL2 Tutorials](https://lazyfoo.net/tutorials/SDL/index.php) for super helpful SDL2 tips
 - Let's Make Games [Tutorials](https://www.youtube.com/watch?v=QQzAHcojEKg&list=PLhfAbcv9cehhkG7ZQK0nfIGJC_C-wSLrx) were invaluable in getting me started
 - SDL2 Official [Documentation](https://wiki.libsdl.org/) for when I wanted to explore more features
