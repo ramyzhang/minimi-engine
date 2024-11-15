@@ -126,6 +126,14 @@ void SMovement::movePlayer(MovementInputs *inputs) {
         
         player_->cTransform->pos.add(player_->cTransform->velocity);
         
+        if (player_->cTransform->pos.x < 0 || player_->cTransform->pos.x + player_->cSprite->getWidth() > MAP_WIDTH) {
+            player_->cTransform->pos.x -= player_->cTransform->velocity.x;
+        }
+        
+        if (player_->cTransform->pos.y < 0 || player_->cTransform->pos.y + player_->cSprite->getHeight() > MAP_HEIGHT) {
+            player_->cTransform->pos.y -= player_->cTransform->velocity.y;
+        }
+        
         // This ensures that an offsetted collider will still follow the player correctly
         int x = static_cast<int>(player_->cTransform->pos.x) - static_cast<int>(old_pos.x);
         int y = static_cast<int>(player_->cTransform->pos.y) - static_cast<int>(old_pos.y);

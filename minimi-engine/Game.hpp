@@ -29,7 +29,6 @@
 #include "SAudio.hpp"
 
 class Game {
-    
 public:
     Game();
     ~Game(); // deconstructor

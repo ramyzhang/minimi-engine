@@ -115,9 +115,10 @@ void Game::handleEvents() {
                 case SDLK_RIGHT: movementInputs_->right = GO; break;
                 default: break;
             }
-        } else if (e.type == SDL_KEYUP && e.key.repeat == 0) {
+        }
+        if (e.type == SDL_KEYUP && e.key.repeat == 0) {
             // When a key is released for the first time
-            switch(e.key.keysym.sym) {
+            switch (e.key.keysym.sym) {
                 case SDLK_UP: movementInputs_->up = STOP; break;
                 case SDLK_DOWN: movementInputs_->down = STOP; break;
                 case SDLK_LEFT: movementInputs_->left = STOP; break;

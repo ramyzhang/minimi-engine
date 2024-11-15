@@ -24,6 +24,12 @@ enum MouseEvent {
 };
 
 struct MovementInputs {
+    void reset() {
+        up = NEUTRAL;
+        down = NEUTRAL;
+        left = NEUTRAL;
+        right = NEUTRAL;
+    }
     InputEvent up = NEUTRAL;
     InputEvent down = NEUTRAL;
     InputEvent left = NEUTRAL;

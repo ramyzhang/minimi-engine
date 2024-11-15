@@ -13,6 +13,7 @@
 #include "EntityManager.hpp"
 #include "Vec2.hpp"
 #include "Utils.hpp"
+#include "GameConstants.hpp"
 
 class SMovement {
 public:
