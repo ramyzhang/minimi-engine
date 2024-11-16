@@ -16,7 +16,7 @@ All game assets were created by me!
 **Systems:**
 - Basic ECS architecture completed!
 - SMovement (basic player movement & follow-the-player enemy movement)
-- SRenderer (wrapper for SDL_Renderer)
+- SRenderer (wrapper for SDL_Renderer + camera functions)
 - SSpawner (spawns a player and enemies)
 - SCollision (collision solver)
 - SAudio (basic audio system)
@@ -29,11 +29,9 @@ All game assets were created by me!
 - Animation state machine
 - UI
 - Scripts
-- Camera
 - Basic Scene Management (+ pausing)
 - Game Logic (i.e. health, NPC states)
 - Reading in game settings from a .txt file
-- Better TileMap
 
 ### Resources
 - Dave Churchill's [COMP4300 course videos](https://www.youtube.com/watch?v=S7lXSihz0ac&list=PL_xRyXins848nDj2v-TJYahzvs-XW9sVV) for literally all the core concepts I used
