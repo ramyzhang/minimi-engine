@@ -8,7 +8,8 @@
 #include "SInput.hpp"
 
 /** Handle events in the game. This should be run inside the game loop. */
-bool SInput::update() {
+GameState SInput::update(bool paused) {
+    GameState res = paused ? PAUSE : PLAYING;
     SDL_Event e;
 
     // Continuing polling events and handling them until there are no more
@@ -16,12 +17,21 @@ bool SInput::update() {
     while (SDL_PollEvent(&e) != 0) {
         // ------ EXIT ------
         if (e.type == SDL_QUIT) {
-            return false;
+            return QUIT;
         }
         
-        // ------ MOVEMENT KEYS ------
+        // ------ KEYS ------
         const Uint8* currentKeyStates = SDL_GetKeyboardState(NULL);
+        if (!currentKeyStates[SDL_SCANCODE_P] && paused) {
+            return PAUSE;
+        }
+        
         if (e.type == SDL_KEYDOWN || e.type == SDL_KEYUP) {
+            if (currentKeyStates[SDL_SCANCODE_P] && !paused) {
+                return PAUSE;
+            } else if (currentKeyStates[SDL_SCANCODE_P] && paused) {
+                res = PLAYING;
+            }
             // When a key is pressed down or released
             moveInputs_->y = (currentKeyStates[SDL_SCANCODE_UP] ? -1 : (currentKeyStates[SDL_SCANCODE_DOWN] ? 1 : 0));
             moveInputs_->x = (currentKeyStates[SDL_SCANCODE_LEFT] ? -1 : (currentKeyStates[SDL_SCANCODE_RIGHT] ? 1 : 0));
@@ -42,5 +52,5 @@ bool SInput::update() {
         }
     }
     
-    return true;    
+    return res;
 };

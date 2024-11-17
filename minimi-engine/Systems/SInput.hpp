@@ -23,6 +23,12 @@ struct MouseInputs {
     Vec2 pos = { 0.0, 0.0 };
 };
 
+enum GameState {
+    QUIT,
+    PAUSE,
+    PLAYING,
+};
+
 class SInput {
 public:
     SInput() {};
@@ -31,7 +37,7 @@ public:
     Vec2 getMovementInputs() const { return *(moveInputs_); };
     MouseInputs getMouseInputs() const { return *(mouseInputs_); };
     
-    bool update();
+    GameState update(bool paused);
 
 private:
     Vec2 *moveInputs_ = new Vec2(0, 0);

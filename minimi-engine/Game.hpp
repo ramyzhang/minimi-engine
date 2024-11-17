@@ -53,6 +53,7 @@ public:
 private:
     int  count_;
     bool isRunning_;
+    bool isPaused_;
     
     SDL_Window *window_;
 };

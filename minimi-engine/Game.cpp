@@ -39,17 +39,32 @@ void Game::init() {
     
     printf("Game is running!\n");
     isRunning_ = true;
+    isPaused_ = false;
 };
 
 /** Go through all the game entities and update them all. */
 void Game::update() {
-    isRunning_ = sInput->update();
-        
-    sMovement->update(sInput->getMovementInputs());
-    sSpawner->getPlayer()->cAnimator->incrementFrame(); // Animate player
-    sSpawner->update(sInput->getMouseInputs());
-    sCollision->update();
+    switch (sInput->update(isPaused_)) {
+        case QUIT:
+            isRunning_ = false;
+            break;
+        case PAUSE:
+            isPaused_ = true; 
+            break;
+        case PLAYING:
+            isPaused_ = false; 
+            break;
+        default:
+            break;
+    }
     
+    if (!isPaused_) {
+        sMovement->update(sInput->getMovementInputs());
+        sSpawner->update(sInput->getMouseInputs());
+        sCollision->update();
+    }
+    
+    sSpawner->getPlayer()->cAnimator->incrementFrame(); // Animate player
     for (auto& e : entityManager->getEntities("NPC")) {
         if (e->cAnimator) e->cAnimator->incrementFrame();
     }
