@@ -9,13 +9,8 @@
 #define SInput_hpp
 
 #include <stdio.h>
+#include <SDL2/SDL.h>
 #include "Vec2.hpp"
-
-enum InputEvent {
-    STOP,
-    NEUTRAL,
-    GO
-};
 
 enum MouseEvent {
     MOUSE_DOWN,
@@ -23,22 +18,24 @@ enum MouseEvent {
     MOUSE_NEUTRAL
 };
 
-struct MovementInputs {
-    void reset() {
-        up = NEUTRAL;
-        down = NEUTRAL;
-        left = NEUTRAL;
-        right = NEUTRAL;
-    }
-    InputEvent up = NEUTRAL;
-    InputEvent down = NEUTRAL;
-    InputEvent left = NEUTRAL;
-    InputEvent right = NEUTRAL;
-};
-
 struct MouseInputs {
     MouseEvent mouse = MOUSE_NEUTRAL;
     Vec2 pos = { 0.0, 0.0 };
+};
+
+class SInput {
+public:
+    SInput() {};
+    ~SInput() {};
+    
+    Vec2 getMovementInputs() const { return *(moveInputs_); };
+    MouseInputs getMouseInputs() const { return *(mouseInputs_); };
+    
+    bool update();
+
+private:
+    Vec2 *moveInputs_ = new Vec2(0, 0);
+    MouseInputs *mouseInputs_ = new MouseInputs();
 };
 
 #endif /* SInput_hpp */

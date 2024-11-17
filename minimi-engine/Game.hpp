@@ -27,6 +27,7 @@
 #include "SSpawner.hpp"
 #include "SCollision.hpp"
 #include "SAudio.hpp"
+#include "SInput.hpp"
 
 class Game {
 public:
@@ -37,15 +38,8 @@ public:
     void update(); // go through all the game objects and update them all
     void render();
     void clean(); // do memory management and clear the game
-    void handleEvents();
     
     bool isRunning() { return isRunning_; }; // is the game running?
-    static MovementInputs* getMovementInputs() { return movementInputs_; };
-    static MouseInputs getMouseInputs() {
-        MouseInputs temp = *(mouseInputs_);
-        mouseInputs_->mouse = MOUSE_NEUTRAL;
-        return temp;
-    };
     
     static EntityManager *entityManager;
     
@@ -55,12 +49,11 @@ public:
     static SAudio *sAudio;
     static SMovement *sMovement;
     static SCollision *sCollision;
+    static SInput *sInput;
     
 private:
     int  count_;
     bool isRunning_;
-    static MovementInputs *movementInputs_;
-    static MouseInputs *mouseInputs_;
     
     SDL_Window *window_;
 };

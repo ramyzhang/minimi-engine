@@ -7,7 +7,7 @@
 
 #include "SMovement.hpp"
 
-void SMovement::update(MovementInputs *inputs) {
+void SMovement::update(Vec2 inputs) {
     if (!em_) {
         printf("Warning: Movement system not initialized yet.");
     }
@@ -64,64 +64,23 @@ void SMovement::moveNPC(std::shared_ptr<Entity> entityToMove) {
 }
 
 /** Move the player based on user inputs. **/
-void SMovement::movePlayer(MovementInputs *inputs) {
+void SMovement::movePlayer(Vec2 inputs) {
     if (player_->cTransform) {
         float speed = player_->cTransform->speed;
         
-        switch (inputs->up) {
-            case GO: player_->cTransform->velocity.add(Vec2(0, -speed)); break;
-            case STOP: player_->cTransform->velocity.add(Vec2(0, speed)); break;
-            default: break;
-        }
-        
-        inputs->up = NEUTRAL;
-        
-        switch (inputs->down) {
-            case GO: player_->cTransform->velocity.add(Vec2(0, speed)); break;
-            case STOP: player_->cTransform->velocity.add(Vec2(0, -speed)); break;
-            default: break;
-        }
-        
-        inputs->down = NEUTRAL;
-
-        switch (inputs->left) {
-            case GO:
-                player_->cTransform->velocity.add(Vec2(-speed, 0));
-                if (player_->cTransform->degrees > -10.0) {
-                    player_->cTransform->degrees = -10.0;
-                }
+        player_->cTransform->velocity = inputs * speed;
+        if (player_->cTransform->velocity.x != 0) {
+            if (player_->cTransform->velocity.x < 0) {
+                player_->cTransform->degrees = -10.0;
                 player_->cTransform->flip = SDL_FLIP_HORIZONTAL;
-                break;
-            case STOP:
-                player_->cTransform->velocity.add(Vec2(speed, 0));
-                if (player_->cTransform->degrees < 0.0) {
-                    player_->cTransform->degrees = 0.0;
-                }
-                break;
-            default: break;
-        }
-        
-        inputs->left = NEUTRAL;
-
-        switch (inputs->right) {
-            case GO:
-                player_->cTransform->velocity.add(Vec2(speed, 0));
-                if (player_->cTransform->degrees < 10.0) {
-                    player_->cTransform->degrees = 10.0;
-                }
+            } else {
+                player_->cTransform->degrees = 10.0;
                 player_->cTransform->flip = SDL_FLIP_NONE;
-                break;
-            case STOP:
-                player_->cTransform->velocity.add(Vec2(-speed, 0));
-                if (player_->cTransform->degrees > 0.0) {
-                    player_->cTransform->degrees = 0.0;
-                }
-                break;
-            default: break;
+            }
+        } else {
+            player_->cTransform->degrees = 0.0;
         }
-        
-        inputs->right = NEUTRAL;
-        
+                        
         Vec2 old_pos = player_->cTransform->pos; // make a shallow copy of the old position
         
         player_->cTransform->pos.add(player_->cTransform->velocity);

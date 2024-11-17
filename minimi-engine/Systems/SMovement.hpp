@@ -26,11 +26,11 @@ public:
         bow_ = b;
     };
     
-    void update(MovementInputs *inputs);
+    void update(Vec2 inputs);
 
 private:
     void moveNPC(std::shared_ptr<Entity> entityToMove);
-    void movePlayer(MovementInputs *inputs);
+    void movePlayer(Vec2 inputs);
     void moveBow();
     void moveArrow(std::shared_ptr<Entity> arrow);
     

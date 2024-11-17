@@ -46,6 +46,7 @@
 		DCE5A5912CB08C9800D16C97 /* CAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */; };
 		DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5932CB0AB1A00D16C97 /* SMovement.cpp */; };
 		DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E8A42C9D448C00B36530 /* Vec2.cpp */; };
+		DCF576302CEA62550089B343 /* SInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCF5762F2CEA62550089B343 /* SInput.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -124,6 +125,7 @@
 		DCE5E8A02C9D34A300B36530 /* Component.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Component.hpp; sourceTree = "<group>"; };
 		DCE5E8A42C9D448C00B36530 /* Vec2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec2.cpp; sourceTree = "<group>"; };
 		DCE5E8A52C9D448C00B36530 /* Vec2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec2.hpp; sourceTree = "<group>"; };
+		DCF5762F2CEA62550089B343 /* SInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SInput.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +265,7 @@
 			children = (
 				DCE5A5932CB0AB1A00D16C97 /* SMovement.cpp */,
 				DCE5A5942CB0AB1A00D16C97 /* SMovement.hpp */,
+				DCF5762F2CEA62550089B343 /* SInput.cpp */,
 				DCE5A5972CB0ADD700D16C97 /* SInput.hpp */,
 				DC82B1B62CB84B6D00895CFC /* SSpawner.cpp */,
 				DC82B1B72CB84B6D00895CFC /* SSpawner.hpp */,
@@ -387,6 +390,7 @@
 			files = (
 				DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */,
 				DC0C3D112B5F655900D9BBB2 /* Game.cpp in Sources */,
+				DCF576302CEA62550089B343 /* SInput.cpp in Sources */,
 				DCDFB3D32CC45514003FD793 /* SAnimation.cpp in Sources */,
 				DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */,
 				DC690F922B60ABD50094D096 /* TileMap.cpp in Sources */,
