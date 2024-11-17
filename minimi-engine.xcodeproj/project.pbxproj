@@ -119,6 +119,7 @@
 		DCE5E8A42C9D448C00B36530 /* Vec2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec2.cpp; sourceTree = "<group>"; };
 		DCE5E8A52C9D448C00B36530 /* Vec2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec2.hpp; sourceTree = "<group>"; };
 		DCF5762F2CEA62550089B343 /* SInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SInput.cpp; sourceTree = "<group>"; };
+		DCF576342CEA7F6A0089B343 /* CPhysics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPhysics.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -272,6 +273,7 @@
 				DCE5E89D2C9D338F00B36530 /* CBoxCollider.hpp */,
 				DCE5A58E2CB04CE200D16C97 /* CAnimator.hpp */,
 				DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */,
+				DCF576342CEA7F6A0089B343 /* CPhysics.hpp */,
 			);
 			path = Components;
 			sourceTree = "<group>";

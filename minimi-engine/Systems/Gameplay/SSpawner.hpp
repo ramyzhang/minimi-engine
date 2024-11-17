@@ -17,8 +17,6 @@
 #include "Utils.hpp"
 #include "Vec2.hpp"
 
-const float NPC_SPEED = 1;
-
 class SSpawner : public Subject {
 public:
     SSpawner() {};

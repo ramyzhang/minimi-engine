@@ -115,8 +115,14 @@ void SMovement::moveBow() {
 void SMovement::moveArrow(std::shared_ptr<Entity> arrow) {
     if (arrow->cTransform->velocity.x != 0.0 && arrow->cTransform->velocity.y != 0.0) {
         Vec2 old_pos = arrow->cTransform->pos; // make a shallow copy of the old position
-
+        
+        float fric = 1;
+        if (arrow->cPhysics) fric = arrow->cPhysics->friction;
+        arrow->cTransform->velocity.scale(fric);
         arrow->cTransform->pos.add(arrow->cTransform->velocity);
+        
+        if (arrow->cTransform->velocity.distance(Vec2(0, 0)) < 0.0001) arrow->destroy();
+        
         // ------ Move collider! ------
         // This ensures that an offsetted collider will still follow the player correctly
         int x = static_cast<int>(arrow->cTransform->pos.x) - static_cast<int>(old_pos.x);

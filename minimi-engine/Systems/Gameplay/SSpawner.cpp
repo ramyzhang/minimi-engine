@@ -39,7 +39,7 @@ std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     Vec2 cupid_pos (336.0, 256.0);
     Vec2 cupid_velo (0.0, 0.0);
     
-    player_->cTransform = std::make_shared<CTransform>(3.0, cupid_pos, cupid_velo, 0.0, SDL_FLIP_NONE);
+    player_->cTransform = std::make_shared<CTransform>(CUPID_SPEED, cupid_pos, cupid_velo, 0.0, SDL_FLIP_NONE);
     
     int x = static_cast<int>(cupid_pos.x);
     int y = static_cast<int>(cupid_pos.y);
@@ -77,9 +77,7 @@ void SSpawner::spawnBow() {
     SDL_Point center = { p_width - 10, p_height / 2 };
     bow_->cTransform->center = center;
     
-    // Note: the bow doesn't need a collider, so we can just ignore that
-    
-    // TODO: delete this
+    // TODO: delete this once animation system is up
     spawnArrow(true);
 }
 
@@ -97,7 +95,7 @@ std::shared_ptr<Entity> SSpawner::spawnArrow(bool isInit) {
     
     Vec2 arrow_pos = bow_->cTransform->pos;
     Vec2 arrow_velo (0.0, 0.0);
-    float speed = 10;
+    float speed = ARROW_SPEED;
     
     if (!isInit) {
         Vec2 p_pos = player_->cTransform->pos;
@@ -119,6 +117,8 @@ std::shared_ptr<Entity> SSpawner::spawnArrow(bool isInit) {
         
         arrow->cBoxCollider = std::make_shared<CBoxCollider>(arrow_collider);
         arrow->cTransform = std::make_shared<CTransform>(speed, arrow_pos, arrow_velo, bow_->cTransform->degrees - offset, SDL_FLIP_NONE);
+        
+        arrow->cPhysics = std::make_shared<CPhysics>(ARROW_FRICTION);
     } else {
         arrow->cTransform = std::make_shared<CTransform>(speed, arrow_pos, arrow_velo, bow_->cTransform->degrees, SDL_FLIP_NONE);
     }
