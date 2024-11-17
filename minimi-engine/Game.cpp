@@ -26,11 +26,8 @@ void Game::init() {
     
     isRunning_ = sAudio->init();
     if (!isRunning_) return;
-    sAudio->loadAudio();
-    sAudio->startMusic();
     
-    sSpawner->spawnPlayer();
-    sSpawner->addObserver(sAudio);
+    sSpawner->init(sAudio);
     
     sMovement->init(entityManager, sSpawner->getPlayer(), sSpawner->getBow()); // movement system
     

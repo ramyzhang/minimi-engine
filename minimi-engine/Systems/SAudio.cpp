@@ -15,6 +15,9 @@ bool SAudio::init() {
         return false;
     }
     
+    loadAudio();
+    startMusic();
+    
     return true;
 }
 

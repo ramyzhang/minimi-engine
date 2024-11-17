@@ -7,6 +7,11 @@
 
 #include "SSpawner.hpp"
 
+void SSpawner::init(Observer *ob) {
+    spawnPlayer();
+    addObserver(ob);
+}
+
 void SSpawner::update(MouseInputs inputs_) {
     if (inputs_.mouse == MOUSE_DOWN) {
         printf("shoot ");
