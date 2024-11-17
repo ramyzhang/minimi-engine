@@ -11,9 +11,9 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include "EntityManager.hpp"
-#include "SSubject.hpp"
+#include "Subject.hpp"
 
-class SCollision : public SSubject {
+class SCollision : public Subject {
 public:
     SCollision () {};
     ~SCollision () {};

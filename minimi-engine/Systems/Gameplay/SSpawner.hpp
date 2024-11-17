@@ -13,13 +13,13 @@
 #include "EntityManager.hpp"
 #include "SRenderer.hpp"
 #include "SInput.hpp"
-#include "SSubject.hpp"
+#include "Subject.hpp"
 #include "Utils.hpp"
 #include "Vec2.hpp"
 
 const float NPC_SPEED = 1;
 
-class SSpawner : public SSubject {
+class SSpawner : public Subject {
 public:
     SSpawner() {};
     ~SSpawner() {};

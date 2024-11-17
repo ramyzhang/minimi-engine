@@ -13,7 +13,6 @@ Game::~Game() {};
 EntityManager *Game::entityManager = new EntityManager();
 
 SRenderer *Game::sRenderer = new SRenderer(entityManager);
-TileMap *bgTileMap; // Temporary
 SSpawner *Game::sSpawner = new SSpawner(entityManager, sRenderer, 100);
 SAudio *Game::sAudio = new SAudio();
 SMovement *Game::sMovement = new SMovement();
@@ -22,30 +21,21 @@ SInput *Game::sInput = new SInput();
 
 /** Initialize SDL and the game window + renderer. **/
 void Game::init() {
-    // ------- INIT RENDERER -------
     isRunning_ = sRenderer->init();
     if (!isRunning_) return;
     
-    // ------- INIT AUDIO -------
     isRunning_ = sAudio->init();
     if (!isRunning_) return;
-    
     sAudio->loadAudio();
     sAudio->startMusic();
     
-    // ------- INIT SPAWNER -------
     sSpawner->spawnPlayer();
     sSpawner->addObserver(sAudio);
     
-    // ------- INIT MOVEMENT -------
     sMovement->init(entityManager, sSpawner->getPlayer(), sSpawner->getBow()); // movement system
     
-    // ------- INIT PHYSICS -------
     sCollision->init(sSpawner->getPlayer());
     sCollision->addObserver(sAudio);
-    
-    // Ignore this for now
-    bgTileMap = new TileMap(sRenderer);
     
     printf("Game is running!\n");
     isRunning_ = true;
@@ -60,9 +50,7 @@ void Game::update() {
     sSpawner->update(sInput->getMouseInputs());
     sCollision->update();
     
-    // -------- NPC UPDATE --------
     for (auto& e : entityManager->getEntities("NPC")) {
-        // -------- ANIMATION --------
         if (e->cAnimator) e->cAnimator->incrementFrame();
     }
     

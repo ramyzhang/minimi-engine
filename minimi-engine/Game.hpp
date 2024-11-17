@@ -18,7 +18,6 @@
 #include <map>
 #include <algorithm>
 #include "SRenderer.hpp"
-#include "TileMap.hpp"
 #include "Component.hpp"
 #include "EntityManager.hpp"
 #include "Entity.hpp"

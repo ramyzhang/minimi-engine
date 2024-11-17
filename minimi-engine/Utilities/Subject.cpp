@@ -5,15 +5,15 @@
 //  Created by Ramy Zhang on 2024-10-19.
 //
 
-#include "SSubject.hpp"
+#include "Subject.hpp"
 
-void SSubject::addObserver(SObserver* observer) {
+void Subject::addObserver(Observer* observer) {
     if (numObservers_ >= MAX_OBSERVERS) return;
     observers_[numObservers_] = observer;
     numObservers_++;
 }
 
-void SSubject::removeObserver(SObserver* observer) {
+void Subject::removeObserver(Observer* observer) {
     if (numObservers_ <= 0) return;
     
     // Iterate through the list to find the observer and remove it
@@ -36,7 +36,7 @@ void SSubject::removeObserver(SObserver* observer) {
 }
 
 
-void SSubject::notify(Event e) {
+void Subject::notify(Event e) {
   for (int i = 0; i < numObservers_; i++) {
     observers_[i]->onNotify(e);
   }

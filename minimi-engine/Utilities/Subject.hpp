@@ -5,20 +5,20 @@
 //  Created by Ramy Zhang on 2024-10-19.
 //
 
-#ifndef SSubject_hpp
-#define SSubject_hpp
+#ifndef Subject_hpp
+#define Subject_hpp
 
 #include <stdio.h>
-#include "SObserver.hpp"
+#include "Observer.hpp"
 
 /** Send notifications to observers. */
-class SSubject {
+class Subject {
 public:
-    void addObserver(SObserver* observer);
-    void removeObserver(SObserver* observer);
+    void addObserver(Observer* observer);
+    void removeObserver(Observer* observer);
     
 private:
-    SObserver* observers_[MAX_OBSERVERS];
+    Observer* observers_[MAX_OBSERVERS];
     int numObservers_;
 
 protected:

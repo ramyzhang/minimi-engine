@@ -12,8 +12,6 @@ void SRenderer::update() {
     // bgTileMap->renderMap();
     updateCamera();
     
-    draw(background_, &camera_, &map_);
-    
     for (auto& e : em_->getEntities()) {
         if (e->cSprite && e->cTransform) {
             draw(e);
@@ -84,19 +82,19 @@ void SRenderer::draw(std::shared_ptr<Entity> e) {
         return;
     }
     
+    // Assign all the relevant variables
     Vec2 position = e->cTransform->pos;
     int width = e->cSprite->getWidth();
     int height = e->cSprite->getHeight();
     SDL_RendererFlip flip = e->cTransform->flip;
     double angle = e->cTransform->degrees;
-    
     int x = static_cast<int>(position.x) - camera_.x;
     int y = static_cast<int>(position.y) - camera_.y;
 
     // Defines the rendering space to which we want to render to the screen
     SDL_Rect renderQuad = { x, y, width, height };
     
-    SDL_SetTextureScaleMode(e->cSprite->texture, SDL_ScaleModeNearest);
+    SDL_SetTextureScaleMode(e->cSprite->texture, SDL_ScaleModeNearest); // since this is a pixel game
     
     SDL_Rect* currentClip = NULL;
     if (e->cAnimator) currentClip = &e->cAnimator->getSpriteClips()->at(e->cAnimator->getCurrentFrame());
@@ -147,6 +145,8 @@ void SRenderer::updateCamera() {
     } else if (camera_.y > MAP_HEIGHT - SCREEN_HEIGHT) {
         camera_.y = MAP_HEIGHT - SCREEN_HEIGHT;
     }
+    
+    draw(background_, &camera_, &map_); // update background clip for the camera
 }
 
 void SRenderer::free(std::shared_ptr<CSprite> sprite) {

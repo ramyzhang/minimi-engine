@@ -5,8 +5,8 @@
 //  Created by Ramy Zhang on 2024-10-19.
 //
 
-#ifndef SObserver_hpp
-#define SObserver_hpp
+#ifndef Observer_hpp
+#define Observer_hpp
 
 #include <stdio.h>
 
@@ -20,9 +20,9 @@ enum Event {
 };
 
 /** Subscribe to a subject to watch for notifications. */
-class SObserver {
+class Observer {
 public:
-  virtual ~SObserver() {}
+  virtual ~Observer() {}
   virtual void onNotify(Event event) = 0;
 };
 

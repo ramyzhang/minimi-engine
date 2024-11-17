@@ -11,7 +11,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2_mixer/SDL_mixer.h>
-#include "SObserver.hpp"
+#include "Observer.hpp"
 
 enum SoundEffect {
     DAMAGE,
@@ -21,7 +21,7 @@ enum SoundEffect {
     DEATH
 };
 
-class SAudio : public SObserver {
+class SAudio : public Observer {
 public:
     SAudio() {};
     ~SAudio() {};
