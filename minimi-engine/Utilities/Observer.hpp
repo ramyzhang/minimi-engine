@@ -9,15 +9,9 @@
 #define Observer_hpp
 
 #include <stdio.h>
+#include "Event.h"
 
 const int MAX_OBSERVERS = 20;
-
-enum Event {
-    ENEMY_DIED,
-    ARROW_SHOT,
-    PLAYER_HIT,
-    PLAYER_DIED,
-};
 
 /** Subscribe to a subject to watch for notifications. */
 class Observer {

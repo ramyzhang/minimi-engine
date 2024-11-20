@@ -28,11 +28,8 @@ void Game::init() {
     if (!isRunning_) return;
     
     sSpawner->init(sAudio);
-    
     sMovement->init(entityManager, sSpawner->getPlayer(), sSpawner->getBow()); // movement system
-    
-    sCollision->init(sSpawner->getPlayer());
-    sCollision->addObserver(sAudio);
+    sCollision->init(sSpawner->getPlayer(), sAudio);
     
     printf("Game is running!\n");
     isRunning_ = true;
@@ -66,8 +63,8 @@ void Game::update() {
         if (e->cAnimator) e->cAnimator->incrementFrame();
     }
     
-    count_++;
     entityManager->entityUpdate();
+    count_++;
 };
 
 /** Clear and re-render new screen contents for the next frame. */
@@ -85,11 +82,9 @@ void Game::clean() {
         }
     }
     
-    sAudio->freeAudio();
+    sAudio->clean();
     sRenderer->clean();
     
-    Mix_Quit();
-    IMG_Quit();
     SDL_Quit();
     printf("Cleaned game.\n");
 };

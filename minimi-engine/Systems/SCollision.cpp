@@ -7,6 +7,11 @@
 
 #include "SCollision.hpp"
 
+void SCollision::init(std::shared_ptr<Entity> player, Observer *obs) {
+    player_ = player;
+    addObserver(obs);
+}
+
 void SCollision::update() {
     for (auto& e : em_->getEntities("NPC")) {
         if (e->cBoxCollider) {

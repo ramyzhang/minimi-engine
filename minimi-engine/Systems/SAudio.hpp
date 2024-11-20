@@ -44,7 +44,7 @@ public:
     
     void playAudio(SoundEffect audio);
     
-    void freeAudio();
+    void clean();
     
 private:
     // The music that will be played

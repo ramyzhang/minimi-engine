@@ -10,23 +10,15 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include <SDL2_image/SDL_image.h>
-#include <SDL2_mixer/SDL_mixer.h>
 #include <math.h>
 #include <string>
 #include <vector>
 #include <map>
 #include <algorithm>
-#include "SRenderer.hpp"
 #include "Component.hpp"
 #include "EntityManager.hpp"
 #include "Entity.hpp"
-#include "SMovement.hpp"
-#include "SInput.hpp"
-#include "SSpawner.hpp"
-#include "SCollision.hpp"
-#include "SAudio.hpp"
-#include "SInput.hpp"
+#include "SystemIncludes.h"
 
 class Game {
 public:

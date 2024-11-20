@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "CAnimator.hpp"
+#include "Observer.hpp"
 
 enum NPCAnim {
     ANGRY,
@@ -21,7 +22,7 @@ enum BowAnim {
     SHOOTING
 };
 
-class SAnimation {
+class SAnimation : public Observer {
 public:
     void update();
 };

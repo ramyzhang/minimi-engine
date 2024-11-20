@@ -158,4 +158,6 @@ void SRenderer::clean() {
     renderer_ = NULL;
     SDL_DestroyWindow(window_);
     window_ = NULL;
+    
+    IMG_Quit();
 }

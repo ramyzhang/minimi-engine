@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "Observer.hpp"
+#include "Event.h"
 
 /** Send notifications to observers. */
 class Subject {

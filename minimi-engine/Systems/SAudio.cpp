@@ -90,7 +90,7 @@ void SAudio::playAudio(SoundEffect audio) {
     }
 }
 
-void SAudio::freeAudio() {
+void SAudio::clean() {
     // Free the sound effects
     Mix_FreeChunk(damage_);
     Mix_FreeChunk(love_);
@@ -106,4 +106,6 @@ void SAudio::freeAudio() {
     // Free the music
     Mix_FreeMusic(music_);
     music_ = NULL;
+    
+    Mix_Quit();
 }

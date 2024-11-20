@@ -14,7 +14,6 @@ void SSpawner::init(Observer *ob) {
 
 void SSpawner::update(MouseInputs inputs_) {
     if (inputs_.mouse == MOUSE_DOWN) {
-        printf("shoot ");
         std::shared_ptr<Entity> new_arrow = spawnArrow();
         notify(ARROW_SHOT);
     }
