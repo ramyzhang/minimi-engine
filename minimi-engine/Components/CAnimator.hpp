@@ -14,12 +14,15 @@
 #include <vector>
 #include "Component.hpp"
 
+typedef std::vector<SDL_Rect> Clip;
+typedef std::vector<std::vector<SDL_Rect>> ClipVector;
+
 class CAnimator : public Component {
 public:
     CAnimator() {};
     CAnimator(const int& f,
               const int& fr,
-              const std::vector<SDL_Rect>& sc) : frames_(f), frameRate_(fr), spriteClips_(sc) {};
+              const ClipVector& sc) : frames_(f), frameRate_(fr), spriteClips_(sc) {};
     
     int getNumberOfFrames() { return frames_; };
     void setNumberOfFrames(int num) { frames_ = num; };
@@ -29,8 +32,8 @@ public:
     int getCurrentFrame() { return currFrame_; };
     void incrementFrame(bool loop = true);
     
-    void setSpriteClips(std::vector<SDL_Rect> sc) { spriteClips_ = sc; };
-    std::vector<SDL_Rect>* getSpriteClips() { return &spriteClips_; };
+    void setSpriteClip(int index);
+    Clip* getSpriteClip() { return &spriteClips_[currClip_]; };
 
 private:
     int frames_ = 0;
@@ -38,7 +41,9 @@ private:
     int counter_ = 0;
     int frameRate_ = 1;
     
-    std::vector<SDL_Rect> spriteClips_;
+    int currClip_ = 0;
+    
+    ClipVector spriteClips_;
 };
 
 #endif /* CAnimator_hpp */

@@ -16,6 +16,7 @@
 #include "CBoxCollider.hpp"
 #include "CAnimator.hpp"
 #include "CPhysics.hpp"
+#include "CText.hpp"
 
 class Component;
 
@@ -34,6 +35,7 @@ public:
     std::shared_ptr<CBoxCollider> cBoxCollider;
     std::shared_ptr<CAnimator> cAnimator;
     std::shared_ptr<CPhysics> cPhysics;
+    std::shared_ptr<CText> cText;
     
 private:
     // Constructor is private; only EntityManager can make new Entities

@@ -97,7 +97,7 @@ void SRenderer::draw(std::shared_ptr<Entity> e) {
     SDL_SetTextureScaleMode(e->cSprite->texture, SDL_ScaleModeNearest); // since this is a pixel game
     
     SDL_Rect* currentClip = NULL;
-    if (e->cAnimator) currentClip = &e->cAnimator->getSpriteClips()->at(e->cAnimator->getCurrentFrame());
+    if (e->cAnimator) currentClip = &e->cAnimator->getSpriteClip()->at(e->cAnimator->getCurrentFrame());
     
     SDL_Point* centerOfRotation = NULL;
     if (!(e->cTransform->center.x == 0 && e->cTransform->center.y == 0)) centerOfRotation = &e->cTransform->center;

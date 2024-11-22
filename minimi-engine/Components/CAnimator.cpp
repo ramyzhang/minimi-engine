@@ -19,3 +19,11 @@ void CAnimator::incrementFrame(bool loop) {
     // Increment the counter
     counter_ = (counter_ + 1) % (frames_ * frameRate_);
 }
+
+void CAnimator::setSpriteClip(int index) {
+    currClip_ = index;
+    frames_ = static_cast<int>(spriteClips_[currClip_].size());
+    
+    counter_ = 0;
+    currFrame_ = 0;
+}

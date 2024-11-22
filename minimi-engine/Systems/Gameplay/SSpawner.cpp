@@ -31,13 +31,15 @@ std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     SDL_Texture* cupid_texture = renderer_->loadTexture("cupid_idle.png");
     player_->cSprite = std::make_shared<CSprite>(cupid_texture, 128, 128);
     
-    std::vector<SDL_Rect> cupid_clips;
+    std::vector<SDL_Rect> cupid_clip;
     for (int i = 0; i < 8; i++) {
         int h = player_->cSprite->getHeight();
         int w = player_->cSprite->getWidth();
         SDL_Rect clip = { i * w, 0, w, h };
-        cupid_clips.push_back(clip);
+        cupid_clip.push_back(clip);
     }
+    
+    ClipVector cupid_clips = { cupid_clip };
     player_->cAnimator = std::make_shared<CAnimator>(8, 8, cupid_clips);
     
     Vec2 cupid_pos (336.0, 256.0);
@@ -62,13 +64,15 @@ void SSpawner::spawnBow() {
     SDL_Texture* bow_texture = renderer_->loadTexture("cupid_bow.png");
     bow_->cSprite = std::make_shared<CSprite>(bow_texture, 128, 128);
     
-    std::vector<SDL_Rect> bow_clips;
+    std::vector<SDL_Rect> bow_clip;
     for (int i = 0; i < 8; i++) {
         int h = bow_->cSprite->getHeight();
         int w = bow_->cSprite->getWidth();
         SDL_Rect clip = { i * w, 0, w, h };
-        bow_clips.push_back(clip);
+        bow_clip.push_back(clip);
     }
+    
+    ClipVector bow_clips = { bow_clip };
     bow_->cAnimator = std::make_shared<CAnimator>(8, 8, bow_clips);
     
     Vec2 bow_pos (player_->cTransform->pos.x + 50, player_->cTransform->pos.y);
@@ -167,11 +171,18 @@ std::shared_ptr<Entity> SSpawner::spawnEnemy() {
     npc->cSprite = std::make_shared<CSprite>(npc_tex, 64, 64);
     
     // Make animation!!
-    std::vector<SDL_Rect> npc_clips;
+    Clip npc_clip_green;
     for (int i = 0; i < 4; i++) {
         SDL_Rect clip = { i * 64, 0, 64, 64 };
-        npc_clips.push_back(clip);
+        npc_clip_green.push_back(clip);
     }
+    Clip npc_clip_pink;
+    for (int i = 4; i < 8; i++) {
+        SDL_Rect clip = { i * 64, 0, 64, 64 };
+        npc_clip_green.push_back(clip);
+    }
+    
+    ClipVector npc_clips = { npc_clip_green, npc_clip_pink };
     npc->cAnimator = std::make_shared<CAnimator>(4, 10, npc_clips);
     
     int x = static_cast<int>(npc_pos.x);
