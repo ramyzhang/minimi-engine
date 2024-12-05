@@ -15,6 +15,7 @@
 #include <vector>
 #include <map>
 #include <algorithm>
+#include "Scene.hpp"
 #include "Component.hpp"
 #include "EntityManager.hpp"
 #include "Entity.hpp"
@@ -32,6 +33,9 @@ public:
     
     bool isRunning() { return isRunning_; }; // is the game running?
     
+    std::unordered_map<std::string, Scene *> Scene;
+    std::string currentScene;
+    
     static EntityManager *entityManager;
     
     // systems!
@@ -41,11 +45,15 @@ public:
     static SMovement *sMovement;
     static SCollision *sCollision;
     static SInput *sInput;
+    static SAnimation *sAnimation;
     
 private:
     int  count_;
     bool isRunning_;
     bool isPaused_;
+    
+    void coreUpdate();
+    void coreRender();
     
     SDL_Window *window_;
 };

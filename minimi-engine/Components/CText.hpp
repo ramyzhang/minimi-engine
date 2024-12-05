@@ -17,6 +17,8 @@ class CText : public Component {
 public:
     CText(char* t) : text(t) {};
     
+    SDL_Texture* mTexture;
+    
     char* text;
 };
 

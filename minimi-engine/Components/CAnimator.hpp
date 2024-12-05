@@ -30,10 +30,13 @@ public:
     void setFrameRate(int rate) { frameRate_ = rate; };
     
     int getCurrentFrame() { return currFrame_; };
-    void incrementFrame(bool loop = true);
+    void incrementFrame();
     
     void setSpriteClip(int index);
     Clip* getSpriteClip() { return &spriteClips_[currClip_]; };
+    int getClipIndex() { return currClip_; };
+    
+    void setLooping(bool loop) { isLooping = loop; };
 
 private:
     int frames_ = 0;
@@ -42,6 +45,8 @@ private:
     int frameRate_ = 1;
     
     int currClip_ = 0;
+    
+    bool isLooping = true;
     
     ClipVector spriteClips_;
 };

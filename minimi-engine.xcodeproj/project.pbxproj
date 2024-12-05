@@ -24,7 +24,7 @@
 		DC1C049E2CBF46C7007C6FE1 /* love.wav in Resources */ = {isa = PBXBuildFile; fileRef = DC1C049D2CBF46C7007C6FE1 /* love.wav */; };
 		DC31D52A2CF022CC004C191C /* SDL2_ttf.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC31D5292CF022CC004C191C /* SDL2_ttf.framework */; };
 		DC31D52B2CF022CC004C191C /* SDL2_ttf.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DC31D5292CF022CC004C191C /* SDL2_ttf.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		DC31D5302CF0245C004C191C /* CoreGameScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC31D52E2CF0245C004C191C /* CoreGameScene.cpp */; };
+		DC31D5302CF0245C004C191C /* CoreGame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC31D52E2CF0245C004C191C /* CoreGame.cpp */; };
 		DC31D5322CF029B2004C191C /* npc_walk.png in Resources */ = {isa = PBXBuildFile; fileRef = DC31D5312CF029B2004C191C /* npc_walk.png */; };
 		DC61EE5E2B54F7C60054C3DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DC61EE5D2B54F7C60054C3DB /* Assets.xcassets */; };
 		DC61EE6C2B54F7DE0054C3DB /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC61EE6B2B54F7DE0054C3DB /* SDL2.framework */; };
@@ -84,7 +84,7 @@
 		DC1C049D2CBF46C7007C6FE1 /* love.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = love.wav; path = ../../../../../Downloads/love.wav; sourceTree = "<group>"; };
 		DC31D5272CF02257004C191C /* CText.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CText.hpp; sourceTree = "<group>"; };
 		DC31D5292CF022CC004C191C /* SDL2_ttf.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_ttf.framework; path = ../../../../Library/Frameworks/SDL2_ttf.framework; sourceTree = "<group>"; };
-		DC31D52E2CF0245C004C191C /* CoreGameScene.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CoreGameScene.cpp; sourceTree = "<group>"; };
+		DC31D52E2CF0245C004C191C /* CoreGame.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = CoreGame.cpp; sourceTree = "<group>"; };
 		DC31D52F2CF0245C004C191C /* CoreGame.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CoreGame.hpp; sourceTree = "<group>"; };
 		DC31D5312CF029B2004C191C /* npc_walk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = npc_walk.png; path = ../../../../../Downloads/npc_walk.png; sourceTree = "<group>"; };
 		DC61EE572B54F7C60054C3DB /* minimi-engine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "minimi-engine.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -329,7 +329,7 @@
 			isa = PBXGroup;
 			children = (
 				DCF576382CEA8BF30089B343 /* Scene.hpp */,
-				DC31D52E2CF0245C004C191C /* CoreGameScene.cpp */,
+				DC31D52E2CF0245C004C191C /* CoreGame.cpp */,
 				DC31D52F2CF0245C004C191C /* CoreGame.hpp */,
 			);
 			path = Scene;
@@ -421,7 +421,7 @@
 				DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */,
 				DC0C3D112B5F655900D9BBB2 /* Game.cpp in Sources */,
 				DCF576302CEA62550089B343 /* SInput.cpp in Sources */,
-				DC31D5302CF0245C004C191C /* CoreGameScene.cpp in Sources */,
+				DC31D5302CF0245C004C191C /* CoreGame.cpp in Sources */,
 				DCDFB3D32CC45514003FD793 /* SAnimation.cpp in Sources */,
 				DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */,
 				DC82B1BB2CB854E200895CFC /* SRenderer.cpp in Sources */,

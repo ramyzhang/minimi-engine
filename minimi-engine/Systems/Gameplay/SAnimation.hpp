@@ -11,20 +11,30 @@
 #include <stdio.h>
 #include "CAnimator.hpp"
 #include "Observer.hpp"
-
-enum NPCAnim {
-    ANGRY,
-    LOVE
-};
-
-enum BowAnim {
-    STATIC,
-    SHOOTING
-};
+#include "EntityManager.hpp"
 
 class SAnimation : public Observer {
 public:
+    SAnimation(EntityManager* em) : em_(em) {};
+    
+    void init();
     void update();
+    
+    virtual void onNotify(Event event, std::shared_ptr<Entity> entity) {
+        switch (event) {
+            case ENEMY_DIED: npcStateMachine(event, entity); break;
+            case ARROW_SHOT: bowStateMachine(event); break;
+            case PLAYER_HIT: break;
+            case PLAYER_DIED: break;
+            case NPC_LOVE: npcStateMachine(event, entity); break;
+            default: break;
+        }
+    }
+    
+private:
+    void npcStateMachine(Event event, std::shared_ptr<Entity> entity);
+    void bowStateMachine(Event event);
+    EntityManager* em_;
 };
 
 #endif /* SAnimation_hpp */

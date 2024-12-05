@@ -14,5 +14,6 @@
 #include "SCollision.hpp"
 #include "SAudio.hpp"
 #include "SRenderer.hpp"
+#include "SAnimation.hpp"
 
 #endif /* SystemIncludes_h */

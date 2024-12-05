@@ -26,7 +26,7 @@ public:
              SRenderer* r,
              const int& sr) : entityManager_(em), renderer_(r), spawnRate_(sr) {};
     
-    void init(Observer *ob);
+    void init(std::vector<Observer *> ob);
     void update(MouseInputs inputs_);
     
     std::shared_ptr<Entity> getPlayer() { return player_; };

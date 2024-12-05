@@ -15,6 +15,7 @@ EntityManager *Game::entityManager = new EntityManager();
 SRenderer *Game::sRenderer = new SRenderer(entityManager);
 SSpawner *Game::sSpawner = new SSpawner(entityManager, sRenderer, 100);
 SAudio *Game::sAudio = new SAudio();
+SAnimation *Game::sAnimation = new SAnimation(entityManager);
 SMovement *Game::sMovement = new SMovement();
 SCollision *Game::sCollision = new SCollision(entityManager);
 SInput *Game::sInput = new SInput();
@@ -27,9 +28,13 @@ void Game::init() {
     isRunning_ = sAudio->init();
     if (!isRunning_) return;
     
-    sSpawner->init(sAudio);
+    std::vector<Observer*> observers;
+    observers.push_back(sAudio);
+    observers.push_back(sAnimation);
+    
+    sSpawner->init(observers);
     sMovement->init(entityManager, sSpawner->getPlayer(), sSpawner->getBow()); // movement system
-    sCollision->init(sSpawner->getPlayer(), sAudio);
+    sCollision->init(sSpawner->getPlayer(), observers);
     
     printf("Game is running!\n");
     isRunning_ = true;
@@ -39,17 +44,10 @@ void Game::init() {
 /** Go through all the game entities and update them all. */
 void Game::update() {
     switch (sInput->update(isPaused_)) {
-        case QUIT:
-            isRunning_ = false;
-            break;
-        case PAUSE:
-            isPaused_ = true; 
-            break;
-        case PLAYING:
-            isPaused_ = false; 
-            break;
-        default:
-            break;
+        case QUIT: isRunning_ = false; break;
+        case PAUSE: isPaused_ = true; break;
+        case PLAYING: isPaused_ = false; break;
+        default: break;
     }
     
     if (!isPaused_) {
@@ -62,6 +60,7 @@ void Game::update() {
     for (auto& e : entityManager->getEntities("NPC")) {
         if (e->cAnimator) e->cAnimator->incrementFrame();
     }
+    sSpawner->getBow()->cAnimator->incrementFrame();
     
     entityManager->entityUpdate();
     count_++;

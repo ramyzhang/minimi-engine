@@ -7,15 +7,17 @@
 
 #include "SSpawner.hpp"
 
-void SSpawner::init(Observer *ob) {
+void SSpawner::init(std::vector<Observer *> ob) {
     spawnPlayer();
-    addObserver(ob);
+    for (Observer* o : ob) {
+        addObserver(o);
+    }
 }
 
 void SSpawner::update(MouseInputs inputs_) {
     if (inputs_.mouse == MOUSE_DOWN) {
         std::shared_ptr<Entity> new_arrow = spawnArrow();
-        notify(ARROW_SHOT);
+        notify(ARROW_SHOT, new_arrow);
     }
     
     spawnEnemy();
@@ -64,16 +66,20 @@ void SSpawner::spawnBow() {
     SDL_Texture* bow_texture = renderer_->loadTexture("cupid_bow.png");
     bow_->cSprite = std::make_shared<CSprite>(bow_texture, 128, 128);
     
-    std::vector<SDL_Rect> bow_clip;
+    Clip bow_idle;
+    int h = bow_->cSprite->getHeight();
+    int w = bow_->cSprite->getWidth();
+    SDL_Rect clip = { 0, 0, w, h };
+    bow_idle.push_back(clip);
+    
+    Clip bow_drawn;
     for (int i = 0; i < 8; i++) {
-        int h = bow_->cSprite->getHeight();
-        int w = bow_->cSprite->getWidth();
-        SDL_Rect clip = { i * w, 0, w, h };
-        bow_clip.push_back(clip);
+        SDL_Rect c = { i * w, 0, w, h };
+        bow_drawn.push_back(c);
     }
     
-    ClipVector bow_clips = { bow_clip };
-    bow_->cAnimator = std::make_shared<CAnimator>(8, 8, bow_clips);
+    ClipVector bow_clips = { bow_idle, bow_drawn };
+    bow_->cAnimator = std::make_shared<CAnimator>(1, 2, bow_clips);
     
     Vec2 bow_pos (player_->cTransform->pos.x + 50, player_->cTransform->pos.y);
     Vec2 bow_velo (0.0, 0.0);
@@ -167,7 +173,7 @@ std::shared_ptr<Entity> SSpawner::spawnEnemy() {
     npc->cTransform = std::make_shared<CTransform>(NPC_SPEED, npc_pos, npc_velo, 0.0, SDL_FLIP_NONE);
      
     // Make the sprite!
-    SDL_Texture* npc_tex = renderer_->loadTexture("npc_green.png");
+    SDL_Texture* npc_tex = renderer_->loadTexture("npc_walk.png");
     npc->cSprite = std::make_shared<CSprite>(npc_tex, 64, 64);
     
     // Make animation!!
@@ -179,7 +185,7 @@ std::shared_ptr<Entity> SSpawner::spawnEnemy() {
     Clip npc_clip_pink;
     for (int i = 4; i < 8; i++) {
         SDL_Rect clip = { i * 64, 0, 64, 64 };
-        npc_clip_green.push_back(clip);
+        npc_clip_pink.push_back(clip);
     }
     
     ClipVector npc_clips = { npc_clip_green, npc_clip_pink };

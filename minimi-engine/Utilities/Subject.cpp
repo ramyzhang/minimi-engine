@@ -35,9 +35,8 @@ void Subject::removeObserver(Observer* observer) {
     }
 }
 
-
-void Subject::notify(Event e) {
-  for (int i = 0; i < numObservers_; i++) {
-    observers_[i]->onNotify(e);
-  }
+void Subject::notify(Event e, std::shared_ptr<Entity> entity) {
+    for (int i = 0; i < numObservers_; i++) {
+      observers_[i]->onNotify(e, entity);
+    }
 }

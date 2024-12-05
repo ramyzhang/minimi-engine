@@ -13,7 +13,7 @@ GameState SInput::update(bool paused) {
     SDL_Event e;
 
     // Continuing polling events and handling them until there are no more
-    mouseInputs_->mouse = MOUSE_NEUTRAL;
+    mouseInputs_->mouse = MOUSE_NEUTRAL; // reset mouse
     while (SDL_PollEvent(&e) != 0) {
         // ------ EXIT ------
         if (e.type == SDL_QUIT) {

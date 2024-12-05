@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "Observer.hpp"
+#include "Entity.hpp"
 #include "Event.h"
 
 /** Send notifications to observers. */
@@ -23,7 +24,7 @@ private:
     int numObservers_;
 
 protected:
-    void notify(Event event);
+    void notify(Event event, std::shared_ptr<Entity> entity);
 };
 
 #endif /* SSubject_hpp */

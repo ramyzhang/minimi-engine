@@ -13,6 +13,7 @@ enum Event {
     ARROW_SHOT,
     PLAYER_HIT,
     PLAYER_DIED,
+    NPC_LOVE,
 };
 
 #endif /* Event_h */

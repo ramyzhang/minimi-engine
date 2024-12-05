@@ -9,7 +9,6 @@
 
 void SRenderer::update() {
     SDL_RenderClear(renderer_);
-    // bgTileMap->renderMap();
     updateCamera();
     
     for (auto& e : em_->getEntities()) {
@@ -104,7 +103,7 @@ void SRenderer::draw(std::shared_ptr<Entity> e) {
     
     SDL_RenderCopyEx(renderer_, e->cSprite->texture, currentClip, &renderQuad, angle, centerOfRotation, flip);
     
-#if (DEBUG == 1)
+#if (DEBUG == 1) // DRAW THE BOX COLLIDERS
     if (e->cBoxCollider) {
         SDL_SetRenderDrawColor(renderer_, 200, 200, 255, 255);
         SDL_Rect collider = e->cBoxCollider->collider;

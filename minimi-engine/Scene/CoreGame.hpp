@@ -10,6 +10,7 @@
 
 #include <stdio.h>
 #include "Scene.hpp"
+#include "SystemIncludes.h"
 
 class CoreGame : public Scene {
     CoreGame() : Scene(SCENE_CURRENT, "GameOver") {};

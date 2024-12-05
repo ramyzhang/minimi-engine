@@ -7,9 +7,11 @@
 
 #include "SCollision.hpp"
 
-void SCollision::init(std::shared_ptr<Entity> player, Observer *obs) {
+void SCollision::init(std::shared_ptr<Entity> player, std::vector<Observer *> ob) {
     player_ = player;
-    addObserver(obs);
+    for (Observer* o : ob) {
+        addObserver(o);
+    }
 }
 
 void SCollision::update() {
@@ -17,14 +19,13 @@ void SCollision::update() {
         if (e->cBoxCollider) {
             if (checkCollision(e, player_)) {
                 e->destroy();
-                notify(PLAYER_HIT);
+                notify(PLAYER_HIT, e);
             }
             
             for (auto& arrow : em_->getEntities("Arrow")) {
                 if (arrow->cBoxCollider && checkCollision(arrow, e)) {
-                    e->destroy();
                     arrow->destroy();
-                    notify(ENEMY_DIED);
+                    notify(ENEMY_DIED, e);
                 }
             }
         }

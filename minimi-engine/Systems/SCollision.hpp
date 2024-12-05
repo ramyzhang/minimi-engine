@@ -20,7 +20,7 @@ public:
     
     SCollision(EntityManager* em) : em_(em) {};
     
-    void init(std::shared_ptr<Entity> player, Observer *obs);
+    void init(std::shared_ptr<Entity> player, std::vector<Observer *> ob);
     
     void update();
     

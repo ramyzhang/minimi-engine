@@ -12,6 +12,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_mixer/SDL_mixer.h>
 #include "Observer.hpp"
+#include "Entity.hpp"
 
 enum SoundEffect {
     DAMAGE,
@@ -26,12 +27,14 @@ public:
     SAudio() {};
     ~SAudio() {};
     
-    virtual void onNotify(Event event) {
+    virtual void onNotify(Event event, std::shared_ptr<Entity> entity) {
         switch (event) {
             case ENEMY_DIED: playAudio(LOVE); break;
             case ARROW_SHOT: playAudio(SHOOT); break;
             case PLAYER_HIT: playAudio(DAMAGE); break;
             case PLAYER_DIED: playAudio(DEATH); stopMusic(); break;
+            case NPC_LOVE: break;
+            default: break;
         }
     }
     
