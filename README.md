@@ -20,15 +20,14 @@ All game assets were created by me!
 - SSpawner (spawns a player and enemies)
 - SCollision (collision solver)
 - SAudio (basic audio system)
+- SAnimation state machine
 - SObserver and SSubject for the observer/subject notifier system pattern
 
 ### To Do
 
 **Systems:**
 - Particles
-- Animation state machine
 - UI
-- Scripts
 - Basic Scene Management (+ pausing)
 - Game Logic (i.e. health, NPC states)
 - Reading in game settings from a .txt file
