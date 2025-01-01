@@ -11,14 +11,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string>
-#include "CTransform.hpp"
-#include "CSprite.hpp"
-#include "CBoxCollider.hpp"
-#include "CAnimator.hpp"
-#include "CPhysics.hpp"
-#include "CText.hpp"
-
-class Component;
+#include "ComponentIncludes.h"
 
 class Entity {
     
@@ -36,6 +29,8 @@ public:
     std::shared_ptr<CAnimator> cAnimator;
     std::shared_ptr<CPhysics> cPhysics;
     std::shared_ptr<CText> cText;
+    std::shared_ptr<CPlayer> cPlayer;
+    std::shared_ptr<CNPC> cNPC;
     
 private:
     // Constructor is private; only EntityManager can make new Entities

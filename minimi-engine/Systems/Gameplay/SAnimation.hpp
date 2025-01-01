@@ -17,7 +17,6 @@ class SAnimation : public Observer {
 public:
     SAnimation(EntityManager* em) : em_(em) {};
     
-    void init();
     void update();
     
     virtual void onNotify(Event event, std::shared_ptr<Entity> entity) {

@@ -15,5 +15,6 @@
 #include "SAudio.hpp"
 #include "SRenderer.hpp"
 #include "SAnimation.hpp"
+#include "SNPC.hpp"
 
 #endif /* SystemIncludes_h */

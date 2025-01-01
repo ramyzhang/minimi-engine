@@ -7,9 +7,27 @@
 
 #include "SAnimation.hpp"
 
+void SAnimation::update() {
+    std::shared_ptr<Entity> player;
+    if (em_->getEntities("Player").size() > 0) {
+        player = em_->getEntities("Player")[0];
+    }
+    
+    std::shared_ptr<Entity> bow;
+    if (em_->getEntities("Bow").size() > 0) {
+        bow = em_->getEntities("Bow")[0];
+    }
+    
+    if (player && player->cAnimator) player->cAnimator->incrementFrame(); // Animate player
+    for (auto& e : em_->getEntities("NPC")) {
+        if (e->cAnimator) e->cAnimator->incrementFrame();
+    }
+    if (bow && bow->cAnimator) bow->cAnimator->incrementFrame();
+}
+
 void SAnimation::npcStateMachine(Event event, std::shared_ptr<Entity> entity) {
-    printf("NPC state machine notified!");
     if (!entity->cAnimator) return;
+    
     switch (entity->cAnimator->getClipIndex()) {
         case 0: // green npc :)
             if (event == ENEMY_DIED) {
@@ -29,13 +47,11 @@ void SAnimation::bowStateMachine(Event event) {
     
     switch (bow->cAnimator->getClipIndex()) {
         case 0: // idle bow
-            printf("At 0 for bow\n");
             if (event == ARROW_SHOT) {
                 bow->cAnimator->setLooping(false);
                 bow->cAnimator->setSpriteClip(1);
             }
         case 1: // shooting bow - just ignore, it'll go back to idling
-            printf("At 1 for bow\n");
             break;
     }
 };

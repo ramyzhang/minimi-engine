@@ -9,5 +9,15 @@
 #define CPlayer_hpp
 
 #include <stdio.h>
+#include "Component.hpp"
+
+class CPlayer : public Component {
+public:
+    CPlayer() {};
+    
+    int maxHealth = 5;
+    
+    int currHealth = 5;
+};
 
 #endif /* CPlayer_hpp */

@@ -58,3 +58,11 @@ void EntityManager::entityUpdate() {
     entitiesToAdd_.clear();
 }
 
+void EntityManager::changeTag(std::string newTag, std::shared_ptr<Entity> e) {
+    entityMap_[e->tag_].erase(std::remove(entityMap_[e->tag_].begin(), entityMap_[e->tag_].end(), e), entityMap_[e->tag_].end());
+    
+    e->tag_ = newTag;
+    
+    entityMap_[e->tag_].push_back(e);
+}
+

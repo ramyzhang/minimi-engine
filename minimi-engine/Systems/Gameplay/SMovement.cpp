@@ -37,7 +37,10 @@ void SMovement::moveNPC(std::shared_ptr<Entity> entityToMove) {
         float speed = entityToMove->cTransform->speed;
         
         // Get the vector pointing towards the player
-        Vec2 dist_vec = entityToMove->cTransform->getTarget() - entityToMove->cTransform->pos;
+        Vec2 dist_vec;
+        if (entityToMove->cNPC) {
+            dist_vec = entityToMove->cNPC->getTarget() - entityToMove->cTransform->pos;
+        }
         dist_vec.normalize();
         
         // Flip the NPC if needed

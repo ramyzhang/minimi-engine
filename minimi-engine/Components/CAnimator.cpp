@@ -27,9 +27,6 @@ void CAnimator::incrementFrame() {
 void CAnimator::setSpriteClip(int index) {
     currClip_ = index;
     
-    printf("Number of clips: %zu\n", spriteClips_.size());
-    printf("Number of frames in this clip: %zu\n", spriteClips_[currClip_].size());
-    
     frames_ = static_cast<int>(spriteClips_[currClip_].size());
     
     counter_ = 0;

@@ -14,6 +14,7 @@
 #include "Vec2.hpp"
 #include "Utils.hpp"
 #include "GameConstants.hpp"
+#include "Observer.hpp"
 
 class SMovement {
 public:

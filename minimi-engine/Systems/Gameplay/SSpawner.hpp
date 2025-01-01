@@ -36,7 +36,6 @@ public:
     std::shared_ptr<Entity> spawnEnemy();
     std::shared_ptr<Entity> spawnArrow(bool isInit = false);
     
-    void updateEnemy(std::shared_ptr<Entity> npc);
     
 private:
     EntityManager* entityManager_;

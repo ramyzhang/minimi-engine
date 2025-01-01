@@ -37,6 +37,8 @@ public:
     
     void entityUpdate(); // delayed update for iterator invalidation check, call first at new frame
     
+    void changeTag(std::string newTag, std::shared_ptr<Entity> e);
+    
 private:
     EntityVector entities_;
     EntityMap entityMap_;

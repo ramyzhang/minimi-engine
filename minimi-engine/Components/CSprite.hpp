@@ -21,6 +21,8 @@ public:
     int getWidth() { return width_; };
     int getHeight() { return height_; };
     
+    int alpha;
+    
     CSprite() {};
     CSprite(SDL_Texture* tex,
             const int& w,

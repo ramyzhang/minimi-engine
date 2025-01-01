@@ -28,13 +28,6 @@ public:
     double degrees = 0.0; // degrees rotated
     SDL_Point center = { 0, 0 }; // center of rotation
     SDL_RendererFlip flip = SDL_FLIP_NONE; // all my sprites are loaded in facing right
-    
-    // if this is an npc, set the target to move towards
-    void setTarget(Vec2 target) { target_ = target; };
-    Vec2 getTarget() { return target_; };
-    
-private:
-    Vec2 target_;
 };
 
 #endif /* CTransform_hpp */

@@ -46,6 +46,7 @@ public:
     static SCollision *sCollision;
     static SInput *sInput;
     static SAnimation *sAnimation;
+    static SNPC *sNPC;
     
 private:
     int  count_;

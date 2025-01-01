@@ -45,6 +45,7 @@
 		DCE5A5912CB08C9800D16C97 /* CAnimator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */; };
 		DCE5A5952CB0AB1A00D16C97 /* SMovement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5A5932CB0AB1A00D16C97 /* SMovement.cpp */; };
 		DCE5E8A62C9D448C00B36530 /* Vec2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCE5E8A42C9D448C00B36530 /* Vec2.cpp */; };
+		DCF10BC72D025CB2004D7787 /* SNPC.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCF10BC52D025CB2004D7787 /* SNPC.cpp */; };
 		DCF576302CEA62550089B343 /* SInput.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCF5762F2CEA62550089B343 /* SInput.cpp */; };
 /* End PBXBuildFile section */
 
@@ -125,6 +126,11 @@
 		DCE5E8A42C9D448C00B36530 /* Vec2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Vec2.cpp; sourceTree = "<group>"; };
 		DCE5E8A52C9D448C00B36530 /* Vec2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Vec2.hpp; sourceTree = "<group>"; };
 		DCF094FA2CED927F0016D231 /* Event.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Event.h; sourceTree = "<group>"; };
+		DCF10BBF2D025833004D7787 /* CPlayer.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPlayer.hpp; sourceTree = "<group>"; };
+		DCF10BC22D0258B0004D7787 /* CNPC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CNPC.hpp; sourceTree = "<group>"; };
+		DCF10BC42D02590A004D7787 /* ComponentIncludes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ComponentIncludes.h; sourceTree = "<group>"; };
+		DCF10BC52D025CB2004D7787 /* SNPC.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = SNPC.cpp; sourceTree = "<group>"; };
+		DCF10BC62D025CB2004D7787 /* SNPC.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = SNPC.hpp; sourceTree = "<group>"; };
 		DCF5762F2CEA62550089B343 /* SInput.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SInput.cpp; sourceTree = "<group>"; };
 		DCF576342CEA7F6A0089B343 /* CPhysics.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = CPhysics.hpp; sourceTree = "<group>"; };
 		DCF576382CEA8BF30089B343 /* Scene.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
@@ -286,6 +292,9 @@
 				DCE5A5902CB08C9800D16C97 /* CAnimator.cpp */,
 				DCF576342CEA7F6A0089B343 /* CPhysics.hpp */,
 				DC31D5272CF02257004C191C /* CText.hpp */,
+				DCF10BBF2D025833004D7787 /* CPlayer.hpp */,
+				DCF10BC22D0258B0004D7787 /* CNPC.hpp */,
+				DCF10BC42D02590A004D7787 /* ComponentIncludes.h */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -310,6 +319,8 @@
 				DCE5A5942CB0AB1A00D16C97 /* SMovement.hpp */,
 				DC82B1B62CB84B6D00895CFC /* SSpawner.cpp */,
 				DC82B1B72CB84B6D00895CFC /* SSpawner.hpp */,
+				DCF10BC52D025CB2004D7787 /* SNPC.cpp */,
+				DCF10BC62D025CB2004D7787 /* SNPC.hpp */,
 			);
 			path = Gameplay;
 			sourceTree = "<group>";
@@ -419,6 +430,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC61EE732B54F8BD0054C3DB /* main.cpp in Sources */,
+				DCF10BC72D025CB2004D7787 /* SNPC.cpp in Sources */,
 				DC0C3D112B5F655900D9BBB2 /* Game.cpp in Sources */,
 				DCF576302CEA62550089B343 /* SInput.cpp in Sources */,
 				DC31D5302CF0245C004C191C /* CoreGame.cpp in Sources */,

@@ -19,6 +19,7 @@ SAnimation *Game::sAnimation = new SAnimation(entityManager);
 SMovement *Game::sMovement = new SMovement();
 SCollision *Game::sCollision = new SCollision(entityManager);
 SInput *Game::sInput = new SInput();
+SNPC *Game::sNPC = new SNPC(entityManager);
 
 /** Initialize SDL and the game window + renderer. **/
 void Game::init() {
@@ -35,6 +36,7 @@ void Game::init() {
     sSpawner->init(observers);
     sMovement->init(entityManager, sSpawner->getPlayer(), sSpawner->getBow()); // movement system
     sCollision->init(sSpawner->getPlayer(), observers);
+    sNPC->init(sSpawner->getPlayer());
     
     printf("Game is running!\n");
     isRunning_ = true;
@@ -54,15 +56,12 @@ void Game::update() {
         sMovement->update(sInput->getMovementInputs());
         sSpawner->update(sInput->getMouseInputs());
         sCollision->update();
+        sNPC->update();
     }
     
-    sSpawner->getPlayer()->cAnimator->incrementFrame(); // Animate player
-    for (auto& e : entityManager->getEntities("NPC")) {
-        if (e->cAnimator) e->cAnimator->incrementFrame();
-    }
-    sSpawner->getBow()->cAnimator->incrementFrame();
-    
+    sAnimation->update();
     entityManager->entityUpdate();
+    
     count_++;
 };
 

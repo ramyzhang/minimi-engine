@@ -21,10 +21,6 @@ void SSpawner::update(MouseInputs inputs_) {
     }
     
     spawnEnemy();
-    
-    for (auto& e : entityManager_->getEntities("NPC")) {
-        if (e->cTransform) updateEnemy(e);
-    }
 }
 
 /** Spawn a player! **/
@@ -57,6 +53,8 @@ std::shared_ptr<Entity> SSpawner::spawnPlayer() {
     
     // Spawn cupid's bow
     spawnBow();
+    
+    player_->cPlayer = std::make_shared<CPlayer>();
     
     return player_;
 }
@@ -197,20 +195,7 @@ std::shared_ptr<Entity> SSpawner::spawnEnemy() {
     
     npc->cBoxCollider = std::make_shared<CBoxCollider>(npc_collider);
     
+    npc->cNPC = std::make_shared<CNPC>();
+    
     return npc;
-}
-
-/** Update transform targets so that enemies are always moving towards the player! */
-void SSpawner::updateEnemy(std::shared_ptr<Entity> npc) {
-    if (player_ == nullptr) {
-        printf("Error: Player not initialized yet.");
-        return;
-    }
-    
-    if (npc == nullptr) {
-        printf("Error: NPC doesn't exist.");
-        return;
-    }
-    
-    npc->cTransform->setTarget(player_->cTransform->pos);
 }
